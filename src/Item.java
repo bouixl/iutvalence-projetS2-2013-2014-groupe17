@@ -1,5 +1,9 @@
-
-public enum Item
+/**
+ * 
+ * @author rougen
+ *
+ */
+public class Item
 {
 
 }
