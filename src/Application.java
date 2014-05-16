@@ -1,8 +1,3 @@
-/**
- * 
- * @author bouixl
- *
- */
 public class Application
 {
 	/**

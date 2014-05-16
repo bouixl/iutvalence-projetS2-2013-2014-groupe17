@@ -22,7 +22,9 @@ public class Partie
 	 */
 	public Partie()
 	{
-		
+		this.equipe = new Equipe();
+		this.carte = Carte.CARTE_DEPART;
+		this.etat = "init";
 	}
 	
 	/**
