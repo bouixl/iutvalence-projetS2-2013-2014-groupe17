@@ -6,10 +6,22 @@
 public enum Classes
 {
 	/**
-	 * La classe bourrin
+	 * La classe bourrin 
 	 */
-	BARBARE(60,20,4,2,0,1);
-	
+	BARBARE(60,20,4,2,0,1),
+	/**
+	 * Classe de dégats par sorts à distance
+	 */
+	MAGISTER(45,35,1,0,4,2),
+	/**
+	 * Classe dégats en mélée axée sur les dégats
+	 */
+	ASSASSIN(50,25,2,1,1,3),
+	/**
+	 * Soigneur par les plantes
+	 */
+	DRUIDE(40,40,0,2,4,2);
+	//Les noms des classes seront certainement à redéfinir
 	
 	/**
 	 * 

@@ -99,6 +99,23 @@ public class Personnage
 		this.pointsDeManaMax = classe.getPm();
 	}
 	
+	public void attaquer()
+	{
+		
+	}
 	
+	public String estVaincu()
+	{
+		return "Vous êtes mort de façon atroce";
+	}
 	
+	public void subirDegats()
+	{
+		
+	}
+	
+	public void seDefendre()
+	{
+		
+	}
 }
