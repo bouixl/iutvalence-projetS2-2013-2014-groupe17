@@ -27,7 +27,7 @@ public class Equipe
 		return this.Orientation;
 	}
 	
-	public void ajoutpersonnage(Personnage)
+	public void ajoutpersonnage(Personnage personnage)
 	{
 		
 	}
