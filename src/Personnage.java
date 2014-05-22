@@ -121,7 +121,10 @@ public class Personnage
 		// TODO Auto-generated constructor stub
 	}
 
-
+	/**
+	 * Permet au personnage d'attaquer avec son arme en mélée
+	 * @return le nombre de dégats bruts que fait le personnage
+	 */
 	public int attaquer()
 	{
 		int degats = 0;
@@ -129,7 +132,10 @@ public class Personnage
 		degats=this.obtenirForce();
 		return degats;
 	}
-	
+	/**
+	 * Méthode qui dis si le personnage est mort ou pas
+	 * @return
+	 */
 	public boolean estVaincu()
 	{
 		if(this.pointsDeVie==0)
@@ -139,7 +145,11 @@ public class Personnage
 		}
 		else return false;
 	}
-	
+	/**
+	 * Méthode qui donne les dégats subis d'un personnage en fonction de l'attaque de l'adversaire  et de sa propre défense
+	 * @param degatsBruts
+	 * @return
+	 */
 	public int subirDegats(int degatsBruts)
 	{
 		int degatsSubis = 0;
@@ -150,7 +160,9 @@ public class Personnage
 			degatsSubis = 1;
 		return degatsSubis;
 	}
-	
+	/**
+	 * Permet au personnage de se défendre et donc de réduire les dégats subis de 50%
+	 */
 	public void seDefendre()
 	{
 		if(this.tourDeDefense > 4)
