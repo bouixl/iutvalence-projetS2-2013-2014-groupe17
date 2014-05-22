@@ -46,18 +46,18 @@ public class Personnage
 	protected int force;
 	
 	/**
-	 * La constitution du personnage dÃ©finit la dÃ©fense physique et magique du personnage aux dégats
+	 * La constitution du personnage dÃ©finit la dÃ©fense physique et magique du personnage aux dï¿½gats
 	 * Augmente aussi les points de vie du personnage
 	 */
 	protected int constitution;
 	
 	/**
-	 * La dextérité du personnage définit les chances d'esquives, de toucher et de critiques du personnage
+	 * La dextï¿½ritï¿½ du personnage dï¿½finit les chances d'esquives, de toucher et de critiques du personnage
 	 */
 	protected int dexterite;
 	
 	/**
-	 * L'intelligence du personnage définit la puissance des sorts magiques et augmente les points de mana du personnage
+	 * L'intelligence du personnage dï¿½finit la puissance des sorts magiques et augmente les points de mana du personnage
 	 */
 	protected int intelligence;
 	
@@ -87,8 +87,8 @@ public class Personnage
 	protected int pointsDeManaMax;
 	
 	/**
-	 * Compte les tours consécutifs qu'un personnage utilise sa défense(seDefendre)
-	 * se réinitialise quand le joueur arrete de se défendre
+	 * Compte les tours consï¿½cutifs qu'un personnage utilise sa dï¿½fense(seDefendre)
+	 * se rï¿½initialise quand le joueur arrete de se dï¿½fendre
 	 */
 	protected int tourDeDefense;
 	/**
@@ -96,8 +96,6 @@ public class Personnage
 	 * Le nouveau personnage sera au niveau 1 et aura 0 expÃ©rience de base
 	 * @param nom nom du personnage
 	 * @param classe classe du personnage
-	 * @param nom
-	 * @param classe
 	 */
 	public Personnage(String nom, Classes classe)
 	{
@@ -116,14 +114,16 @@ public class Personnage
 		this.tourDeDefense = 0;
 	}
 
-	
+	/**
+	 * 
+	 */
 	public Personnage() {
 		// TODO Auto-generated constructor stub
 	}
 
 	/**
-	 * Permet au personnage d'attaquer avec son arme en mélée
-	 * @return le nombre de dégats bruts que fait le personnage
+	 * Permet au personnage d'attaquer avec son arme en mï¿½lï¿½e
+	 * @return le nombre de dï¿½gats bruts que fait le personnage
 	 */
 	public int attaquer()
 	{
@@ -133,8 +133,8 @@ public class Personnage
 		return degats;
 	}
 	/**
-	 * Méthode qui dis si le personnage est mort ou pas
-	 * @return
+	 * Mï¿½thode qui dis si le personnage est mort ou pas
+	 * @return un boolean si le personnage est en vie ou pas
 	 */
 	public boolean estVaincu()
 	{
@@ -146,9 +146,9 @@ public class Personnage
 		else return false;
 	}
 	/**
-	 * Méthode qui donne les dégats subis d'un personnage en fonction de l'attaque de l'adversaire  et de sa propre défense
-	 * @param degatsBruts
-	 * @return
+	 * Mï¿½thode qui donne les dï¿½gats subis d'un personnage en fonction de l'attaque de l'adversaire  et de sa propre dï¿½fense
+	 * @param degatsBruts dÃ©gats en fonction de la force du personnage
+	 * @return les dÃ©gats subis
 	 */
 	public int subirDegats(int degatsBruts)
 	{
@@ -161,7 +161,7 @@ public class Personnage
 		return degatsSubis;
 	}
 	/**
-	 * Permet au personnage de se défendre et donc de réduire les dégats subis de 50%
+	 * Permet au personnage de se dï¿½fendre et donc de rï¿½duire les dï¿½gats subis de 50%
 	 */
 	public void seDefendre()
 	{
@@ -177,71 +177,114 @@ public class Personnage
 	
 	
 
-
+	/**
+	 * 
+	 * @return le nom du personnage
+	 */
 	public String obtenirNom() {
 		return this.nom;
 	}
 
-
+	/**
+	 * 
+	 * @return le niveau du personnage
+	 */
 	public int obtenirNiveau() {
 		return this.niveau;
 	}
 
-
+	/**
+	 * 
+	 * @return l'experience du personnage
+	 */
 	public int obtenirExperience() {
 		return this.experience;
 	}
 
-
+	/**
+	 * 
+	 * @return la classe du personnage
+	 */
 	public Classes obtenirClasse() {
 		return this.classe;
 	}
 
-
+	/**
+	 * 
+	 * @return l'equipement que porte le personnage
+	 */
 	public Item[] obtenirEquipement() {
 		return this.equipement;
 	}
 
-
+	/**
+	 * 
+	 * @return la force du personnage
+	 */
 	public int obtenirForce() {
 		return this.force;
 	}
 
-
+	/**
+	 * 
+	 * @return la constitution du personnage
+	 */
 	public int obtenirConstitution() {
 		return this.constitution;
 	}
 
-
+	/**
+	 * 
+	 * @return la dexterite du personnage
+	 */
 	public int obtenirDexterite() {
 		return this.dexterite;
 	}
 
-
+	/**
+	 * 
+	 * @return l'intelligence du personnage
+	 */
 	public int obtenirIntelligence() {
 		return this.intelligence;
 	}
 
-
+	/**
+	 * 
+	 * @return les points de vie actuel du personnage
+	 */
 	public int obtenirPointsDeVie() {
 		return this.pointsDeVie;
 	}
 
-
+	/**
+	 * 
+	 * @return les points de vie max du personnage
+	 */
 	public int obtenirPointsDeVieMax() {
 		return this.pointsDeVieMax;
 	}
 
-
+	/**
+	 * 
+	 * @return les points de mana actuel du personnage
+	 */
 	public int obtenirPointsDeMana() {
 		return this.pointsDeMana;
 	}
 
-
+	/**
+	 * 
+	 * @return les points de mana maxdu personnage
+	 */
 	public int obtenirPointsDeManaMax() {
 		return this.pointsDeManaMax;
 	}
 	
+	/**
+	 * 
+	 * @return le nombre de tour consÃ©cutif de dÃ©fense du personnage
+	 */
 	public int obtenirTourDeDefense() {
 		return this.tourDeDefense;
 	}
