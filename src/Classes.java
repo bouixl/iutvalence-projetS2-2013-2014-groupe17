@@ -8,20 +8,20 @@ public enum Classes
 	/**
 	 * La classe bourrin 
 	 */
-	BARBARE(60,20,4,2,0,1),
+	BARBARE(60,20,10,6,1,3),
 	/**
-	 * Classe de dÃ©gats par sorts Ã  distance
+	 * Classe de dégats par sorts à distance
 	 */
-	MAGISTER(45,35,1,0,4,2),
+	MAGISTER(45,35,2,1,11,6),
 	/**
-	 * Classe dÃ©gats en mÃ©lÃ©e axÃ©e sur les dÃ©gats
+	 * Classe dégats en mélée axé sur les dégats
 	 */
-	ASSASSIN(50,25,2,1,1,3),
+	ASSASSIN(50,25,6,3,2,9),
 	/**
 	 * Soigneur par les plantes
 	 */
-	DRUIDE(40,40,0,2,4,2);
-	//Les noms des classes seront certainement Ã  redÃ©finir
+	DRUIDE(40,40,2,4,10,4);
+	//Les noms des classes seront certainement à  redéfinir
 	
 	/**
 	 * 
@@ -69,7 +69,7 @@ public enum Classes
 	/**
 	 * @return the pv
 	 */
-	public int getPv()
+	public int obtenirPv()
 	{
 		return this.pv;
 	}
@@ -77,7 +77,7 @@ public enum Classes
 	/**
 	 * @return the pm
 	 */
-	public int getPm()
+	public int obtenirPm()
 	{
 		return this.pm;
 	}
@@ -85,7 +85,7 @@ public enum Classes
 	/**
 	 * @return the force
 	 */
-	public int getForce()
+	public int obtenirForce()
 	{
 		return this.force;
 	}
@@ -93,7 +93,7 @@ public enum Classes
 	/**
 	 * @return the constitution
 	 */
-	public int getConstitution()
+	public int obtenirConstitution()
 	{
 		return this.constitution;
 	}
@@ -101,7 +101,7 @@ public enum Classes
 	/**
 	 * @return the intelligence
 	 */
-	public int getIntelligence()
+	public int obtenirIntelligence()
 	{
 		return this.intelligence;
 	}
@@ -109,7 +109,7 @@ public enum Classes
 	/**
 	 * @return the dexterite
 	 */
-	public int getDexterite()
+	public int obtenirDexterite()
 	{
 		return this.dexterite;
 	}
