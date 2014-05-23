@@ -174,7 +174,9 @@ public class Personnage
 			this.tourDeDefense++;
 		}
 	}
-
+	/**
+	 * méthode qui modifie les caractéristiques du personnage au moment ou il monte de niveau
+	 */
 	 public void monterDeNiveau()
 	 {
 		 this.pointsDeVieMax = this.pointsDeVieMax + this.classe.obtenirPvParNiveau();

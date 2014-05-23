@@ -80,8 +80,16 @@ public enum Classes
 	 * @param constitution point de constitution de la classe
 	 * @param intelligence point d'intelligence de la classe
 	 * @param dexterite point de dexterite de la classe 
+	 * @param pvParNiveau point de vie gagner par niveau 
+	 * @param pmParNiveau point de mana gagner par niveau
+	 * @param forceParNiveau force gagner par niveau
+	 * @param constitutionParNiveau constitution gagner par niveau
+	 * @param intelligenceParNiveau intelligence gagner par niveau
+	 * @param dexteriteParNiveau dexterite gagner par niveau
 	 */
-	private Classes(int pv,int pm,int force,int constitution, int intelligence,int dexterite, int pvParNiveau,int pmParNiveau, int forceParNiveau, int constitutionParNiveau, int intelligenceParNiveau, int dexteriteParNiveau)
+	private Classes(int pv, int pm, int force, int constitution, int intelligence, int dexterite, int pvParNiveau,
+			int pmParNiveau, int forceParNiveau, int constitutionParNiveau, int intelligenceParNiveau,
+			int dexteriteParNiveau)
 	{
 		this.pv = pv;
 		this.pm = pm;
@@ -89,8 +97,14 @@ public enum Classes
 		this.constitution = constitution;
 		this.intelligence = intelligence;
 		this.dexterite = dexterite;
+		this.pvParNiveau = pvParNiveau;
+		this.pmParNiveau = pmParNiveau;
+		this.forceParNiveau = forceParNiveau;
+		this.constitutionParNiveau = constitutionParNiveau;
+		this.intelligenceParNiveau = intelligenceParNiveau;
+		this.dexteriteParNiveau = dexteriteParNiveau;
 	}
-	
+
 
 	/**
 	 * @return the pv
@@ -140,32 +154,50 @@ public enum Classes
 		return this.dexterite;
 	}
 
-
+	/**
+	 * 
+	 * @return gain vie par niveau
+	 */
 	public int obtenirPvParNiveau() {
 		return this.pvParNiveau;
 	}
 
-
+	/**
+	 * 
+	 * @return gain mana par niveau
+	 */
 	public int obtenirPmParNiveau() {
 		return this.pmParNiveau;
 	}
 
-
+	/**
+	 * 
+	 * @return gain force par niveau
+	 */
 	public int obtenirForceParNiveau() {
 		return this.forceParNiveau;
 	}
 
-
+	/**
+	 * 
+	 * @return gain constitution par niveau
+	 */
 	public int obtenirConstitutionParNiveau() {
 		return this.constitutionParNiveau;
 	}
 
-
+	/**
+	 * 
+	 * @return gain intelligence par niveau
+	 */
 	public int obtenirIntelligenceParNiveau() {
 		return this.intelligenceParNiveau;
 	}
 
-
+	/**
+	 * 
+	 * @return gain dexterite par niveau
+	 */
 	public int obtenirDexteriteParNiveau() {
 		return this.dexteriteParNiveau;
 	}
