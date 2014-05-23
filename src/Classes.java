@@ -10,41 +10,46 @@ public enum Classes
 	 */
 	BARBARE(60,20,10,6,1,3, 5,2,3,2,1,1),
 	/**
-	 * Classe de dégats par sorts à distance
+	 * Classe de dï¿½gats par sorts ï¿½ distance
 	 */
 	MAGISTER(45,35,2,1,11,6, 3,4,1,1,4,2),
 	/**
-	 * Classe dégats en mélée axé sur les dégats
+	 * Classe dï¿½gats en mï¿½lï¿½e axï¿½ sur les dï¿½gats
 	 */
 	ASSASSIN(50,25,6,3,2,9, 4,3,2,2,1,2),
 	/**
 	 * Soigneur par les plantes
 	 */
+<<<<<<< HEAD
 	DRUIDE(40,40,2,4,10,4, 2,4,1,2,4,2);
 	//Les noms des classes seront certainement à  redéfinir
+=======
+	DRUIDE(40,40,2,4,10,4);
+	//Les noms des classes seront certainement redefinir
+>>>>>>> branch 'master' of https://github.com/bouixl/iutvalence-projetS2-2013-2014-groupe17.git
 	
 	/**
-	 * 
+	 * Point de vie de base d'une classe
 	 */
 	private int pv;
 	/**
-	 * 
+	 * Poitn de vie de base d'une classe
 	 */
 	private int pm;
 	/**
-	 * 
+	 * Poitn de force de base d'une classe
 	 */
 	private int force;
 	/**
-	 * 
+	 * Point de constitution de base d'une classe
 	 */
 	private int constitution;
 	/**
-	 * 
+	 * Poitn d'intelligence de base d'une classe
 	 */
 	private int intelligence;
 	/**
-	 * 
+	 * Point de dexterite de base d'une classe
 	 */
 	private int dexterite;
 	
