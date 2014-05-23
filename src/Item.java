@@ -45,11 +45,13 @@ public class Item
 		return this.effet;
 	}
 	
-	public static String genererEquipement(int niveau){
+	public static Item genererEquipement(int niveau){
 		String nomProduit;
 		String[] categorie;
 		String[] adjectifs;
+		int[] effets;
 		int id;
+		double mult = 1.0;
 		
 		int type = Application.RNG.nextInt(2);
 		
@@ -67,16 +69,27 @@ public class Item
 		if (Application.RNG.nextBoolean())
 		{
 			adjectifs=ADJECTIFS_POSITIFS;
+			mult=1.2;
 		}
 		else
 		{
 			adjectifs=ADJECTIFS_NEGATIFS;
+			mult=0.8;
 		}
 		
 		id=Application.RNG.nextInt(adjectifs.length);
 		nomProduit+=" "+adjectifs[id];
 		
-		return nomProduit;
+		return new Item(type, nomProduit, effets);
+	}
+
+
+	/* (non-Javadoc)
+	 * @see java.lang.Object#toString()
+	 */
+	@Override
+	public String toString() {
+		return nom;
 	}
 
 	
