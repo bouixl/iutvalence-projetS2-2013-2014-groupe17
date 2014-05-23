@@ -9,10 +9,10 @@ public class Item
 	private String nom;
 	private int[] effet;
 	
-	private static final String[] TYPES_ARMES={"Epée","Hache","Poêle à frire","Hallebarde","Katana","Lance","Arbalête","Batte", "Gourdin", "Masse","Arc","Marteau","Espadon","Bâton" };
-	private static final String[] TYPES_ARMURES={"Côte de mailles","Armure","Robe","Plastron"};
-	private static final String[] ADJECTIFS_POSITIFS={"Démonique","Brutal","Enchanté","Mystique","Aiguisé","Légendaire","de Bonne Qualité","Luminescente"};
-	private static final String[] ADJECTIFS_NEGATIFS={"Emoussé","Tordu","Rouillé","Abimé","de Débutant","de Mauvaise Qualité", "Cassé"};
+	private static final String[] TYPES_ARMES={"Epï¿½e","Hache","Poï¿½le ï¿½ frire","Hallebarde","Katana","Lance","Arbalï¿½te","Batte", "Gourdin", "Masse","Arc","Marteau","Espadon","Bï¿½ton" };
+	private static final String[] TYPES_ARMURES={"Cï¿½te de mailles","Armure","Robe","Plastron"};
+	private static final String[] ADJECTIFS_POSITIFS={"Dï¿½monique","Brutal","Enchantï¿½","Mystique","Aiguisï¿½","Lï¿½gendaire","de Bonne Qualitï¿½","Luminescente"};
+	private static final String[] ADJECTIFS_NEGATIFS={"Emoussï¿½","Tordu","Rouillï¿½","Abimï¿½","de Dï¿½butant","de Mauvaise Qualitï¿½", "Cassï¿½"};
 	private static final String[] MATERIAUX={"en Fer","en Cuivre","en Or","en Cuir","en Tissu","en Mithril","en Adamantium","en Cobalt","en Bois"};
 	
 	public Item(int type, String nom, int[] effet) {
