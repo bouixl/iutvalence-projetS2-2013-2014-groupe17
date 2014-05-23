@@ -11,6 +11,10 @@ public class Application
 	
 	public static void main(String[] args)
 	{
+		for(int i=0;i<100;i++)
+		{
+			System.out.println(Item.genererEquipement(RNG.nextInt(20)).toString());
+		}
 		System.out.println("Création de la partie");
 		Partie partie = new Partie();
 		System.out.println("Demarrage de la partie");
