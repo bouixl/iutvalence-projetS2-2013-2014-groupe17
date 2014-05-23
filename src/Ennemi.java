@@ -17,7 +17,7 @@ private double chanceRecompense;
 /**
  * 
  * @param nom nom de l'ennemi
- * @param recompense récompense donné par l'ennemi quand il est tué
+ * @param recompense recompense donné par l'ennemi quand il est tue
  * @param force force de l'ennemi
  * @param dexterite dexterite de l'ennemi
  * @param constitution constitution de l'ennemi
@@ -45,7 +45,7 @@ private double chanceRecompense;
 	}
 	/**
 	 * 
-	 * @return la récompense
+	 * @return la recompense
 	 */
 	public Item obtenirRecompense() 
 	{
@@ -53,7 +53,7 @@ private double chanceRecompense;
 	}
 	/**
 	 * 
-	 * @return les chances de récompense
+	 * @return les chances de recompense
 	 */
 	public double obtenirChanceRecompense()
 	{
