@@ -174,8 +174,7 @@ public class Personnage
 			this.tourDeDefense++;
 		}
 	}
-	
-	
+
 
 	/**
 	 * 
