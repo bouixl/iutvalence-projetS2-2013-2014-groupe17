@@ -8,19 +8,19 @@ public enum Classes
 	/**
 	 * La classe bourrin 
 	 */
-	BARBARE(60,20,10,6,1,3),
+	BARBARE(60,20,10,6,1,3, 5,2,3,2,1,1),
 	/**
 	 * Classe de dégats par sorts à distance
 	 */
-	MAGISTER(45,35,2,1,11,6),
+	MAGISTER(45,35,2,1,11,6, 3,4,1,1,4,2),
 	/**
 	 * Classe dégats en mélée axé sur les dégats
 	 */
-	ASSASSIN(50,25,6,3,2,9),
+	ASSASSIN(50,25,6,3,2,9, 4,3,2,2,1,2),
 	/**
 	 * Soigneur par les plantes
 	 */
-	DRUIDE(40,40,2,4,10,4);
+	DRUIDE(40,40,2,4,10,4, 2,4,1,2,4,2);
 	//Les noms des classes seront certainement à  redéfinir
 	
 	/**
@@ -56,7 +56,7 @@ public enum Classes
 	 * @param intelligence point d'intelligence de la classe
 	 * @param dexterite point de dexterite de la classe 
 	 */
-	private Classes(int pv,int pm,int force,int constitution, int intelligence,int dexterite)
+	private Classes(int pv,int pm,int force,int constitution, int intelligence,int dexterite, int pvStat,int pmStat, int forceStat, int constitutionStat, int intelligenceStat, int dexteriteStat)
 	{
 		this.pv = pv;
 		this.pm = pm;
@@ -65,6 +65,7 @@ public enum Classes
 		this.intelligence = intelligence;
 		this.dexterite = dexterite;
 	}
+	
 
 	/**
 	 * @return the pv
@@ -113,4 +114,5 @@ public enum Classes
 	{
 		return this.dexterite;
 	}
+	
 }
