@@ -10,7 +10,7 @@ public enum Classes
 	 */
 	BARBARE(60,20,10,6,1,3, 5,2,3,2,1,1),
 	/**
-	 * Classe de degats par sorts à distance
+	 * Classe de degats par sorts ï¿½ distance
 	 */
 	MAGISTER(45,35,2,1,11,6, 3,4,1,1,4,2),
 	/**
@@ -48,11 +48,29 @@ public enum Classes
 	 * Point de dexterite de base d'une classe
 	 */
 	private int dexterite;
+	/**
+	 * nombre de pv que gagne le personnage en montant de niveau
+	 */
 	private int pvParNiveau;
+	/**
+	 * nombre de point de mana que gagne le personnage en montant de niveau
+	 */
 	private int pmParNiveau;
+	/**
+	 * nombre de point de force que gagne le personnage en montant de niveau
+	 */
 	private int forceParNiveau;
+	/**
+	 * nombre de point de constitution que gagne le personnage en montant de niveau
+	 */
 	private int constitutionParNiveau;
+	/**
+	 * nombre de point d'intelligence que gagne le personnage en montant de niveau
+	 */
 	private int intelligenceParNiveau;
+	/**
+	 * nombre de point de dexterite que gagne le personnage en montant de niveau
+	 */
 	private int dexteriteParNiveau;
 	
 	/**
