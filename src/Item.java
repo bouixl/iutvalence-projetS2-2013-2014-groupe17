@@ -100,19 +100,19 @@ public class Item
 		}
 		if(Application.RNG.nextInt(100)>80)
 		{
-			effets[2] = Application.RNG.nextInt(niveau/3)+1;
+			effets[2] = Application.RNG.nextInt((niveau/3)+1)+1;
 		}
 		if(Application.RNG.nextInt(100)>80)
 		{
-			effets[3] = Application.RNG.nextInt(niveau/3)+1;
+			effets[3] = Application.RNG.nextInt((niveau/3)+1)+1;
 		}
 		if(Application.RNG.nextInt(100)>70)
 		{
-			effets[4] = Application.RNG.nextInt(niveau/2)+1;
+			effets[4] = Application.RNG.nextInt((niveau/2)+1)+1;
 		}
 		if(Application.RNG.nextInt(100)>70)
 		{
-			effets[5] = Application.RNG.nextInt(niveau/2)+1;
+			effets[5] = Application.RNG.nextInt((niveau/2)+1)+1;
 		}
 		
 		for(int i=0; i<6; i++)
