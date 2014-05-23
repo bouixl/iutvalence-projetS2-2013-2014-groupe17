@@ -1,7 +1,7 @@
 /**
- * Classe qui crée un personnage
- * Un personnage dans le jeu possède un nom unique un niveau avec de l'expérience 
- * Un personnage appartient à une classe, a des statistiques(force intelligence agilité hp mp ...)
+ * Classe qui cree un personnage
+ * Un personnage dans le jeu possede un nom unique un niveau avec de l'experience 
+ * Un personnage appartient � une classe, a des statistiques(force intelligence dexterite hp mp ...)
  * 
  * @author rougen
  *
@@ -15,49 +15,49 @@ public class Personnage
 	 
 	/**
 	 * le niveau actuel du personnage
-	 * une montée de niveau augmente les statistiques et peut débloquer des sorts
+	 * une montee de niveau augmente les statistiques et peut debloquer des sorts
 	 */
 	protected int niveau;
 	
 	/**
-	 * l'expérience du personnage
-	 * gagner de l'expérience permet de monter de niveau
-	 * on gagne de l'expérience en battant des ennemis et en finissant des quêtes 
+	 * l'experience du personnage
+	 * gagner de l'experience permet de monter de niveau
+	 * on gagne de l'experience en battant des ennemis et en finissant des quetes 
 	 */
 	protected int experience;
 	
 	/**
 	 * La classe du personnage
-	 * Une classe donne accès à des sorts uniques de classes et des statistiques plus élevé pour cette classe
+	 * Une classe donne acces� des sorts uniques de classes et des statistiques plus elevee pour cette classe
 	 * un personnage peut être barbare magicien prêtre ...(a rajouter)
 	 */
 	protected Classes classe;
 	
 	/**
-	 *un personnage peut avoir de l'équipement 
+	 *un personnage peut avoir de l'equipement 
 	 *On equipe la  tete, le corps, les jambes et les armes(mains) 
 	 */
 	
 	protected Item[] equipement;
 	
 	/**
-	 * la force du personnage définit ses dégats physiques avec ses armes ou ses sorts physiques
+	 * la force du personnage definit ses degats physiques avec ses armes ou ses sorts physiques
 	 */
 	protected int force;
 	
 	/**
-	 * La constitution du personnage définit la défense physique et magique du personnage aux d�gats
+	 * La constitution du personnage definit la defense physique et magique du personnage aux degats
 	 * Augmente aussi les points de vie du personnage
 	 */
 	protected int constitution;
 	
 	/**
-	 * La dext�rit� du personnage d�finit les chances d'esquives, de toucher et de critiques du personnage
+	 * La dexterite du personnage definit les chances d'esquives, de toucher et de critiques du personnage
 	 */
 	protected int dexterite;
 	
 	/**
-	 * L'intelligence du personnage d�finit la puissance des sorts magiques et augmente les points de mana du personnage
+	 * L'intelligence du personnage definit la puissance des sorts magiques et augmente les points de mana du personnage
 	 */
 	protected int intelligence;
 	
@@ -87,13 +87,13 @@ public class Personnage
 	protected int pointsDeManaMax;
 	
 	/**
-	 * Compte les tours cons�cutifs qu'un personnage utilise sa d�fense(seDefendre)
-	 * se r�initialise quand le joueur arrete de se d�fendre
+	 * Compte les tours consecutifs qu'un personnage utilise sa defense(seDefendre)
+	 * se reinitialise quand le joueur arrete de se defendre
 	 */
 	protected int tourDeDefense;
 	/**
-	 * constructeur qui va crée un personnage en demandant un nom et une classe dans une liste au Joueur
-	 * Le nouveau personnage sera au niveau 1 et aura 0 expérience de base
+	 * constructeur qui va cree un personnage en demandant un nom et une classe dans une liste au Joueur
+	 * Le nouveau personnage sera au niveau 1 et aura 0 experience de base
 	 * @param nom nom du personnage
 	 * @param classe classe du personnage
 	 */
@@ -122,8 +122,8 @@ public class Personnage
 	}
 
 	/**
-	 * Permet au personnage d'attaquer avec son arme en m�l�e
-	 * @return le nombre de d�gats bruts que fait le personnage
+	 * Permet au personnage d'attaquer avec son arme en melee
+	 * @return le nombre de degats bruts que fait le personnage
 	 */
 	public int attaquer()
 	{
@@ -133,7 +133,7 @@ public class Personnage
 		return degats;
 	}
 	/**
-	 * M�thode qui dis si le personnage est mort ou pas
+	 * Methode qui dis si le personnage est mort ou pas
 	 * @return un boolean si le personnage est en vie ou pas
 	 */
 	public boolean estVaincu()
@@ -146,9 +146,9 @@ public class Personnage
 		else return false;
 	}
 	/**
-	 * M�thode qui donne les d�gats subis d'un personnage en fonction de l'attaque de l'adversaire  et de sa propre d�fense
-	 * @param degatsBruts dégats en fonction de la force du personnage
-	 * @return les dégats subis
+	 * Methode qui donne les degats subis d'un personnage en fonction de l'attaque de l'adversaire  et de sa propre defense
+	 * @param degatsBruts degats en fonction de la force du personnage
+	 * @return les degats subis
 	 */
 	public int subirDegats(int degatsBruts)
 	{
@@ -161,7 +161,7 @@ public class Personnage
 		return degatsSubis;
 	}
 	/**
-	 * Permet au personnage de se d�fendre et donc de r�duire les d�gats subis de 50%
+	 * Permet au personnage de se defendre et donc de reduire les degats subis de 50%
 	 */
 	public void seDefendre()
 	{
@@ -176,10 +176,10 @@ public class Personnage
 	}
 	 public void monterDeNiveau()
 	 {
-		 this.force= force + 2;
-		 this.constitution = constitution + 2;
-		 this.intelligence = intelligence + 2;
-		 this.dexterite = dexterite + 2;
+		 this.force= force + this.classe.obtenirForceParNiveau();
+		 this.constitution = constitution + this.classe.obtenirConstitutionParNiveau();
+		 this.intelligence = intelligence + this.classe.obtenirIntelligenceParNiveau();
+		 this.dexterite = dexterite + this.classe.obtenirDexteriteParNiveau();
 		 this.niveau++;
 	 }
 

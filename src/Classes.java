@@ -10,23 +10,19 @@ public enum Classes
 	 */
 	BARBARE(60,20,10,6,1,3, 5,2,3,2,1,1),
 	/**
-	 * Classe de dï¿½gats par sorts ï¿½ distance
+	 * Classe de degats par sorts à distance
 	 */
 	MAGISTER(45,35,2,1,11,6, 3,4,1,1,4,2),
 	/**
-	 * Classe dï¿½gats en mï¿½lï¿½e axï¿½ sur les dï¿½gats
+	 * Classe  en melee axe sur les degats
 	 */
 	ASSASSIN(50,25,6,3,2,9, 4,3,2,2,1,2),
 	/**
 	 * Soigneur par les plantes
 	 */
-<<<<<<< HEAD
+
 	DRUIDE(40,40,2,4,10,4, 2,4,1,2,4,2);
-	//Les noms des classes seront certainement à  redéfinir
-=======
-	DRUIDE(40,40,2,4,10,4);
-	//Les noms des classes seront certainement redefinir
->>>>>>> branch 'master' of https://github.com/bouixl/iutvalence-projetS2-2013-2014-groupe17.git
+
 	
 	/**
 	 * Point de vie de base d'une classe
@@ -52,6 +48,12 @@ public enum Classes
 	 * Point de dexterite de base d'une classe
 	 */
 	private int dexterite;
+	private int pvParNiveau;
+	private int pmParNiveau;
+	private int forceParNiveau;
+	private int constitutionParNiveau;
+	private int intelligenceParNiveau;
+	private int dexteriteParNiveau;
 	
 	/**
 	 * @param pv point de vie de la classe	
@@ -61,7 +63,7 @@ public enum Classes
 	 * @param intelligence point d'intelligence de la classe
 	 * @param dexterite point de dexterite de la classe 
 	 */
-	private Classes(int pv,int pm,int force,int constitution, int intelligence,int dexterite, int pvStat,int pmStat, int forceStat, int constitutionStat, int intelligenceStat, int dexteriteStat)
+	private Classes(int pv,int pm,int force,int constitution, int intelligence,int dexterite, int pvParNiveau,int pmParNiveau, int forceParNiveau, int constitutionParNiveau, int intelligenceParNiveau, int dexteriteParNiveau)
 	{
 		this.pv = pv;
 		this.pm = pm;
@@ -118,6 +120,36 @@ public enum Classes
 	public int obtenirDexterite()
 	{
 		return this.dexterite;
+	}
+
+
+	public int obtenirPvParNiveau() {
+		return this.pvParNiveau;
+	}
+
+
+	public int obtenirPmParNiveau() {
+		return this.pmParNiveau;
+	}
+
+
+	public int obtenirForceParNiveau() {
+		return this.forceParNiveau;
+	}
+
+
+	public int obtenirConstitutionParNiveau() {
+		return this.constitutionParNiveau;
+	}
+
+
+	public int obtenirIntelligenceParNiveau() {
+		return this.intelligenceParNiveau;
+	}
+
+
+	public int obtenirDexteriteParNiveau() {
+		return this.dexteriteParNiveau;
 	}
 	
 }
