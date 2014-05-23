@@ -174,8 +174,14 @@ public class Personnage
 			this.tourDeDefense++;
 		}
 	}
-	
-	
+	 public void monterDeNiveau()
+	 {
+		 this.force= force + 2;
+		 this.constitution = constitution + 2;
+		 this.intelligence = intelligence + 2;
+		 this.dexterite = dexterite + 2;
+		 this.niveau++;
+	 }
 
 
 	public String obtenirNom() {
