@@ -13,12 +13,12 @@ public class Item
 	private static final int TYPE_ARMURE = 1;
 	private static final int TYPE_POTION = 2;
 	
-	private static final String[] NOMS_ARMES={"Epée","Hache","Poêle à frire","Hallebarde","Katana","Lance","Arbalète","Batte", "Gourdin", "Masse","Arc","Marteau","Espadon","Bâton" };
-	private static final String[] NOMS_ARMURES={"Côte de mailles","Armure","Robe","Plastron"};
-	private static final String[] NOMS_POTIONS={"Breuvage","Elixir","Tonique"};
-	private static final String[] ADJECTIFS_POSITIFS={"Démonique","Brutal","Enchanté","Mystique","Aiguisé","Légendaire","de Bonne Qualité","Luminescente"};
-	private static final String[] ADJECTIFS_NEGATIFS={"Emoussé","Tordu","Rouillé","Abimé","de Débutant","de Mauvaise Qualité", "Cassé"};
-	private static final String[] ADJECTIFS_POTIONS={"Etrange","Inhabituel","Visqueux","Poisseux","Séché","Opaque","Puant","Intriguant","Infame","Appetissant","Coloré","Fluorescent","Vaporeux"};
+	private static final String[] NOMS_ARMES={"Epée","Hache","Poêle à frire","Hallebarde","Katana","Lance","Arbalète","Batte","Gourdin","Masse","Arc","Marteau","Espadon","Bâton","Claymore","Dague","Morgenstern","Poignard","Epieux","Glaive","Sabre","Bardiche","Flamberge","Wakizashi"};
+	private static final String[] NOMS_ARMURES={"Côte de mailles","Robe","Plastron","Harnois","Haubert","Brigandine"};
+	private static final String[] NOMS_POTIONS={"Breuvage","Elixir","Tonique",};
+	private static final String[] ADJECTIFS_POSITIFS={"Démonique","Brutal(e)","Enchanté(e)","Mystique","Aiguisé(e)","Légendaire","de Bonne Qualité","Luminescente","Fabuleux(se)"};
+	private static final String[] ADJECTIFS_NEGATIFS={"Emoussé(e)","Tordu(e)","Rouillé(e)","Abimé(e)","de Débutant","de Mauvaise Qualité", "Cassé(e)"};
+	private static final String[] ADJECTIFS_POTIONS={"Etrange","Inhabituel","Visqueux","Poisseux","Séché","Opaque","Puant","Intriguant","Infame","Crépitant","Appetissant","Coloré","Fluorescent","Vaporeux","Terne","annoté 'Mortel'","annoté 'Ne pas toucher'","un peu Vivant"};
 	private static final String[] ADJECTIFS_VIDE = {""};
 	private static final String[] MATERIAUX={"en Fer","en Cuivre","en Or","en Cuir","en Tissu","en Mithril","en Adamantium","en Cobalt","en Bois"};
 	
@@ -169,16 +169,16 @@ public class Item
 		chance = Application.RNG.nextInt(100);
 		if (chance>60)
 		{
-			effets[0] += niveau * (Application.RNG.nextInt(20)-10);
+			effets[0] += niveau * (Application.RNG.nextInt(20)-7);
 		}
 		else if (chance<40)
 		{
-			effets[1] += niveau * (Application.RNG.nextInt(20)-10);
+			effets[1] += niveau * (Application.RNG.nextInt(20)-7);
 		}
 		else
 		{
-			effets[0] += niveau * (Application.RNG.nextInt(14)-7);
-			effets[1] += niveau * (Application.RNG.nextInt(14)-7);
+			effets[0] += niveau * (Application.RNG.nextInt(14)-5);
+			effets[1] += niveau * (Application.RNG.nextInt(14)-5);
 		}
 		
 		chance = Application.RNG.nextInt(100);
