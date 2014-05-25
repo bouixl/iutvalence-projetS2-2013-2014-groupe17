@@ -1,14 +1,13 @@
 import java.util.Random;
 
 public class Application
-{
+{	
+	public static Random RNG = new Random();
+	
 	/**
 	 * Methode principale, initialise le programme et lance la partie
 	 * @param args Arguments de lancement
 	 */
-	
-	public static Random RNG = new Random();
-	
 	public static void main(String[] args)
 	{
 		for(int i=0;i<100;i++)
