@@ -18,7 +18,7 @@ public class Item
 	private static final String[] NOMS_POTIONS={"Breuvage","Elixir","Tonique",};
 	private static final String[] ADJECTIFS_POSITIFS={"Démonique","Brutal(e)","Enchanté(e)","Mystique","Aiguisé(e)","Légendaire","de Bonne Qualité","Luminescente","Fabuleux(se)"};
 	private static final String[] ADJECTIFS_NEGATIFS={"Emoussé(e)","Tordu(e)","Rouillé(e)","Abimé(e)","de Débutant","de Mauvaise Qualité", "Cassé(e)"};
-	private static final String[] ADJECTIFS_POTIONS={"Etrange","Inhabituel","Visqueux","Poisseux","Séché","Opaque","Puant","Intriguant","Infame","Crépitant","Appetissant","Coloré","Fluorescent","Vaporeux","Terne","annoté 'Mortel'","annoté 'Ne pas toucher'","un peu Vivant"};
+	private static final String[] ADJECTIFS_POTIONS={"Etrange","Inhabituel","Visqueux","Poisseux","Séché","Opaque","Puant","Intriguant","Infame","Crépitant","Appetissant","Coloré","Fluorescent","Vaporeux","Terne","annoté 'Mortel'","annoté 'Ne pas toucher'","un peu Vivant","annoté 'Yves Rocher'","annoté 'Panacée'"};
 	private static final String[] ADJECTIFS_VIDE = {""};
 	private static final String[] MATERIAUX={"en Fer","en Cuivre","en Or","en Cuir","en Tissu","en Mithril","en Adamantium","en Cobalt","en Bois"};
 	
