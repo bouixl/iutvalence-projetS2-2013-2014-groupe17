@@ -10,9 +10,13 @@ public class Application
 	 */
 	public static void main(String[] args)
 	{
-		for(int i=0;i<100;i++)
+		for(int i=0;i<25;i++)
 		{
 			System.out.println(Item.genererEquipement(20).toString());
+		}
+		for(int i=0;i<25;i++)
+		{
+			System.out.println(Item.genererPotion(1).toString());
 		}
 		System.out.println("Création de la partie");
 		Partie partie = new Partie();
