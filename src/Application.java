@@ -13,7 +13,7 @@ public class Application
 	{
 		for(int i=0;i<100;i++)
 		{
-			System.out.println(Item.genererEquipement(RNG.nextInt(20)).toString());
+			System.out.println(Item.genererEquipement(20).toString());
 		}
 		System.out.println("Création de la partie");
 		Partie partie = new Partie();

@@ -17,6 +17,7 @@ public class Item
 	private static final String[] NOMS_ARMURES={"Côte de mailles","Armure","Robe","Plastron"};
 	private static final String[] ADJECTIFS_POSITIFS={"Démonique","Brutal","Enchanté","Mystique","Aiguisé","Légendaire","de Bonne Qualité","Luminescente"};
 	private static final String[] ADJECTIFS_NEGATIFS={"Emoussé","Tordu","Rouillé","Abimé","de Débutant","de Mauvaise Qualité", "Cassé"};
+	private static final String[] ADJECTIFS_VIDE = {""};
 	private static final String[] MATERIAUX={"en Fer","en Cuivre","en Or","en Cuir","en Tissu","en Mithril","en Adamantium","en Cobalt","en Bois"};
 	
 	public Item(int type, String nom, int[] effets) {
@@ -55,6 +56,7 @@ public class Item
 		String[] adjectifs;
 		int[] effets = {0,0,0,0,0,0};
 		int id;
+		int chance;
 		double mult = 1.0;
 		
 		int type = Application.RNG.nextInt(2);
@@ -62,57 +64,75 @@ public class Item
 		if (type==TYPE_ARME)
 		{
 			categorie=NOMS_ARMES;
-			effets[2] += niveau;
+			effets[2] += niveau + Application.RNG.nextInt(11);
 		}
 		else
 		{
 			categorie=NOMS_ARMURES;
-			effets[3] += niveau;
+			effets[3] += niveau + Application.RNG.nextInt(11);
 		}
 		
 		id=Application.RNG.nextInt(categorie.length);
-		nomProduit=" "+categorie[id];
+		nomProduit = " "+categorie[id];
 		
 		id=Application.RNG.nextInt(MATERIAUX.length);
-		nomProduit+=" "+MATERIAUX[id];
+		nomProduit += " "+MATERIAUX[id];
 		
-		if (Application.RNG.nextBoolean())
+		chance = Application.RNG.nextInt(100);
+		if (chance>70)
 		{
-			adjectifs=ADJECTIFS_POSITIFS;
-			mult *= 1.2;
+			adjectifs = ADJECTIFS_POSITIFS;
+			mult *= 1.5;
+		}
+		else if (chance>20)
+		{
+			adjectifs = ADJECTIFS_NEGATIFS;
+			mult *= 0.5;
 		}
 		else
 		{
-			adjectifs=ADJECTIFS_NEGATIFS;
-			mult *= 0.8;
+			adjectifs = ADJECTIFS_VIDE;
 		}
 		
-		id=Application.RNG.nextInt(adjectifs.length);
-		nomProduit+=" "+adjectifs[id];
+		id = Application.RNG.nextInt(adjectifs.length);
+		nomProduit += " "+adjectifs[id];
 		
-		if(Application.RNG.nextInt(100)>97)
+		chance = Application.RNG.nextInt(100);
+		if(chance>99)
 		{
 			mult *= 2.0;
 		}
-		else if(Application.RNG.nextInt(100)>90)
+		else if(chance>95)
 		{
 			mult *= 1.5;
 		}
-		if(Application.RNG.nextInt(100)>80)
+		else if(chance<5)
 		{
-			effets[2] = Application.RNG.nextInt((niveau/3)+1)+1;
+			mult *= 0.5;
 		}
-		if(Application.RNG.nextInt(100)>80)
+		
+		chance = Application.RNG.nextInt(100);
+		if(chance>90)
 		{
-			effets[3] = Application.RNG.nextInt((niveau/3)+1)+1;
+			effets[2] += Application.RNG.nextInt(2) * niveau;
 		}
-		if(Application.RNG.nextInt(100)>70)
+		
+		chance = Application.RNG.nextInt(100);
+		if(chance>90)
 		{
-			effets[4] = Application.RNG.nextInt((niveau/2)+1)+1;
+			effets[3] += Application.RNG.nextInt(2) * niveau;
 		}
-		if(Application.RNG.nextInt(100)>70)
+		
+		chance = Application.RNG.nextInt(100);
+		if(chance>80)
 		{
-			effets[5] = Application.RNG.nextInt((niveau/2)+1)+1;
+			effets[4] += Application.RNG.nextInt(3) * niveau;
+		}
+		
+		chance = Application.RNG.nextInt(100);
+		if(chance>80)
+		{
+			effets[5] += Application.RNG.nextInt(3) * niveau;
 		}
 		
 		for(int i=0; i<6; i++)
@@ -134,12 +154,13 @@ public class Item
 			chaine = "Arme: ";
 		else
 			chaine = "Armure: ";
-		chaine += this.nom+" ";
+		chaine += this.nom+" [ ";
 		
 		for(int i=0; i<6; i++)
 		{
-			chaine += this.effets[i];
+			chaine += this.effets[i]+" ";
 		}
+		chaine += "]";
 		
 		return chaine;
 	}
