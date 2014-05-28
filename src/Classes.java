@@ -10,7 +10,7 @@ public enum Classes
 	 */
 	BARBARE(60,20,10,6,1,3, 5,2,3,2,1,1),
 	/**
-	 * Classe de degats par sorts à distance
+	 * Classe de degats par sorts ï¿½ distance
 	 */
 	MAGISTER(45,35,2,1,11,6, 3,4,1,1,4,2),
 	/**
@@ -48,11 +48,29 @@ public enum Classes
 	 * Point de dexterite de base d'une classe
 	 */
 	private int dexterite;
+	/**
+	 * nombre de pv que gagne le personnage en montant de niveau
+	 */
 	private int pvParNiveau;
+	/**
+	 * nombre de point de mana que gagne le personnage en montant de niveau
+	 */
 	private int pmParNiveau;
+	/**
+	 * nombre de point de force que gagne le personnage en montant de niveau
+	 */
 	private int forceParNiveau;
+	/**
+	 * nombre de point de constitution que gagne le personnage en montant de niveau
+	 */
 	private int constitutionParNiveau;
+	/**
+	 * nombre de point d'intelligence que gagne le personnage en montant de niveau
+	 */
 	private int intelligenceParNiveau;
+	/**
+	 * nombre de point de dexterite que gagne le personnage en montant de niveau
+	 */
 	private int dexteriteParNiveau;
 	
 	/**
@@ -62,8 +80,16 @@ public enum Classes
 	 * @param constitution point de constitution de la classe
 	 * @param intelligence point d'intelligence de la classe
 	 * @param dexterite point de dexterite de la classe 
+	 * @param pvParNiveau point de vie gagner par niveau 
+	 * @param pmParNiveau point de mana gagner par niveau
+	 * @param forceParNiveau force gagner par niveau
+	 * @param constitutionParNiveau constitution gagner par niveau
+	 * @param intelligenceParNiveau intelligence gagner par niveau
+	 * @param dexteriteParNiveau dexterite gagner par niveau
 	 */
-	private Classes(int pv,int pm,int force,int constitution, int intelligence,int dexterite, int pvParNiveau,int pmParNiveau, int forceParNiveau, int constitutionParNiveau, int intelligenceParNiveau, int dexteriteParNiveau)
+	private Classes(int pv, int pm, int force, int constitution, int intelligence, int dexterite, int pvParNiveau,
+			int pmParNiveau, int forceParNiveau, int constitutionParNiveau, int intelligenceParNiveau,
+			int dexteriteParNiveau)
 	{
 		this.pv = pv;
 		this.pm = pm;
@@ -71,8 +97,14 @@ public enum Classes
 		this.constitution = constitution;
 		this.intelligence = intelligence;
 		this.dexterite = dexterite;
+		this.pvParNiveau = pvParNiveau;
+		this.pmParNiveau = pmParNiveau;
+		this.forceParNiveau = forceParNiveau;
+		this.constitutionParNiveau = constitutionParNiveau;
+		this.intelligenceParNiveau = intelligenceParNiveau;
+		this.dexteriteParNiveau = dexteriteParNiveau;
 	}
-	
+
 
 	/**
 	 * @return the pv
@@ -122,32 +154,50 @@ public enum Classes
 		return this.dexterite;
 	}
 
-
+	/**
+	 * 
+	 * @return gain vie par niveau
+	 */
 	public int obtenirPvParNiveau() {
 		return this.pvParNiveau;
 	}
 
-
+	/**
+	 * 
+	 * @return gain mana par niveau
+	 */
 	public int obtenirPmParNiveau() {
 		return this.pmParNiveau;
 	}
 
-
+	/**
+	 * 
+	 * @return gain force par niveau
+	 */
 	public int obtenirForceParNiveau() {
 		return this.forceParNiveau;
 	}
 
-
+	/**
+	 * 
+	 * @return gain constitution par niveau
+	 */
 	public int obtenirConstitutionParNiveau() {
 		return this.constitutionParNiveau;
 	}
 
-
+	/**
+	 * 
+	 * @return gain intelligence par niveau
+	 */
 	public int obtenirIntelligenceParNiveau() {
 		return this.intelligenceParNiveau;
 	}
 
-
+	/**
+	 * 
+	 * @return gain dexterite par niveau
+	 */
 	public int obtenirDexteriteParNiveau() {
 		return this.dexteriteParNiveau;
 	}

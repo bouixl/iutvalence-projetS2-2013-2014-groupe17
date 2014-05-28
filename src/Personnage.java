@@ -1,7 +1,7 @@
 /**
  * Classe qui cree un personnage
  * Un personnage dans le jeu possede un nom unique un niveau avec de l'experience 
- * Un personnage appartient � une classe, a des statistiques(force intelligence dexterite hp mp ...)
+ * Un personnage appartient � une classe, a des statistiques(force intelligence dexterite hp mp ...)
  * 
  * @author rougen
  *
@@ -28,7 +28,7 @@ public class Personnage
 	
 	/**
 	 * La classe du personnage
-	 * Une classe donne acces� des sorts uniques de classes et des statistiques plus elevee pour cette classe
+	 * Une classe donne acces� des sorts uniques de classes et des statistiques plus elevee pour cette classe
 	 * un personnage peut être barbare magicien prêtre ...(a rajouter)
 	 */
 	protected Classes classe;
@@ -174,14 +174,23 @@ public class Personnage
 			this.tourDeDefense++;
 		}
 	}
+	/**
+	 * méthode qui modifie les caractéristiques du personnage au moment ou il monte de niveau
+	 */
 	 public void monterDeNiveau()
 	 {
-		 this.force= force + this.classe.obtenirForceParNiveau();
-		 this.constitution = constitution + this.classe.obtenirConstitutionParNiveau();
-		 this.intelligence = intelligence + this.classe.obtenirIntelligenceParNiveau();
-		 this.dexterite = dexterite + this.classe.obtenirDexteriteParNiveau();
+		 this.pointsDeVieMax = this.pointsDeVieMax + this.classe.obtenirPvParNiveau();
+		 this.pointsDeManaMax = this.pointsDeManaMax + this.classe.obtenirPmParNiveau();
+		 this.force= this.force + this.classe.obtenirForceParNiveau();
+		 this.constitution = this.constitution + this.classe.obtenirConstitutionParNiveau();
+		 this.intelligence = this.intelligence + this.classe.obtenirIntelligenceParNiveau();
+		 this.dexterite = this.dexterite + this.classe.obtenirDexteriteParNiveau();
 		 this.niveau++;
+		 this.pointsDeVie = this.pointsDeVieMax;
+		 this.pointsDeMana = this.pointsDeManaMax;
+		 
 	 }
+
 
 	/**
 	 * 
@@ -281,7 +290,7 @@ public class Personnage
 
 	/**
 	 * 
-	 * @return les points de mana maxdu personnage
+	 * @return les points de mana max du personnage
 	 */
 	public int obtenirPointsDeManaMax() {
 		return this.pointsDeManaMax;
