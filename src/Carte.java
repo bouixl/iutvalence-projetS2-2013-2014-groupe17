@@ -97,8 +97,12 @@ public enum Carte
 				y--;
 				break;
 		}
-		if (cases[x][y].estBloquant())
-			return false;
-		return true;
+		if ((x < cases.length) && (y < cases[0].length) && (x >= 0) && (y >= 0))
+		{
+			if (cases[x][y].estBloquant())
+				return false;
+			return true;
+		}
+		return false;
 	}
 }

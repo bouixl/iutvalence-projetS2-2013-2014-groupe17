@@ -86,6 +86,16 @@ public class Equipe
 	{
 		this.composition[emplacement] = personnage;
 	}
+
+	public int obtenirNiveauMoyen() {
+		int niveauMoyen = 0;
+		for (int i = 0; i < this.composition.length; i++)
+		{
+			niveauMoyen += this.composition[i].obtenirNiveau();
+		}
+		niveauMoyen /= this.composition.length;
+		return niveauMoyen;
+	}
 	
 	
 }

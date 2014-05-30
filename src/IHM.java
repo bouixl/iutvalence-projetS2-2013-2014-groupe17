@@ -1,7 +1,10 @@
 import java.awt.Color;
+import java.awt.Dimension;
 import java.awt.Graphics2D;
 import java.awt.GridLayout;
 import java.awt.Image;
+import java.awt.Point;
+import java.awt.Rectangle;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.awt.event.KeyEvent;
@@ -17,6 +20,7 @@ import javax.swing.JMenuBar;
 import javax.swing.JMenuItem;
 import javax.swing.JOptionPane;
 import javax.swing.JPanel;
+import javax.swing.JScrollPane;
 import javax.swing.WindowConstants;
 
 public class IHM implements Runnable, ActionListener, KeyListener {
@@ -27,7 +31,7 @@ public class IHM implements Runnable, ActionListener, KeyListener {
 	private JMenuItem menuItemAPropos;
 	private JPanel panneauCarte;
 	private boolean attendreReaction;
-	private JPanel panneau;
+	private JScrollPane panneau;
 	
 	private Partie partie;
 	
@@ -43,7 +47,8 @@ public class IHM implements Runnable, ActionListener, KeyListener {
 	
 	public void afficherCombat()
 	{
-		
+		System.out.println("COMBAT");
+		this.partie.changerEtat("Carte");
 	}
 	
 	public void afficherMenu()
@@ -91,6 +96,7 @@ public class IHM implements Runnable, ActionListener, KeyListener {
 				}
 			}
 		}
+		this.panneau.getViewport().scrollRectToVisible(new Rectangle((equipe.obtenirColonne()*32)-320,(equipe.obtenirLigne()*32)-240,(equipe.obtenirColonne()*32),(equipe.obtenirLigne()*32)));
 		this.panneauCarte.updateUI();
 		
 	}
@@ -124,8 +130,8 @@ public class IHM implements Runnable, ActionListener, KeyListener {
 	public void run() {
 		this.fenetre = new JFrame();
 		this.fenetre.setTitle("Projet 17");
-		this.fenetre.setSize(640, 480);
-		this.fenetre.setResizable(false);
+		this.fenetre.setSize(658, 544);
+		this.fenetre.setResizable(true);
 		this.fenetre.setDefaultCloseOperation(WindowConstants.EXIT_ON_CLOSE);
 		this.fenetre.setLocationRelativeTo(null);
 		
@@ -138,16 +144,17 @@ public class IHM implements Runnable, ActionListener, KeyListener {
 		this.menuItemFermer.addActionListener(this);
 		menu.add(this.menuItemFermer);
 		barreDeMenu.add(menu);
-		//this.fenetre.setJMenuBar(barreDeMenu);
+		this.fenetre.setJMenuBar(barreDeMenu);
 
-		this.panneau = new JPanel();
+		this.panneau = new JScrollPane(JScrollPane.VERTICAL_SCROLLBAR_NEVER,JScrollPane.HORIZONTAL_SCROLLBAR_NEVER);
 		this.panneauCarte = new JPanel();
 		this.panneauCarte.setBackground(Color.BLACK);
-		this.panneau.add(this.panneauCarte);
+		this.panneau.getViewport().add(this.panneauCarte);
+		this.panneau.setPreferredSize(new Dimension(640, 480));
 		this.fenetre.add(this.panneau);
 		
 		this.fenetre.addKeyListener(this);
-		this.fenetre. setVisible(true);
+		this.fenetre.setVisible(true);
 		
 		this.pret = true;
 	}
@@ -184,57 +191,64 @@ public class IHM implements Runnable, ActionListener, KeyListener {
 		if(this.attendreReaction)
 		{
 			char touche = arg0.getKeyChar();
-			int direction;
-			switch(touche)
+			if(this.partie.obtenirEtat()=="Carte")
 			{
-				case 'z':
-					direction = 0;
-					if(this.partie.obtenirCarte().peutAller(direction, this.partie.obtenirEquipe().obtenirLigne(), this.partie.obtenirEquipe().obtenirColonne()))
-					{
-						this.partie.obtenirEquipe().deplacer(direction);
-					}
-					else
-					{
-						this.partie.obtenirEquipe().changerDirection(direction);
-					}
-					this.attendreReaction = false;
-					break;
-				case 'd':
-					direction = 1;
-					if(this.partie.obtenirCarte().peutAller(direction, this.partie.obtenirEquipe().obtenirLigne(), this.partie.obtenirEquipe().obtenirColonne()))
-					{
-						this.partie.obtenirEquipe().deplacer(direction);
-					}
-					else
-					{
-						this.partie.obtenirEquipe().changerDirection(direction);
-					}
-					this.attendreReaction = false;
-					break;
-				case 's':
-					direction = 2;
-					if(this.partie.obtenirCarte().peutAller(direction, this.partie.obtenirEquipe().obtenirLigne(), this.partie.obtenirEquipe().obtenirColonne()))
-					{
-						this.partie.obtenirEquipe().deplacer(direction);
-					}
-					else
-					{
-						this.partie.obtenirEquipe().changerDirection(direction);
-					}
-					this.attendreReaction = false;
-					break;
-				case 'q':
-					direction = 3;
-					if(this.partie.obtenirCarte().peutAller(direction, this.partie.obtenirEquipe().obtenirLigne(), this.partie.obtenirEquipe().obtenirColonne()))
-					{
-						this.partie.obtenirEquipe().deplacer(direction);
-					}
-					else
-					{
-						this.partie.obtenirEquipe().changerDirection(direction);
-					}
-					this.attendreReaction = false;
-					break;
+				int direction;
+				switch(touche)
+				{
+					case 'z':
+						direction = 0;
+						if(this.partie.obtenirCarte().peutAller(direction, this.partie.obtenirEquipe().obtenirLigne(), this.partie.obtenirEquipe().obtenirColonne()))
+						{
+							this.partie.obtenirEquipe().deplacer(direction);
+						}
+						else
+						{
+							this.partie.obtenirEquipe().changerDirection(direction);
+						}
+						this.attendreReaction = false;
+						this.partie.essaiCombat();
+						break;
+					case 'd':
+						direction = 1;
+						if(this.partie.obtenirCarte().peutAller(direction, this.partie.obtenirEquipe().obtenirLigne(), this.partie.obtenirEquipe().obtenirColonne()))
+						{
+							this.partie.obtenirEquipe().deplacer(direction);
+						}
+						else
+						{
+							this.partie.obtenirEquipe().changerDirection(direction);
+						}
+						this.attendreReaction = false;
+						this.partie.essaiCombat();
+						break;
+					case 's':
+						direction = 2;
+						if(this.partie.obtenirCarte().peutAller(direction, this.partie.obtenirEquipe().obtenirLigne(), this.partie.obtenirEquipe().obtenirColonne()))
+						{
+							this.partie.obtenirEquipe().deplacer(direction);
+						}
+						else
+						{
+							this.partie.obtenirEquipe().changerDirection(direction);
+						}
+						this.attendreReaction = false;
+						this.partie.essaiCombat();
+						break;
+					case 'q':
+						direction = 3;
+						if(this.partie.obtenirCarte().peutAller(direction, this.partie.obtenirEquipe().obtenirLigne(), this.partie.obtenirEquipe().obtenirColonne()))
+						{
+							this.partie.obtenirEquipe().deplacer(direction);
+						}
+						else
+						{
+							this.partie.obtenirEquipe().changerDirection(direction);
+						}
+						this.attendreReaction = false;
+						this.partie.essaiCombat();
+						break;
+				}
 			}
 		}
 	}

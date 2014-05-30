@@ -66,19 +66,24 @@ public class Partie
 				System.out.println("Erreur, état imprévu.");
 			}
 			this.ihm.attendreReaction();
-			System.out.println("test");
 		}
-	}
-	
-	public void ecranSuivant()
-	{
-		System.out.print("\n\n\n\n\n\n\n\n\n\n");
-		System.out.println("-------- "+etat+" --------");
 	}
 	
 	public void afficherCarte()
 	{
 		System.out.println(this.carte.toString());
+	}
+	
+	public void essaiCombat()
+	{
+		if(Application.RNG.nextInt(50)==0)
+			this.etat = "Combat";
+			Ennemi[] ennemis = new Ennemi[Application.RNG.nextInt(4)+1];
+			for (int i = 0; i < ennemis.length; i++)
+			{
+				ennemis[i] = Ennemi.genererEnnemi(this.equipe.obtenirNiveauMoyen());
+			}
+			this.combat = new Combat(this.equipe, ennemis);
 	}
 	
 	public void changerEtat(String etat)
