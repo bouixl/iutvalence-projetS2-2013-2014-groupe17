@@ -76,8 +76,7 @@ private double chanceRecompense;
 		int chance;
 		double mult = 1.0;
 		Item recompense =  (Item.genererEquipement(niveau));
-		
-		
+
 		
 		
 		id=Application.RNG.nextInt(NOMS_MONSTRES.length);
@@ -119,17 +118,17 @@ private double chanceRecompense;
 		}
 		
 
-		pointsDeVie += Application.RNG.nextInt(10) * niveau * mult;
+		pointsDeVie += (Application.RNG.nextInt(10)+1 )* (niveau   + 30) * mult;
 			
-		pointsDeMana += Application.RNG.nextInt(8) * niveau * mult;
+		pointsDeMana += (Application.RNG.nextInt(8) +1) * (niveau   +20) * mult;
 			
-		force += Application.RNG.nextInt(3) * niveau * mult;
+		force += (Application.RNG.nextInt(4) +1) * (niveau   + 2) * mult;
 			
-		constitution += Application.RNG.nextInt(3) * niveau * mult;
+		constitution += (Application.RNG.nextInt(4) +1)* (niveau   +2)* mult;
 			
-		intelligence+= Application.RNG.nextInt(3) * niveau * mult;
+		intelligence+= (Application.RNG.nextInt(4)+1)* (niveau   +2)* mult;
 		
-		dexterite += Application.RNG.nextInt(3) * niveau * mult;
+		dexterite += (Application.RNG.nextInt(4)+1)*( niveau   +2)* mult;
 
 
 		id=Application.RNG.nextInt(ZONE_HABITAT.length);
@@ -137,4 +136,10 @@ private double chanceRecompense;
 		
 		return new Ennemi(nomMonstre, recompense, force, dexterite, constitution, intelligence, niveau, pointsDeVie, pointsDeMana, pointsDeMana, pointsDeVie);
 	}
+	public String toString() {
+		String chaine ="";
+		chaine += "Monstre : "+nom+ "["+pointsDeVieMax+","+pointsDeManaMax+","+force+","+constitution+","+intelligence+","+dexterite+"]";		
+		return chaine;
+	}
+
 }

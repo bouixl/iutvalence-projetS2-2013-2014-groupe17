@@ -12,11 +12,15 @@ public class Application
 	{
 		for(int i=0;i<25;i++)
 		{
-			System.out.println(Item.genererEquipement(20).toString());
+			System.out.println(Item.genererEquipement(1).toString());
 		}
 		for(int i=0;i<25;i++)
 		{
 			System.out.println(Item.genererPotion(1).toString());
+		}
+		for(int i=0;i<25;i++)
+		{
+			System.out.println(Ennemi.genererEnnemi(10).toString());
 		}
 		System.out.println("Création de la partie");
 		Partie partie = new Partie();
