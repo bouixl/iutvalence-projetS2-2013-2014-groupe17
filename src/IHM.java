@@ -147,7 +147,7 @@ public class IHM implements Runnable, ActionListener, KeyListener {
 		this.fenetre = new JFrame();
 		this.fenetre.setTitle("Projet 17");
 		this.fenetre.setSize(658, 544);
-		this.fenetre.setResizable(true);
+		this.fenetre.setResizable(false);
 		this.fenetre.setDefaultCloseOperation(WindowConstants.EXIT_ON_CLOSE);
 		this.fenetre.setLocationRelativeTo(null);
 		
