@@ -77,4 +77,28 @@ public enum Carte
 	public Tile obtenirTile(int ligne, int colonne) {
 		return cases[ligne][colonne];
 	}
+
+	public boolean peutAller(int direction, int ligne, int colonne) 
+	{
+		int x = ligne;
+		int y = colonne;
+		switch (direction)
+		{
+			case 0:
+				x--;
+				break;
+			case 1:
+				y++;
+				break;
+			case 2:
+				x++;
+				break;
+			case 3:
+				y--;
+				break;
+		}
+		if (cases[x][y].estBloquant())
+			return false;
+		return true;
+	}
 }

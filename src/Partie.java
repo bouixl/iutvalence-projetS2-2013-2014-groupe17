@@ -12,6 +12,7 @@ public class Partie
 	 * La carte actuellement chargée
 	 */
 	private Carte carte;
+	private Combat combat;
 	/**
 	 * L'état de la partie
 	 */
@@ -27,7 +28,9 @@ public class Partie
 		this.equipe = new Equipe();
 		this.carte = Carte.CARTE_DEPART;
 		this.etat = "init";
+		this.combat = null;
 		this.ihm = ihm;
+		this.ihm.transmettrePartie(this);
 	}
 	
 	/**
@@ -48,12 +51,11 @@ public class Partie
 		{
 			if (etat == "Carte")
 			{
-				this.ihm.afficherCarte(carte, equipe);
-				this.ihm.attendreReaction();
+				this.ihm.afficherCarte();
 			}
 			else if (etat == "Combat")
 			{
-				
+				this.ihm.afficherCombat();
 			}
 			else if (etat == "Menu")
 			{
@@ -63,7 +65,8 @@ public class Partie
 			{
 				System.out.println("Erreur, état imprévu.");
 			}
-			attendreReaction();
+			this.ihm.attendreReaction();
+			System.out.println("test");
 		}
 	}
 	
@@ -73,13 +76,43 @@ public class Partie
 		System.out.println("-------- "+etat+" --------");
 	}
 	
-	public void attendreReaction()
-	{
-		
-	}
-	
 	public void afficherCarte()
 	{
 		System.out.println(this.carte.toString());
+	}
+	
+	public void changerEtat(String etat)
+	{
+		this.etat = etat;
+	}
+	
+	public void changerCarte(Carte carte)
+	{
+		this.carte = carte;
+	}
+	
+	public void changerCombat(Combat combat)
+	{
+		this.combat = combat;
+	}
+	
+	public String obtenirEtat()
+	{
+		return this.etat;
+	}
+	
+	public Carte obtenirCarte()
+	{
+		return this.carte;
+	}
+	
+	public Combat obtenirCombat()
+	{
+		return this.combat;
+	}
+	
+	public Equipe obtenirEquipe()
+	{
+		return this.equipe;
 	}
 }

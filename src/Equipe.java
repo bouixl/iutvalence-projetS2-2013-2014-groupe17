@@ -47,7 +47,7 @@ public class Equipe
 				this.orientation = "bas";
 				this.ligne++;
 				break;
-			case 4:
+			case 3:
 				this.orientation = "gauche";
 				this.colonne--;
 				break;
@@ -66,7 +66,7 @@ public class Equipe
 			case 2:
 				this.orientation = "bas";
 				break;
-			case 4:
+			case 3:
 				this.orientation = "gauche";
 				break;
 		}

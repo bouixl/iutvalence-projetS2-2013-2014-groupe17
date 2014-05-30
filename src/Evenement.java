@@ -26,7 +26,6 @@ public class Evenement
 	}
 	
 	public void changerBloquant() {
-		
 		this.bloquant = !this.bloquant;
 	}
 

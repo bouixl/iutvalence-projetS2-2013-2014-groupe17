@@ -4,6 +4,8 @@ import java.awt.GridLayout;
 import java.awt.Image;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
+import java.awt.event.KeyEvent;
+import java.awt.event.KeyListener;
 import java.awt.image.BufferedImage;
 import java.util.concurrent.TimeUnit;
 
@@ -17,7 +19,7 @@ import javax.swing.JOptionPane;
 import javax.swing.JPanel;
 import javax.swing.WindowConstants;
 
-public class IHM implements Runnable, ActionListener {
+public class IHM implements Runnable, ActionListener, KeyListener {
 	
 	private volatile boolean pret;
 	private JFrame fenetre;
@@ -26,6 +28,8 @@ public class IHM implements Runnable, ActionListener {
 	private JPanel panneauCarte;
 	private boolean attendreReaction;
 	private JPanel panneau;
+	
+	private Partie partie;
 	
 	public IHM()
 	{
@@ -37,7 +41,7 @@ public class IHM implements Runnable, ActionListener {
 		return this.pret;
 	}
 	
-	public void afficherCombat(Combat combat)
+	public void afficherCombat()
 	{
 		
 	}
@@ -57,8 +61,10 @@ public class IHM implements Runnable, ActionListener {
 		
 	}
 	
-	public void afficherCarte(Carte carte, Equipe equipe)
+	public void afficherCarte()
 	{
+		Carte carte = this.partie.obtenirCarte();
+		Equipe equipe = this.partie.obtenirEquipe();
 		this.panneauCarte.removeAll();
 		this.panneauCarte.setLayout(new GridLayout(carte.obtenirHauteur(), carte.obtenirLargeur()));
 		
@@ -132,15 +138,15 @@ public class IHM implements Runnable, ActionListener {
 		this.menuItemFermer.addActionListener(this);
 		menu.add(this.menuItemFermer);
 		barreDeMenu.add(menu);
-		this.fenetre.setJMenuBar(barreDeMenu);
+		//this.fenetre.setJMenuBar(barreDeMenu);
 
 		this.panneau = new JPanel();
 		this.panneauCarte = new JPanel();
 		this.panneauCarte.setBackground(Color.BLACK);
 		this.panneau.add(this.panneauCarte);
-		
 		this.fenetre.add(this.panneau);
 		
+		this.fenetre.addKeyListener(this);
 		this.fenetre. setVisible(true);
 		
 		this.pret = true;
@@ -156,4 +162,82 @@ public class IHM implements Runnable, ActionListener {
 			}
 		}
 	}
+
+	public void transmettrePartie(Partie partie) {
+		this.partie = partie;
+	}
+
+	@Override
+	public void keyPressed(KeyEvent arg0) {
+		// TODO Auto-generated method stub
+		
+	}
+
+	@Override
+	public void keyReleased(KeyEvent arg0) {
+		// TODO Auto-generated method stub
+		
+	}
+
+	@Override
+	public void keyTyped(KeyEvent arg0) {
+		if(this.attendreReaction)
+		{
+			char touche = arg0.getKeyChar();
+			int direction;
+			switch(touche)
+			{
+				case 'z':
+					direction = 0;
+					if(this.partie.obtenirCarte().peutAller(direction, this.partie.obtenirEquipe().obtenirLigne(), this.partie.obtenirEquipe().obtenirColonne()))
+					{
+						this.partie.obtenirEquipe().deplacer(direction);
+					}
+					else
+					{
+						this.partie.obtenirEquipe().changerDirection(direction);
+					}
+					this.attendreReaction = false;
+					break;
+				case 'd':
+					direction = 1;
+					if(this.partie.obtenirCarte().peutAller(direction, this.partie.obtenirEquipe().obtenirLigne(), this.partie.obtenirEquipe().obtenirColonne()))
+					{
+						this.partie.obtenirEquipe().deplacer(direction);
+					}
+					else
+					{
+						this.partie.obtenirEquipe().changerDirection(direction);
+					}
+					this.attendreReaction = false;
+					break;
+				case 's':
+					direction = 2;
+					if(this.partie.obtenirCarte().peutAller(direction, this.partie.obtenirEquipe().obtenirLigne(), this.partie.obtenirEquipe().obtenirColonne()))
+					{
+						this.partie.obtenirEquipe().deplacer(direction);
+					}
+					else
+					{
+						this.partie.obtenirEquipe().changerDirection(direction);
+					}
+					this.attendreReaction = false;
+					break;
+				case 'q':
+					direction = 3;
+					if(this.partie.obtenirCarte().peutAller(direction, this.partie.obtenirEquipe().obtenirLigne(), this.partie.obtenirEquipe().obtenirColonne()))
+					{
+						this.partie.obtenirEquipe().deplacer(direction);
+					}
+					else
+					{
+						this.partie.obtenirEquipe().changerDirection(direction);
+					}
+					this.attendreReaction = false;
+					break;
+			}
+		}
+	}
+	
+	
 }
