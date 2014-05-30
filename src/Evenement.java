@@ -2,6 +2,7 @@ import javax.swing.ImageIcon;
 
 public class Evenement
 {
+	public static final Evenement NULL = new Evenement("null",null,false,null);
 	private final ImageIcon apparence;
 	private boolean bloquant;
 	private final String[][] actions;
@@ -21,7 +22,6 @@ public class Evenement
 	}
 	
 	public boolean estBloquant() {
-		
 		return this.bloquant;
 	}
 	

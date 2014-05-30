@@ -6,11 +6,15 @@
 public class Combat
 {
 	private boolean etat;
+	private Ennemi[] ennemis;
 	private int tour;
+	private IHM ihm;
 	
-	public Combat(Equipe equipe, Ennemi[] ennemis)
+	public Combat(Equipe equipe, Ennemi[] ennemis, IHM ihm)
 	{
 		this.tour = Application.RNG.nextInt(2);		
+		this.ennemis = ennemis;
+		this.ihm = ihm;
 	}
 	
 	public void tourGlobal()
@@ -24,10 +28,12 @@ public class Combat
 	public void tourJoueur()
 	{
 		
+		this.tour++;
 	}
 	
 	public void tourEnnemi()
 	{
 		
+		this.tour++;
 	}
 }

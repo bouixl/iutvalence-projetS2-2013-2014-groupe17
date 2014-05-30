@@ -34,6 +34,8 @@ public class IHM implements Runnable, ActionListener, KeyListener {
 	private JScrollPane panneau;
 	
 	private Partie partie;
+	private JPanel panneauActuel;
+	private JPanel panneauCombat;
 	
 	public IHM()
 	{
@@ -48,6 +50,8 @@ public class IHM implements Runnable, ActionListener, KeyListener {
 	public void afficherCombat()
 	{
 		System.out.println("COMBAT");
+		this.panneauActuel = this.panneauCombat;
+		this.panneauActuel.updateUI();
 		this.partie.changerEtat("Carte");
 	}
 	
@@ -68,11 +72,12 @@ public class IHM implements Runnable, ActionListener, KeyListener {
 	
 	public void afficherCarte()
 	{
+		this.panneauActuel = panneauCarte;
+		
 		Carte carte = this.partie.obtenirCarte();
 		Equipe equipe = this.partie.obtenirEquipe();
 		this.panneauCarte.removeAll();
 		this.panneauCarte.setLayout(new GridLayout(carte.obtenirHauteur(), carte.obtenirLargeur()));
-		
 		for (int ligne = 0; ligne < carte.obtenirHauteur(); ligne++)
 		{
 			for (int colonne = 0; colonne < carte.obtenirLargeur(); colonne++)
@@ -90,13 +95,26 @@ public class IHM implements Runnable, ActionListener, KeyListener {
 					g2.dispose();
 					this.panneauCarte.add((new JLabel(new ImageIcon(img3))));
 				}
+				else if(carte.obtenirEvenement(ligne,colonne)!=Evenement.NULL)
+				{
+					ImageIcon apparence_tile = carte.obtenirTile(ligne,colonne).obtenirApparence(); 
+					ImageIcon apparence_event = carte.obtenirEvenement(ligne,colonne).obtenirApparence();
+					Image img1 = apparence_tile.getImage();
+					Image img2 = apparence_event.getImage();
+					BufferedImage img3 = new BufferedImage(32, 32, 1);
+					Graphics2D g2 = img3.createGraphics();
+					g2.drawImage(img1, 0, 0, null);
+					g2.drawImage(img2, 0, 0, null);
+					g2.dispose();
+					this.panneauCarte.add((new JLabel(new ImageIcon(img3))));
+				}
 				else
 				{
 					this.panneauCarte.add((new JLabel(carte.obtenirTile(ligne,colonne).obtenirApparence())));
 				}
 			}
 		}
-		this.panneauCarte.updateUI();
+		this.panneauActuel.updateUI();
 	}
 
 	public void finJeu()
@@ -146,9 +164,12 @@ public class IHM implements Runnable, ActionListener, KeyListener {
 
 		//this.panneau = new JScrollPane(JScrollPane.VERTICAL_SCROLLBAR_NEVER,JScrollPane.HORIZONTAL_SCROLLBAR_NEVER);
 		this.panneau = new JScrollPane();
+		this.panneauCombat = new JPanel();
+		this.panneauCombat.setBackground(Color.RED);
 		this.panneauCarte = new JPanel();
 		this.panneauCarte.setBackground(Color.BLACK);
-		this.panneau.getViewport().add(this.panneauCarte);
+		this.panneauActuel = panneauCarte;
+		this.panneau.getViewport().add(this.panneauActuel);
 		this.panneau.setPreferredSize(new Dimension(640, 480));
 		this.fenetre.add(this.panneau);
 		
@@ -157,7 +178,7 @@ public class IHM implements Runnable, ActionListener, KeyListener {
 		
 		this.pret = true;
 	}
-
+	
 	public void attendreReaction() {
 		this.attendreReaction = true;
 		while(this.attendreReaction) 

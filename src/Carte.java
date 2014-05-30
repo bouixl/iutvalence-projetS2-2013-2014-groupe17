@@ -1,72 +1,81 @@
+import javax.swing.ImageIcon;
+
 public enum Carte
 {
-	CARTE_DEPART;
+	CARTE_DEPART(new Tile[][] 
+		{
+			{Tile.MUR,Tile.MUR,Tile.MUR,Tile.MUR,Tile.MUR,Tile.MUR,Tile.MUR,Tile.MUR,Tile.MUR,Tile.MUR,Tile.MUR,Tile.MUR,Tile.MUR,Tile.MUR,Tile.MUR,Tile.MUR,Tile.MUR,Tile.MUR,Tile.MUR,Tile.MUR,Tile.MUR,Tile.MUR,Tile.MUR,Tile.SOL,Tile.MUR,Tile.MUR},
+			{Tile.MUR,Tile.SOL,Tile.SOL,Tile.SOL,Tile.SOL,Tile.SOL,Tile.SOL,Tile.SOL,Tile.SOL,Tile.SOL,Tile.SOL,Tile.SOL,Tile.SOL,Tile.SOL,Tile.SOL,Tile.SOL,Tile.SOL,Tile.SOL,Tile.SOL,Tile.SOL,Tile.SOL,Tile.SOL,Tile.SOL,Tile.SOL,Tile.SOL,Tile.MUR},
+			{Tile.MUR,Tile.SOL,Tile.SOL,Tile.SOL,Tile.SOL,Tile.SOL,Tile.SOL,Tile.SOL,Tile.SOL,Tile.SOL,Tile.SOL,Tile.SOL,Tile.SOL,Tile.SOL,Tile.SOL,Tile.SOL,Tile.SOL,Tile.SOL,Tile.SOL,Tile.SOL,Tile.SOL,Tile.SOL,Tile.SOL,Tile.SOL,Tile.SOL,Tile.SOL},
+			{Tile.MUR,Tile.SOL,Tile.SOL,Tile.SOL,Tile.SOL,Tile.SOL,Tile.SOL,Tile.SOL,Tile.SOL,Tile.SOL,Tile.SOL,Tile.SOL,Tile.SOL,Tile.SOL,Tile.SOL,Tile.SOL,Tile.SOL,Tile.SOL,Tile.SOL,Tile.SOL,Tile.SOL,Tile.SOL,Tile.SOL,Tile.SOL,Tile.SOL,Tile.MUR},
+			{Tile.MUR,Tile.SOL,Tile.SOL,Tile.SOL,Tile.SOL,Tile.SOL,Tile.SOL,Tile.SOL,Tile.SOL,Tile.SOL,Tile.SOL,Tile.SOL,Tile.SOL,Tile.SOL,Tile.SOL,Tile.SOL,Tile.SOL,Tile.SOL,Tile.SOL,Tile.SOL,Tile.SOL,Tile.SOL,Tile.SOL,Tile.SOL,Tile.SOL,Tile.MUR},
+			{Tile.MUR,Tile.SOL,Tile.SOL,Tile.SOL,Tile.SOL,Tile.SOL,Tile.SOL,Tile.SOL,Tile.SOL,Tile.SOL,Tile.SOL,Tile.SOL,Tile.SOL,Tile.SOL,Tile.SOL,Tile.SOL,Tile.SOL,Tile.SOL,Tile.SOL,Tile.SOL,Tile.SOL,Tile.SOL,Tile.SOL,Tile.SOL,Tile.SOL,Tile.MUR},
+			{Tile.MUR,Tile.SOL,Tile.MUR,Tile.MUR,Tile.MUR,Tile.MUR,Tile.MUR,Tile.MUR,Tile.MUR,Tile.SOL,Tile.SOL,Tile.SOL,Tile.SOL,Tile.SOL,Tile.SOL,Tile.SOL,Tile.SOL,Tile.SOL,Tile.SOL,Tile.SOL,Tile.SOL,Tile.SOL,Tile.SOL,Tile.SOL,Tile.SOL,Tile.MUR},
+			{Tile.MUR,Tile.SOL,Tile.MUR,Tile.SOL,Tile.SOL,Tile.SOL,Tile.MUR,Tile.SOL,Tile.SOL,Tile.SOL,Tile.SOL,Tile.SOL,Tile.SOL,Tile.SOL,Tile.SOL,Tile.SOL,Tile.SOL,Tile.SOL,Tile.SOL,Tile.SOL,Tile.SOL,Tile.SOL,Tile.SOL,Tile.SOL,Tile.SOL,Tile.MUR},
+			{Tile.MUR,Tile.SOL,Tile.MUR,Tile.SOL,Tile.SOL,Tile.SOL,Tile.MUR,Tile.MUR,Tile.MUR,Tile.SOL,Tile.SOL,Tile.SOL,Tile.SOL,Tile.SOL,Tile.SOL,Tile.SOL,Tile.SOL,Tile.SOL,Tile.SOL,Tile.SOL,Tile.SOL,Tile.SOL,Tile.SOL,Tile.SOL,Tile.SOL,Tile.MUR},
+			{Tile.MUR,Tile.SOL,Tile.MUR,Tile.SOL,Tile.SOL,Tile.SOL,Tile.MUR,Tile.SOL,Tile.MUR,Tile.SOL,Tile.SOL,Tile.SOL,Tile.SOL,Tile.SOL,Tile.SOL,Tile.SOL,Tile.SOL,Tile.SOL,Tile.SOL,Tile.SOL,Tile.SOL,Tile.SOL,Tile.SOL,Tile.SOL,Tile.SOL,Tile.MUR},
+			{Tile.MUR,Tile.SOL,Tile.MUR,Tile.MUR,Tile.SOL,Tile.MUR,Tile.MUR,Tile.SOL,Tile.MUR,Tile.SOL,Tile.SOL,Tile.SOL,Tile.SOL,Tile.SOL,Tile.SOL,Tile.SOL,Tile.SOL,Tile.SOL,Tile.SOL,Tile.SOL,Tile.SOL,Tile.SOL,Tile.SOL,Tile.SOL,Tile.SOL,Tile.MUR},
+			{Tile.MUR,Tile.SOL,Tile.SOL,Tile.SOL,Tile.SOL,Tile.SOL,Tile.SOL,Tile.SOL,Tile.SOL,Tile.SOL,Tile.SOL,Tile.SOL,Tile.SOL,Tile.SOL,Tile.SOL,Tile.SOL,Tile.SOL,Tile.SOL,Tile.SOL,Tile.SOL,Tile.SOL,Tile.SOL,Tile.SOL,Tile.SOL,Tile.SOL,Tile.MUR},
+			{Tile.MUR,Tile.SOL,Tile.SOL,Tile.SOL,Tile.SOL,Tile.SOL,Tile.SOL,Tile.SOL,Tile.SOL,Tile.SOL,Tile.SOL,Tile.SOL,Tile.SOL,Tile.SOL,Tile.SOL,Tile.SOL,Tile.SOL,Tile.SOL,Tile.SOL,Tile.SOL,Tile.SOL,Tile.SOL,Tile.SOL,Tile.SOL,Tile.SOL,Tile.MUR},
+			{Tile.MUR,Tile.SOL,Tile.SOL,Tile.SOL,Tile.SOL,Tile.SOL,Tile.SOL,Tile.MUR,Tile.MUR,Tile.SOL,Tile.MUR,Tile.MUR,Tile.SOL,Tile.SOL,Tile.SOL,Tile.SOL,Tile.SOL,Tile.SOL,Tile.SOL,Tile.SOL,Tile.SOL,Tile.SOL,Tile.SOL,Tile.SOL,Tile.SOL,Tile.MUR},
+			{Tile.MUR,Tile.SOL,Tile.SOL,Tile.SOL,Tile.SOL,Tile.SOL,Tile.SOL,Tile.MUR,Tile.SOL,Tile.SOL,Tile.SOL,Tile.MUR,Tile.SOL,Tile.SOL,Tile.SOL,Tile.SOL,Tile.SOL,Tile.SOL,Tile.SOL,Tile.SOL,Tile.SOL,Tile.SOL,Tile.SOL,Tile.SOL,Tile.SOL,Tile.MUR},
+			{Tile.MUR,Tile.SOL,Tile.SOL,Tile.SOL,Tile.SOL,Tile.SOL,Tile.SOL,Tile.MUR,Tile.SOL,Tile.MUR,Tile.SOL,Tile.MUR,Tile.SOL,Tile.SOL,Tile.SOL,Tile.SOL,Tile.SOL,Tile.SOL,Tile.SOL,Tile.SOL,Tile.SOL,Tile.SOL,Tile.SOL,Tile.SOL,Tile.SOL,Tile.MUR},
+			{Tile.MUR,Tile.SOL,Tile.SOL,Tile.SOL,Tile.SOL,Tile.SOL,Tile.SOL,Tile.MUR,Tile.SOL,Tile.SOL,Tile.SOL,Tile.MUR,Tile.SOL,Tile.SOL,Tile.SOL,Tile.SOL,Tile.SOL,Tile.SOL,Tile.SOL,Tile.SOL,Tile.SOL,Tile.SOL,Tile.SOL,Tile.SOL,Tile.SOL,Tile.MUR},
+			{Tile.MUR,Tile.SOL,Tile.SOL,Tile.SOL,Tile.SOL,Tile.SOL,Tile.SOL,Tile.MUR,Tile.MUR,Tile.MUR,Tile.MUR,Tile.MUR,Tile.SOL,Tile.SOL,Tile.SOL,Tile.SOL,Tile.SOL,Tile.SOL,Tile.SOL,Tile.SOL,Tile.SOL,Tile.SOL,Tile.SOL,Tile.SOL,Tile.SOL,Tile.MUR},
+			{Tile.MUR,Tile.SOL,Tile.SOL,Tile.SOL,Tile.SOL,Tile.SOL,Tile.SOL,Tile.SOL,Tile.SOL,Tile.SOL,Tile.SOL,Tile.SOL,Tile.SOL,Tile.SOL,Tile.SOL,Tile.SOL,Tile.SOL,Tile.SOL,Tile.SOL,Tile.SOL,Tile.SOL,Tile.SOL,Tile.SOL,Tile.SOL,Tile.SOL,Tile.MUR},
+			{Tile.MUR,Tile.SOL,Tile.SOL,Tile.SOL,Tile.SOL,Tile.SOL,Tile.SOL,Tile.SOL,Tile.SOL,Tile.SOL,Tile.SOL,Tile.SOL,Tile.SOL,Tile.SOL,Tile.SOL,Tile.SOL,Tile.SOL,Tile.SOL,Tile.SOL,Tile.SOL,Tile.SOL,Tile.SOL,Tile.SOL,Tile.SOL,Tile.SOL,Tile.MUR},
+			{Tile.MUR,Tile.SOL,Tile.SOL,Tile.SOL,Tile.SOL,Tile.SOL,Tile.SOL,Tile.SOL,Tile.SOL,Tile.SOL,Tile.SOL,Tile.SOL,Tile.SOL,Tile.SOL,Tile.SOL,Tile.SOL,Tile.SOL,Tile.SOL,Tile.SOL,Tile.SOL,Tile.SOL,Tile.SOL,Tile.SOL,Tile.SOL,Tile.SOL,Tile.MUR},
+			{Tile.SOL,Tile.SOL,Tile.SOL,Tile.SOL,Tile.SOL,Tile.SOL,Tile.SOL,Tile.SOL,Tile.SOL,Tile.SOL,Tile.SOL,Tile.SOL,Tile.SOL,Tile.SOL,Tile.SOL,Tile.SOL,Tile.SOL,Tile.SOL,Tile.SOL,Tile.SOL,Tile.SOL,Tile.SOL,Tile.SOL,Tile.SOL,Tile.SOL,Tile.MUR},
+			{Tile.MUR,Tile.SOL,Tile.SOL,Tile.SOL,Tile.SOL,Tile.SOL,Tile.SOL,Tile.SOL,Tile.SOL,Tile.SOL,Tile.SOL,Tile.SOL,Tile.SOL,Tile.SOL,Tile.SOL,Tile.SOL,Tile.SOL,Tile.SOL,Tile.SOL,Tile.SOL,Tile.SOL,Tile.SOL,Tile.SOL,Tile.SOL,Tile.SOL,Tile.MUR},
+			{Tile.MUR,Tile.MUR,Tile.SOL,Tile.MUR,Tile.MUR,Tile.MUR,Tile.MUR,Tile.MUR,Tile.MUR,Tile.MUR,Tile.SOL,Tile.MUR,Tile.MUR,Tile.MUR,Tile.MUR,Tile.MUR,Tile.MUR,Tile.MUR,Tile.SOL,Tile.MUR,Tile.MUR,Tile.MUR,Tile.MUR,Tile.MUR,Tile.MUR,Tile.MUR}
+		},
+		new Evenement[][] 
+		{
+			{Evenement.NULL,Evenement.NULL,Evenement.NULL,Evenement.NULL,Evenement.NULL,Evenement.NULL,Evenement.NULL,Evenement.NULL,Evenement.NULL,Evenement.NULL,Evenement.NULL,Evenement.NULL,Evenement.NULL,Evenement.NULL,Evenement.NULL,Evenement.NULL,Evenement.NULL,Evenement.NULL,Evenement.NULL,Evenement.NULL,Evenement.NULL,Evenement.NULL,Evenement.NULL,Evenement.NULL,Evenement.NULL,Evenement.NULL},
+			{Evenement.NULL,Evenement.NULL,Evenement.NULL,Evenement.NULL,Evenement.NULL,Evenement.NULL,Evenement.NULL,Evenement.NULL,Evenement.NULL,Evenement.NULL,Evenement.NULL,Evenement.NULL,Evenement.NULL,Evenement.NULL,Evenement.NULL,Evenement.NULL,Evenement.NULL,Evenement.NULL,Evenement.NULL,Evenement.NULL,Evenement.NULL,Evenement.NULL,Evenement.NULL,Evenement.NULL,Evenement.NULL,Evenement.NULL},
+			{Evenement.NULL,Evenement.NULL,Evenement.NULL,Evenement.NULL,Evenement.NULL,Evenement.NULL,Evenement.NULL,Evenement.NULL,Evenement.NULL,Evenement.NULL,Evenement.NULL,Evenement.NULL,Evenement.NULL,Evenement.NULL,Evenement.NULL,Evenement.NULL,Evenement.NULL,Evenement.NULL,Evenement.NULL,Evenement.NULL,Evenement.NULL,Evenement.NULL,Evenement.NULL,Evenement.NULL,Evenement.NULL,Evenement.NULL},
+			{Evenement.NULL,Evenement.NULL,Evenement.NULL,Evenement.NULL,Evenement.NULL,Evenement.NULL,Evenement.NULL,Evenement.NULL,Evenement.NULL,Evenement.NULL,Evenement.NULL,Evenement.NULL,Evenement.NULL,Evenement.NULL,Evenement.NULL,Evenement.NULL,Evenement.NULL,Evenement.NULL,Evenement.NULL,Evenement.NULL,Evenement.NULL,Evenement.NULL,Evenement.NULL,Evenement.NULL,Evenement.NULL,Evenement.NULL},
+			{Evenement.NULL,Evenement.NULL,Evenement.NULL,Evenement.NULL,Evenement.NULL,Evenement.NULL,Evenement.NULL,Evenement.NULL,Evenement.NULL,Evenement.NULL,Evenement.NULL,Evenement.NULL,Evenement.NULL,Evenement.NULL,Evenement.NULL,Evenement.NULL,Evenement.NULL,Evenement.NULL,Evenement.NULL,Evenement.NULL,Evenement.NULL,Evenement.NULL,Evenement.NULL,Evenement.NULL,Evenement.NULL,Evenement.NULL},
+			{Evenement.NULL,Evenement.NULL,Evenement.NULL,Evenement.NULL,Evenement.NULL,Evenement.NULL,Evenement.NULL,Evenement.NULL,Evenement.NULL,Evenement.NULL,Evenement.NULL,Evenement.NULL,Evenement.NULL,Evenement.NULL,Evenement.NULL,Evenement.NULL,Evenement.NULL,Evenement.NULL,Evenement.NULL,Evenement.NULL,Evenement.NULL,Evenement.NULL,Evenement.NULL,Evenement.NULL,Evenement.NULL,Evenement.NULL},
+			{Evenement.NULL,Evenement.NULL,Evenement.NULL,Evenement.NULL,Evenement.NULL,Evenement.NULL,Evenement.NULL,Evenement.NULL,Evenement.NULL,Evenement.NULL,Evenement.NULL,Evenement.NULL,Evenement.NULL,Evenement.NULL,Evenement.NULL,Evenement.NULL,Evenement.NULL,Evenement.NULL,Evenement.NULL,Evenement.NULL,Evenement.NULL,Evenement.NULL,Evenement.NULL,Evenement.NULL,Evenement.NULL,Evenement.NULL},
+			{Evenement.NULL,Evenement.NULL,Evenement.NULL,Evenement.NULL,Evenement.NULL,new Evenement("livre",new ImageIcon("livre.png"),true,null),Evenement.NULL,Evenement.NULL,Evenement.NULL,Evenement.NULL,Evenement.NULL,Evenement.NULL,Evenement.NULL,Evenement.NULL,Evenement.NULL,Evenement.NULL,Evenement.NULL,Evenement.NULL,Evenement.NULL,Evenement.NULL,Evenement.NULL,Evenement.NULL,Evenement.NULL,Evenement.NULL,Evenement.NULL,Evenement.NULL},
+			{Evenement.NULL,Evenement.NULL,Evenement.NULL,Evenement.NULL,Evenement.NULL,Evenement.NULL,Evenement.NULL,Evenement.NULL,Evenement.NULL,Evenement.NULL,Evenement.NULL,Evenement.NULL,Evenement.NULL,Evenement.NULL,Evenement.NULL,Evenement.NULL,Evenement.NULL,Evenement.NULL,Evenement.NULL,Evenement.NULL,Evenement.NULL,Evenement.NULL,Evenement.NULL,Evenement.NULL,Evenement.NULL,Evenement.NULL},
+			{Evenement.NULL,Evenement.NULL,Evenement.NULL,Evenement.NULL,Evenement.NULL,Evenement.NULL,Evenement.NULL,Evenement.NULL,Evenement.NULL,Evenement.NULL,Evenement.NULL,Evenement.NULL,Evenement.NULL,Evenement.NULL,Evenement.NULL,Evenement.NULL,Evenement.NULL,Evenement.NULL,Evenement.NULL,Evenement.NULL,Evenement.NULL,Evenement.NULL,Evenement.NULL,Evenement.NULL,Evenement.NULL,Evenement.NULL},
+			{Evenement.NULL,Evenement.NULL,Evenement.NULL,Evenement.NULL,Evenement.NULL,Evenement.NULL,Evenement.NULL,Evenement.NULL,Evenement.NULL,Evenement.NULL,Evenement.NULL,Evenement.NULL,Evenement.NULL,Evenement.NULL,Evenement.NULL,Evenement.NULL,Evenement.NULL,Evenement.NULL,Evenement.NULL,Evenement.NULL,Evenement.NULL,Evenement.NULL,Evenement.NULL,Evenement.NULL,Evenement.NULL,Evenement.NULL},
+			{Evenement.NULL,Evenement.NULL,Evenement.NULL,Evenement.NULL,Evenement.NULL,Evenement.NULL,Evenement.NULL,Evenement.NULL,Evenement.NULL,Evenement.NULL,Evenement.NULL,Evenement.NULL,Evenement.NULL,Evenement.NULL,Evenement.NULL,Evenement.NULL,Evenement.NULL,Evenement.NULL,Evenement.NULL,Evenement.NULL,Evenement.NULL,Evenement.NULL,Evenement.NULL,Evenement.NULL,Evenement.NULL,Evenement.NULL},
+			{Evenement.NULL,Evenement.NULL,Evenement.NULL,Evenement.NULL,Evenement.NULL,Evenement.NULL,Evenement.NULL,Evenement.NULL,Evenement.NULL,Evenement.NULL,Evenement.NULL,Evenement.NULL,Evenement.NULL,Evenement.NULL,Evenement.NULL,Evenement.NULL,Evenement.NULL,Evenement.NULL,Evenement.NULL,Evenement.NULL,Evenement.NULL,Evenement.NULL,Evenement.NULL,Evenement.NULL,Evenement.NULL,Evenement.NULL},
+			{Evenement.NULL,Evenement.NULL,Evenement.NULL,Evenement.NULL,Evenement.NULL,Evenement.NULL,Evenement.NULL,Evenement.NULL,Evenement.NULL,Evenement.NULL,Evenement.NULL,Evenement.NULL,Evenement.NULL,Evenement.NULL,Evenement.NULL,Evenement.NULL,Evenement.NULL,Evenement.NULL,Evenement.NULL,Evenement.NULL,Evenement.NULL,Evenement.NULL,Evenement.NULL,Evenement.NULL,Evenement.NULL,Evenement.NULL},
+			{Evenement.NULL,Evenement.NULL,Evenement.NULL,Evenement.NULL,Evenement.NULL,Evenement.NULL,Evenement.NULL,Evenement.NULL,Evenement.NULL,Evenement.NULL,Evenement.NULL,Evenement.NULL,Evenement.NULL,Evenement.NULL,Evenement.NULL,Evenement.NULL,Evenement.NULL,Evenement.NULL,Evenement.NULL,Evenement.NULL,Evenement.NULL,Evenement.NULL,Evenement.NULL,Evenement.NULL,Evenement.NULL,Evenement.NULL},
+			{Evenement.NULL,Evenement.NULL,Evenement.NULL,Evenement.NULL,Evenement.NULL,Evenement.NULL,Evenement.NULL,Evenement.NULL,Evenement.NULL,Evenement.NULL,Evenement.NULL,Evenement.NULL,Evenement.NULL,Evenement.NULL,Evenement.NULL,Evenement.NULL,Evenement.NULL,Evenement.NULL,Evenement.NULL,Evenement.NULL,Evenement.NULL,Evenement.NULL,Evenement.NULL,Evenement.NULL,Evenement.NULL,Evenement.NULL},
+			{Evenement.NULL,Evenement.NULL,Evenement.NULL,Evenement.NULL,Evenement.NULL,Evenement.NULL,Evenement.NULL,Evenement.NULL,Evenement.NULL,Evenement.NULL,Evenement.NULL,Evenement.NULL,Evenement.NULL,Evenement.NULL,Evenement.NULL,Evenement.NULL,Evenement.NULL,Evenement.NULL,Evenement.NULL,Evenement.NULL,Evenement.NULL,Evenement.NULL,Evenement.NULL,Evenement.NULL,Evenement.NULL,Evenement.NULL},
+			{Evenement.NULL,Evenement.NULL,Evenement.NULL,Evenement.NULL,Evenement.NULL,Evenement.NULL,Evenement.NULL,Evenement.NULL,Evenement.NULL,Evenement.NULL,Evenement.NULL,Evenement.NULL,Evenement.NULL,Evenement.NULL,Evenement.NULL,Evenement.NULL,Evenement.NULL,Evenement.NULL,Evenement.NULL,Evenement.NULL,Evenement.NULL,Evenement.NULL,Evenement.NULL,Evenement.NULL,Evenement.NULL,Evenement.NULL},
+			{Evenement.NULL,Evenement.NULL,Evenement.NULL,Evenement.NULL,Evenement.NULL,Evenement.NULL,Evenement.NULL,Evenement.NULL,Evenement.NULL,Evenement.NULL,Evenement.NULL,Evenement.NULL,Evenement.NULL,Evenement.NULL,Evenement.NULL,Evenement.NULL,Evenement.NULL,Evenement.NULL,Evenement.NULL,Evenement.NULL,Evenement.NULL,Evenement.NULL,Evenement.NULL,Evenement.NULL,Evenement.NULL,Evenement.NULL},
+			{Evenement.NULL,Evenement.NULL,Evenement.NULL,Evenement.NULL,Evenement.NULL,Evenement.NULL,Evenement.NULL,Evenement.NULL,Evenement.NULL,Evenement.NULL,Evenement.NULL,Evenement.NULL,Evenement.NULL,Evenement.NULL,Evenement.NULL,Evenement.NULL,Evenement.NULL,Evenement.NULL,Evenement.NULL,Evenement.NULL,Evenement.NULL,Evenement.NULL,Evenement.NULL,Evenement.NULL,Evenement.NULL,Evenement.NULL},
+			{Evenement.NULL,Evenement.NULL,Evenement.NULL,Evenement.NULL,Evenement.NULL,Evenement.NULL,Evenement.NULL,Evenement.NULL,Evenement.NULL,Evenement.NULL,Evenement.NULL,Evenement.NULL,Evenement.NULL,Evenement.NULL,Evenement.NULL,Evenement.NULL,Evenement.NULL,Evenement.NULL,Evenement.NULL,Evenement.NULL,Evenement.NULL,Evenement.NULL,Evenement.NULL,Evenement.NULL,Evenement.NULL,Evenement.NULL},
+			{Evenement.NULL,Evenement.NULL,Evenement.NULL,Evenement.NULL,Evenement.NULL,Evenement.NULL,Evenement.NULL,Evenement.NULL,Evenement.NULL,Evenement.NULL,Evenement.NULL,Evenement.NULL,Evenement.NULL,Evenement.NULL,Evenement.NULL,Evenement.NULL,Evenement.NULL,Evenement.NULL,Evenement.NULL,Evenement.NULL,Evenement.NULL,Evenement.NULL,Evenement.NULL,Evenement.NULL,Evenement.NULL,Evenement.NULL},
+			{Evenement.NULL,Evenement.NULL,Evenement.NULL,Evenement.NULL,Evenement.NULL,Evenement.NULL,Evenement.NULL,Evenement.NULL,Evenement.NULL,Evenement.NULL,Evenement.NULL,Evenement.NULL,Evenement.NULL,Evenement.NULL,Evenement.NULL,Evenement.NULL,Evenement.NULL,Evenement.NULL,Evenement.NULL,Evenement.NULL,Evenement.NULL,Evenement.NULL,Evenement.NULL,Evenement.NULL,Evenement.NULL,Evenement.NULL},
+			{Evenement.NULL,Evenement.NULL,Evenement.NULL,Evenement.NULL,Evenement.NULL,Evenement.NULL,Evenement.NULL,Evenement.NULL,Evenement.NULL,Evenement.NULL,Evenement.NULL,Evenement.NULL,Evenement.NULL,Evenement.NULL,Evenement.NULL,Evenement.NULL,Evenement.NULL,Evenement.NULL,Evenement.NULL,Evenement.NULL,Evenement.NULL,Evenement.NULL,Evenement.NULL,Evenement.NULL,Evenement.NULL,Evenement.NULL}
+		},
+		true);
 	
 	private final Tile[][] cases;
 	private final int largeur;
 	private final int hauteur;
-	private Evenement[] evenements;
+	private Evenement[][] evenements;
 	private boolean combatsAleatoires;
 
-	private Carte()
+	private Carte(Tile[][] cases, Evenement[][] evenements, boolean combatsAleatoires)
 	{
-		Tile[][] cases = {
-							{Tile.MUR,Tile.MUR,Tile.MUR,Tile.MUR,Tile.MUR,Tile.MUR,Tile.MUR,Tile.MUR,Tile.MUR,Tile.MUR,Tile.MUR,Tile.MUR,Tile.MUR,Tile.MUR,Tile.MUR,Tile.MUR,Tile.MUR,Tile.MUR,Tile.MUR,Tile.MUR,Tile.MUR,Tile.MUR,Tile.MUR,Tile.SOL,Tile.MUR,Tile.MUR},
-							{Tile.MUR,Tile.SOL,Tile.SOL,Tile.SOL,Tile.SOL,Tile.SOL,Tile.SOL,Tile.SOL,Tile.SOL,Tile.SOL,Tile.SOL,Tile.SOL,Tile.SOL,Tile.SOL,Tile.SOL,Tile.SOL,Tile.SOL,Tile.SOL,Tile.SOL,Tile.SOL,Tile.SOL,Tile.SOL,Tile.SOL,Tile.SOL,Tile.SOL,Tile.MUR},
-							{Tile.MUR,Tile.SOL,Tile.SOL,Tile.SOL,Tile.SOL,Tile.SOL,Tile.SOL,Tile.SOL,Tile.SOL,Tile.SOL,Tile.SOL,Tile.SOL,Tile.SOL,Tile.SOL,Tile.SOL,Tile.SOL,Tile.SOL,Tile.SOL,Tile.SOL,Tile.SOL,Tile.SOL,Tile.SOL,Tile.SOL,Tile.SOL,Tile.SOL,Tile.SOL},
-							{Tile.MUR,Tile.SOL,Tile.SOL,Tile.SOL,Tile.SOL,Tile.SOL,Tile.SOL,Tile.SOL,Tile.SOL,Tile.SOL,Tile.SOL,Tile.SOL,Tile.SOL,Tile.SOL,Tile.SOL,Tile.SOL,Tile.SOL,Tile.SOL,Tile.SOL,Tile.SOL,Tile.SOL,Tile.SOL,Tile.SOL,Tile.SOL,Tile.SOL,Tile.MUR},
-							{Tile.MUR,Tile.SOL,Tile.SOL,Tile.SOL,Tile.SOL,Tile.SOL,Tile.SOL,Tile.SOL,Tile.SOL,Tile.SOL,Tile.SOL,Tile.SOL,Tile.SOL,Tile.SOL,Tile.SOL,Tile.SOL,Tile.SOL,Tile.SOL,Tile.SOL,Tile.SOL,Tile.SOL,Tile.SOL,Tile.SOL,Tile.SOL,Tile.SOL,Tile.MUR},
-							{Tile.MUR,Tile.SOL,Tile.SOL,Tile.SOL,Tile.SOL,Tile.SOL,Tile.SOL,Tile.SOL,Tile.SOL,Tile.SOL,Tile.SOL,Tile.SOL,Tile.SOL,Tile.SOL,Tile.SOL,Tile.SOL,Tile.SOL,Tile.SOL,Tile.SOL,Tile.SOL,Tile.SOL,Tile.SOL,Tile.SOL,Tile.SOL,Tile.SOL,Tile.MUR},
-							{Tile.MUR,Tile.SOL,Tile.MUR,Tile.MUR,Tile.MUR,Tile.MUR,Tile.MUR,Tile.MUR,Tile.MUR,Tile.SOL,Tile.SOL,Tile.SOL,Tile.SOL,Tile.SOL,Tile.SOL,Tile.SOL,Tile.SOL,Tile.SOL,Tile.SOL,Tile.SOL,Tile.SOL,Tile.SOL,Tile.SOL,Tile.SOL,Tile.SOL,Tile.MUR},
-							{Tile.MUR,Tile.SOL,Tile.MUR,Tile.SOL,Tile.SOL,Tile.SOL,Tile.MUR,Tile.SOL,Tile.SOL,Tile.SOL,Tile.SOL,Tile.SOL,Tile.SOL,Tile.SOL,Tile.SOL,Tile.SOL,Tile.SOL,Tile.SOL,Tile.SOL,Tile.SOL,Tile.SOL,Tile.SOL,Tile.SOL,Tile.SOL,Tile.SOL,Tile.MUR},
-							{Tile.MUR,Tile.SOL,Tile.MUR,Tile.SOL,Tile.SOL,Tile.SOL,Tile.MUR,Tile.MUR,Tile.MUR,Tile.SOL,Tile.SOL,Tile.SOL,Tile.SOL,Tile.SOL,Tile.SOL,Tile.SOL,Tile.SOL,Tile.SOL,Tile.SOL,Tile.SOL,Tile.SOL,Tile.SOL,Tile.SOL,Tile.SOL,Tile.SOL,Tile.MUR},
-							{Tile.MUR,Tile.SOL,Tile.MUR,Tile.SOL,Tile.SOL,Tile.SOL,Tile.MUR,Tile.SOL,Tile.MUR,Tile.SOL,Tile.SOL,Tile.SOL,Tile.SOL,Tile.SOL,Tile.SOL,Tile.SOL,Tile.SOL,Tile.SOL,Tile.SOL,Tile.SOL,Tile.SOL,Tile.SOL,Tile.SOL,Tile.SOL,Tile.SOL,Tile.MUR},
-							{Tile.MUR,Tile.SOL,Tile.MUR,Tile.MUR,Tile.SOL,Tile.MUR,Tile.MUR,Tile.SOL,Tile.MUR,Tile.SOL,Tile.SOL,Tile.SOL,Tile.SOL,Tile.SOL,Tile.SOL,Tile.SOL,Tile.SOL,Tile.SOL,Tile.SOL,Tile.SOL,Tile.SOL,Tile.SOL,Tile.SOL,Tile.SOL,Tile.SOL,Tile.MUR},
-							{Tile.MUR,Tile.SOL,Tile.SOL,Tile.SOL,Tile.SOL,Tile.SOL,Tile.SOL,Tile.SOL,Tile.SOL,Tile.SOL,Tile.SOL,Tile.SOL,Tile.SOL,Tile.SOL,Tile.SOL,Tile.SOL,Tile.SOL,Tile.SOL,Tile.SOL,Tile.SOL,Tile.SOL,Tile.SOL,Tile.SOL,Tile.SOL,Tile.SOL,Tile.MUR},
-							{Tile.MUR,Tile.SOL,Tile.SOL,Tile.SOL,Tile.SOL,Tile.SOL,Tile.SOL,Tile.SOL,Tile.SOL,Tile.SOL,Tile.SOL,Tile.SOL,Tile.SOL,Tile.SOL,Tile.SOL,Tile.SOL,Tile.SOL,Tile.SOL,Tile.SOL,Tile.SOL,Tile.SOL,Tile.SOL,Tile.SOL,Tile.SOL,Tile.SOL,Tile.MUR},
-							{Tile.MUR,Tile.SOL,Tile.SOL,Tile.SOL,Tile.SOL,Tile.SOL,Tile.SOL,Tile.MUR,Tile.MUR,Tile.SOL,Tile.MUR,Tile.MUR,Tile.SOL,Tile.SOL,Tile.SOL,Tile.SOL,Tile.SOL,Tile.SOL,Tile.SOL,Tile.SOL,Tile.SOL,Tile.SOL,Tile.SOL,Tile.SOL,Tile.SOL,Tile.MUR},
-							{Tile.MUR,Tile.SOL,Tile.SOL,Tile.SOL,Tile.SOL,Tile.SOL,Tile.SOL,Tile.MUR,Tile.SOL,Tile.SOL,Tile.SOL,Tile.MUR,Tile.SOL,Tile.SOL,Tile.SOL,Tile.SOL,Tile.SOL,Tile.SOL,Tile.SOL,Tile.SOL,Tile.SOL,Tile.SOL,Tile.SOL,Tile.SOL,Tile.SOL,Tile.MUR},
-							{Tile.MUR,Tile.SOL,Tile.SOL,Tile.SOL,Tile.SOL,Tile.SOL,Tile.SOL,Tile.MUR,Tile.SOL,Tile.MUR,Tile.SOL,Tile.MUR,Tile.SOL,Tile.SOL,Tile.SOL,Tile.SOL,Tile.SOL,Tile.SOL,Tile.SOL,Tile.SOL,Tile.SOL,Tile.SOL,Tile.SOL,Tile.SOL,Tile.SOL,Tile.MUR},
-							{Tile.MUR,Tile.SOL,Tile.SOL,Tile.SOL,Tile.SOL,Tile.SOL,Tile.SOL,Tile.MUR,Tile.SOL,Tile.SOL,Tile.SOL,Tile.MUR,Tile.SOL,Tile.SOL,Tile.SOL,Tile.SOL,Tile.SOL,Tile.SOL,Tile.SOL,Tile.SOL,Tile.SOL,Tile.SOL,Tile.SOL,Tile.SOL,Tile.SOL,Tile.MUR},
-							{Tile.MUR,Tile.SOL,Tile.SOL,Tile.SOL,Tile.SOL,Tile.SOL,Tile.SOL,Tile.MUR,Tile.MUR,Tile.MUR,Tile.MUR,Tile.MUR,Tile.SOL,Tile.SOL,Tile.SOL,Tile.SOL,Tile.SOL,Tile.SOL,Tile.SOL,Tile.SOL,Tile.SOL,Tile.SOL,Tile.SOL,Tile.SOL,Tile.SOL,Tile.MUR},
-							{Tile.MUR,Tile.SOL,Tile.SOL,Tile.SOL,Tile.SOL,Tile.SOL,Tile.SOL,Tile.SOL,Tile.SOL,Tile.SOL,Tile.SOL,Tile.SOL,Tile.SOL,Tile.SOL,Tile.SOL,Tile.SOL,Tile.SOL,Tile.SOL,Tile.SOL,Tile.SOL,Tile.SOL,Tile.SOL,Tile.SOL,Tile.SOL,Tile.SOL,Tile.MUR},
-							{Tile.MUR,Tile.SOL,Tile.SOL,Tile.SOL,Tile.SOL,Tile.SOL,Tile.SOL,Tile.SOL,Tile.SOL,Tile.SOL,Tile.SOL,Tile.SOL,Tile.SOL,Tile.SOL,Tile.SOL,Tile.SOL,Tile.SOL,Tile.SOL,Tile.SOL,Tile.SOL,Tile.SOL,Tile.SOL,Tile.SOL,Tile.SOL,Tile.SOL,Tile.MUR},
-							{Tile.MUR,Tile.SOL,Tile.SOL,Tile.SOL,Tile.SOL,Tile.SOL,Tile.SOL,Tile.SOL,Tile.SOL,Tile.SOL,Tile.SOL,Tile.SOL,Tile.SOL,Tile.SOL,Tile.SOL,Tile.SOL,Tile.SOL,Tile.SOL,Tile.SOL,Tile.SOL,Tile.SOL,Tile.SOL,Tile.SOL,Tile.SOL,Tile.SOL,Tile.MUR},
-							{Tile.SOL,Tile.SOL,Tile.SOL,Tile.SOL,Tile.SOL,Tile.SOL,Tile.SOL,Tile.SOL,Tile.SOL,Tile.SOL,Tile.SOL,Tile.SOL,Tile.SOL,Tile.SOL,Tile.SOL,Tile.SOL,Tile.SOL,Tile.SOL,Tile.SOL,Tile.SOL,Tile.SOL,Tile.SOL,Tile.SOL,Tile.SOL,Tile.SOL,Tile.MUR},
-							{Tile.MUR,Tile.SOL,Tile.SOL,Tile.SOL,Tile.SOL,Tile.SOL,Tile.SOL,Tile.SOL,Tile.SOL,Tile.SOL,Tile.SOL,Tile.SOL,Tile.SOL,Tile.SOL,Tile.SOL,Tile.SOL,Tile.SOL,Tile.SOL,Tile.SOL,Tile.SOL,Tile.SOL,Tile.SOL,Tile.SOL,Tile.SOL,Tile.SOL,Tile.MUR},
-							{Tile.MUR,Tile.MUR,Tile.SOL,Tile.MUR,Tile.MUR,Tile.MUR,Tile.MUR,Tile.MUR,Tile.MUR,Tile.MUR,Tile.SOL,Tile.MUR,Tile.MUR,Tile.MUR,Tile.MUR,Tile.MUR,Tile.MUR,Tile.MUR,Tile.SOL,Tile.MUR,Tile.MUR,Tile.MUR,Tile.MUR,Tile.MUR,Tile.MUR,Tile.MUR}
-						};
 		this.cases = cases;
 		this.hauteur = cases.length;
 		this.largeur = cases[0].length;
-		this.evenements = null;
-		this.combatsAleatoires = true;
-	}
-	
-	private Carte(Tile[][] cases, int largeur, int hauteur, Evenement[] evenements, boolean combatsAleatoires)
-	{
-		this.cases = cases;
-		this.largeur = largeur;
-		this.hauteur = hauteur;
 		this.evenements = evenements;
 		this.combatsAleatoires = combatsAleatoires;
 	}
-	
-	public String toString()
-	{
-		String chaine = null;
-		
-		for(int i=0; i<this.hauteur; i++)
-		{
-			for(int j=0; j<this.largeur; j++)
-			{
-				chaine += this.cases[i][j].obtenirApparence();
-			}
-			chaine += "\n";
-		}
-		return chaine;
-	}
 
+	public boolean obtenirCombatAleatoires() {
+		return this.combatsAleatoires;
+	}
 	public int obtenirLargeur() {
 		return this.largeur;
 	}
@@ -76,6 +85,10 @@ public enum Carte
 
 	public Tile obtenirTile(int ligne, int colonne) {
 		return cases[ligne][colonne];
+	}
+	
+	public Evenement obtenirEvenement(int ligne, int colonne) {
+		return evenements[ligne][colonne];
 	}
 
 	public boolean peutAller(int direction, int ligne, int colonne) 
@@ -99,7 +112,7 @@ public enum Carte
 		}
 		if ((x < cases.length) && (y < cases[0].length) && (x >= 0) && (y >= 0))
 		{
-			if (cases[x][y].estBloquant())
+			if (cases[x][y].estBloquant() || evenements[x][y].estBloquant())
 				return false;
 			return true;
 		}
