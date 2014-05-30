@@ -1,5 +1,3 @@
-import java.io.IOException;
-
 /** 
  * @author bouixl
  * Represente la partie de jeu
@@ -45,10 +43,10 @@ public class Partie
 	{
 		while (etat != "Fin")
 		{
-			ecranSuivant();
+			//ecranSuivant();
 			if (etat == "Carte")
 			{
-				afficherCarte();
+				//afficherCarte();
 			}
 			else if (etat == "Combat")
 			{
