@@ -66,18 +66,17 @@ private double chanceRecompense;
 	public static Ennemi genererEnnemi(int niveau) {
 		String nomMonstre;
 		String[] adjectifs;
-		int pointsDeVie;
-		int pointsDeMana;
-		int force;
-		int dexterite;
-		int intelligence;
-		int constitution;
+		int pointsDeVie = 0;
+		int pointsDeMana = 0;
+		int force = 0;
+		int dexterite = 0;
+		int intelligence = 0;
+		int constitution = 0;
 		int id;
 		int chance;
 		double mult = 1.0;
 		Item recompense =  (Item.genererEquipement(niveau));
 		
-		int type = Application.RNG.nextInt(2);
 		
 		
 		
