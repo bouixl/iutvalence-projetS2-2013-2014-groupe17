@@ -10,19 +10,35 @@ public enum Carte
 
 	private Carte()
 	{
-		this.largeur = 10;
-		this.hauteur = 8;
 		Tile[][] cases = {
-							{Tile.SOL,Tile.SOL,Tile.SOL,Tile.SOL,Tile.SOL,Tile.SOL,Tile.SOL,Tile.SOL,Tile.SOL,Tile.SOL},
-							{Tile.SOL,Tile.MUR,Tile.MUR,Tile.MUR,Tile.MUR,Tile.MUR,Tile.MUR,Tile.MUR,Tile.SOL,Tile.SOL},
-							{Tile.SOL,Tile.MUR,Tile.SOL,Tile.SOL,Tile.SOL,Tile.MUR,Tile.SOL,Tile.SOL,Tile.SOL,Tile.SOL},
-							{Tile.SOL,Tile.MUR,Tile.SOL,Tile.SOL,Tile.SOL,Tile.MUR,Tile.MUR,Tile.MUR,Tile.SOL,Tile.SOL},
-							{Tile.SOL,Tile.MUR,Tile.SOL,Tile.SOL,Tile.SOL,Tile.MUR,Tile.SOL,Tile.MUR,Tile.SOL,Tile.SOL},
-							{Tile.SOL,Tile.MUR,Tile.MUR,Tile.SOL,Tile.MUR,Tile.MUR,Tile.SOL,Tile.MUR,Tile.SOL,Tile.SOL},
-							{Tile.SOL,Tile.SOL,Tile.SOL,Tile.SOL,Tile.SOL,Tile.SOL,Tile.SOL,Tile.SOL,Tile.SOL,Tile.MUR},
-							{Tile.SOL,Tile.SOL,Tile.SOL,Tile.SOL,Tile.SOL,Tile.SOL,Tile.SOL,Tile.SOL,Tile.MUR,Tile.MUR}
+							{Tile.MUR,Tile.MUR,Tile.MUR,Tile.MUR,Tile.MUR,Tile.MUR,Tile.MUR,Tile.MUR,Tile.MUR,Tile.MUR,Tile.MUR,Tile.MUR,Tile.MUR,Tile.MUR,Tile.MUR,Tile.MUR,Tile.MUR,Tile.MUR,Tile.MUR,Tile.MUR,Tile.MUR,Tile.MUR,Tile.MUR,Tile.SOL,Tile.MUR,Tile.MUR},
+							{Tile.MUR,Tile.SOL,Tile.SOL,Tile.SOL,Tile.SOL,Tile.SOL,Tile.SOL,Tile.SOL,Tile.SOL,Tile.SOL,Tile.SOL,Tile.SOL,Tile.SOL,Tile.SOL,Tile.SOL,Tile.SOL,Tile.SOL,Tile.SOL,Tile.SOL,Tile.SOL,Tile.SOL,Tile.SOL,Tile.SOL,Tile.SOL,Tile.SOL,Tile.MUR},
+							{Tile.MUR,Tile.SOL,Tile.SOL,Tile.SOL,Tile.SOL,Tile.SOL,Tile.SOL,Tile.SOL,Tile.SOL,Tile.SOL,Tile.SOL,Tile.SOL,Tile.SOL,Tile.SOL,Tile.SOL,Tile.SOL,Tile.SOL,Tile.SOL,Tile.SOL,Tile.SOL,Tile.SOL,Tile.SOL,Tile.SOL,Tile.SOL,Tile.SOL,Tile.SOL},
+							{Tile.MUR,Tile.SOL,Tile.SOL,Tile.SOL,Tile.SOL,Tile.SOL,Tile.SOL,Tile.SOL,Tile.SOL,Tile.SOL,Tile.SOL,Tile.SOL,Tile.SOL,Tile.SOL,Tile.SOL,Tile.SOL,Tile.SOL,Tile.SOL,Tile.SOL,Tile.SOL,Tile.SOL,Tile.SOL,Tile.SOL,Tile.SOL,Tile.SOL,Tile.MUR},
+							{Tile.MUR,Tile.SOL,Tile.SOL,Tile.SOL,Tile.SOL,Tile.SOL,Tile.SOL,Tile.SOL,Tile.SOL,Tile.SOL,Tile.SOL,Tile.SOL,Tile.SOL,Tile.SOL,Tile.SOL,Tile.SOL,Tile.SOL,Tile.SOL,Tile.SOL,Tile.SOL,Tile.SOL,Tile.SOL,Tile.SOL,Tile.SOL,Tile.SOL,Tile.MUR},
+							{Tile.MUR,Tile.SOL,Tile.SOL,Tile.SOL,Tile.SOL,Tile.SOL,Tile.SOL,Tile.SOL,Tile.SOL,Tile.SOL,Tile.SOL,Tile.SOL,Tile.SOL,Tile.SOL,Tile.SOL,Tile.SOL,Tile.SOL,Tile.SOL,Tile.SOL,Tile.SOL,Tile.SOL,Tile.SOL,Tile.SOL,Tile.SOL,Tile.SOL,Tile.MUR},
+							{Tile.MUR,Tile.SOL,Tile.MUR,Tile.MUR,Tile.MUR,Tile.MUR,Tile.MUR,Tile.MUR,Tile.MUR,Tile.SOL,Tile.SOL,Tile.SOL,Tile.SOL,Tile.SOL,Tile.SOL,Tile.SOL,Tile.SOL,Tile.SOL,Tile.SOL,Tile.SOL,Tile.SOL,Tile.SOL,Tile.SOL,Tile.SOL,Tile.SOL,Tile.MUR},
+							{Tile.MUR,Tile.SOL,Tile.MUR,Tile.SOL,Tile.SOL,Tile.SOL,Tile.MUR,Tile.SOL,Tile.SOL,Tile.SOL,Tile.SOL,Tile.SOL,Tile.SOL,Tile.SOL,Tile.SOL,Tile.SOL,Tile.SOL,Tile.SOL,Tile.SOL,Tile.SOL,Tile.SOL,Tile.SOL,Tile.SOL,Tile.SOL,Tile.SOL,Tile.MUR},
+							{Tile.MUR,Tile.SOL,Tile.MUR,Tile.SOL,Tile.SOL,Tile.SOL,Tile.MUR,Tile.MUR,Tile.MUR,Tile.SOL,Tile.SOL,Tile.SOL,Tile.SOL,Tile.SOL,Tile.SOL,Tile.SOL,Tile.SOL,Tile.SOL,Tile.SOL,Tile.SOL,Tile.SOL,Tile.SOL,Tile.SOL,Tile.SOL,Tile.SOL,Tile.MUR},
+							{Tile.MUR,Tile.SOL,Tile.MUR,Tile.SOL,Tile.SOL,Tile.SOL,Tile.MUR,Tile.SOL,Tile.MUR,Tile.SOL,Tile.SOL,Tile.SOL,Tile.SOL,Tile.SOL,Tile.SOL,Tile.SOL,Tile.SOL,Tile.SOL,Tile.SOL,Tile.SOL,Tile.SOL,Tile.SOL,Tile.SOL,Tile.SOL,Tile.SOL,Tile.MUR},
+							{Tile.MUR,Tile.SOL,Tile.MUR,Tile.MUR,Tile.SOL,Tile.MUR,Tile.MUR,Tile.SOL,Tile.MUR,Tile.SOL,Tile.SOL,Tile.SOL,Tile.SOL,Tile.SOL,Tile.SOL,Tile.SOL,Tile.SOL,Tile.SOL,Tile.SOL,Tile.SOL,Tile.SOL,Tile.SOL,Tile.SOL,Tile.SOL,Tile.SOL,Tile.MUR},
+							{Tile.MUR,Tile.SOL,Tile.SOL,Tile.SOL,Tile.SOL,Tile.SOL,Tile.SOL,Tile.SOL,Tile.SOL,Tile.SOL,Tile.SOL,Tile.SOL,Tile.SOL,Tile.SOL,Tile.SOL,Tile.SOL,Tile.SOL,Tile.SOL,Tile.SOL,Tile.SOL,Tile.SOL,Tile.SOL,Tile.SOL,Tile.SOL,Tile.SOL,Tile.MUR},
+							{Tile.MUR,Tile.SOL,Tile.SOL,Tile.SOL,Tile.SOL,Tile.SOL,Tile.SOL,Tile.SOL,Tile.SOL,Tile.SOL,Tile.SOL,Tile.SOL,Tile.SOL,Tile.SOL,Tile.SOL,Tile.SOL,Tile.SOL,Tile.SOL,Tile.SOL,Tile.SOL,Tile.SOL,Tile.SOL,Tile.SOL,Tile.SOL,Tile.SOL,Tile.MUR},
+							{Tile.MUR,Tile.SOL,Tile.SOL,Tile.SOL,Tile.SOL,Tile.SOL,Tile.SOL,Tile.MUR,Tile.MUR,Tile.SOL,Tile.MUR,Tile.MUR,Tile.SOL,Tile.SOL,Tile.SOL,Tile.SOL,Tile.SOL,Tile.SOL,Tile.SOL,Tile.SOL,Tile.SOL,Tile.SOL,Tile.SOL,Tile.SOL,Tile.SOL,Tile.MUR},
+							{Tile.MUR,Tile.SOL,Tile.SOL,Tile.SOL,Tile.SOL,Tile.SOL,Tile.SOL,Tile.MUR,Tile.SOL,Tile.SOL,Tile.SOL,Tile.MUR,Tile.SOL,Tile.SOL,Tile.SOL,Tile.SOL,Tile.SOL,Tile.SOL,Tile.SOL,Tile.SOL,Tile.SOL,Tile.SOL,Tile.SOL,Tile.SOL,Tile.SOL,Tile.MUR},
+							{Tile.MUR,Tile.SOL,Tile.SOL,Tile.SOL,Tile.SOL,Tile.SOL,Tile.SOL,Tile.MUR,Tile.SOL,Tile.MUR,Tile.SOL,Tile.MUR,Tile.SOL,Tile.SOL,Tile.SOL,Tile.SOL,Tile.SOL,Tile.SOL,Tile.SOL,Tile.SOL,Tile.SOL,Tile.SOL,Tile.SOL,Tile.SOL,Tile.SOL,Tile.MUR},
+							{Tile.MUR,Tile.SOL,Tile.SOL,Tile.SOL,Tile.SOL,Tile.SOL,Tile.SOL,Tile.MUR,Tile.SOL,Tile.SOL,Tile.SOL,Tile.MUR,Tile.SOL,Tile.SOL,Tile.SOL,Tile.SOL,Tile.SOL,Tile.SOL,Tile.SOL,Tile.SOL,Tile.SOL,Tile.SOL,Tile.SOL,Tile.SOL,Tile.SOL,Tile.MUR},
+							{Tile.MUR,Tile.SOL,Tile.SOL,Tile.SOL,Tile.SOL,Tile.SOL,Tile.SOL,Tile.MUR,Tile.MUR,Tile.MUR,Tile.MUR,Tile.MUR,Tile.SOL,Tile.SOL,Tile.SOL,Tile.SOL,Tile.SOL,Tile.SOL,Tile.SOL,Tile.SOL,Tile.SOL,Tile.SOL,Tile.SOL,Tile.SOL,Tile.SOL,Tile.MUR},
+							{Tile.MUR,Tile.SOL,Tile.SOL,Tile.SOL,Tile.SOL,Tile.SOL,Tile.SOL,Tile.SOL,Tile.SOL,Tile.SOL,Tile.SOL,Tile.SOL,Tile.SOL,Tile.SOL,Tile.SOL,Tile.SOL,Tile.SOL,Tile.SOL,Tile.SOL,Tile.SOL,Tile.SOL,Tile.SOL,Tile.SOL,Tile.SOL,Tile.SOL,Tile.MUR},
+							{Tile.MUR,Tile.SOL,Tile.SOL,Tile.SOL,Tile.SOL,Tile.SOL,Tile.SOL,Tile.SOL,Tile.SOL,Tile.SOL,Tile.SOL,Tile.SOL,Tile.SOL,Tile.SOL,Tile.SOL,Tile.SOL,Tile.SOL,Tile.SOL,Tile.SOL,Tile.SOL,Tile.SOL,Tile.SOL,Tile.SOL,Tile.SOL,Tile.SOL,Tile.MUR},
+							{Tile.MUR,Tile.SOL,Tile.SOL,Tile.SOL,Tile.SOL,Tile.SOL,Tile.SOL,Tile.SOL,Tile.SOL,Tile.SOL,Tile.SOL,Tile.SOL,Tile.SOL,Tile.SOL,Tile.SOL,Tile.SOL,Tile.SOL,Tile.SOL,Tile.SOL,Tile.SOL,Tile.SOL,Tile.SOL,Tile.SOL,Tile.SOL,Tile.SOL,Tile.MUR},
+							{Tile.SOL,Tile.SOL,Tile.SOL,Tile.SOL,Tile.SOL,Tile.SOL,Tile.SOL,Tile.SOL,Tile.SOL,Tile.SOL,Tile.SOL,Tile.SOL,Tile.SOL,Tile.SOL,Tile.SOL,Tile.SOL,Tile.SOL,Tile.SOL,Tile.SOL,Tile.SOL,Tile.SOL,Tile.SOL,Tile.SOL,Tile.SOL,Tile.SOL,Tile.MUR},
+							{Tile.MUR,Tile.SOL,Tile.SOL,Tile.SOL,Tile.SOL,Tile.SOL,Tile.SOL,Tile.SOL,Tile.SOL,Tile.SOL,Tile.SOL,Tile.SOL,Tile.SOL,Tile.SOL,Tile.SOL,Tile.SOL,Tile.SOL,Tile.SOL,Tile.SOL,Tile.SOL,Tile.SOL,Tile.SOL,Tile.SOL,Tile.SOL,Tile.SOL,Tile.MUR},
+							{Tile.MUR,Tile.MUR,Tile.SOL,Tile.MUR,Tile.MUR,Tile.MUR,Tile.MUR,Tile.MUR,Tile.MUR,Tile.MUR,Tile.SOL,Tile.MUR,Tile.MUR,Tile.MUR,Tile.MUR,Tile.MUR,Tile.MUR,Tile.MUR,Tile.SOL,Tile.MUR,Tile.MUR,Tile.MUR,Tile.MUR,Tile.MUR,Tile.MUR,Tile.MUR}
 						};
 		this.cases = cases;
+		this.hauteur = cases.length;
+		this.largeur = cases[0].length;
 		this.evenements = null;
 		this.combatsAleatoires = true;
 	}
@@ -49,5 +65,16 @@ public enum Carte
 			chaine += "\n";
 		}
 		return chaine;
+	}
+
+	public int obtenirLargeur() {
+		return this.largeur;
+	}
+	public int obtenirHauteur() {
+		return this.hauteur;
+	}
+
+	public Tile obtenirTile(int ligne, int colonne) {
+		return cases[ligne][colonne];
 	}
 }

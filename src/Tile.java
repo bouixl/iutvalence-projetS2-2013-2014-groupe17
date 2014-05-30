@@ -1,20 +1,29 @@
+import javax.swing.ImageIcon;
+
 public enum Tile
 {
-	SOL(' ',false),
-	MUR('#',true);
+	VIDE("vide.png",false),
+	SOL("sol.png",false),
+	MUR("mur.png",true);
 	
-	private final char apparence;
+	private final ImageIcon apparence;
+	private final String url;
 	private final boolean bloquant;
 			
-	private Tile(char apparence, boolean bloquant)
+	private Tile(String url, boolean bloquant)
 	{
-		this.apparence = apparence;
+		this.apparence = new ImageIcon(url);
+		this.url = url;
 		this.bloquant = bloquant;
 	}
 	
-	public char obtenirApparence()
+	public ImageIcon obtenirApparence()
 	{
 		return this.apparence;
+	}
+	public String obtenirUrl()
+	{
+		return this.url;
 	}
 	public boolean estBloquant()
 	{

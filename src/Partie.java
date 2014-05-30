@@ -16,15 +16,18 @@ public class Partie
 	 * L'état de la partie
 	 */
 	private String etat;
+	private IHM ihm;
 	
 	/**
 	 * Genère la partie et applique des valeurs par défaut à ses attributs
+	 * @param ihm 
 	 */
-	public Partie()
+	public Partie(IHM ihm)
 	{
 		this.equipe = new Equipe();
 		this.carte = Carte.CARTE_DEPART;
 		this.etat = "init";
+		this.ihm = ihm;
 	}
 	
 	/**
@@ -43,10 +46,10 @@ public class Partie
 	{
 		while (etat != "Fin")
 		{
-			//ecranSuivant();
 			if (etat == "Carte")
 			{
-				//afficherCarte();
+				this.ihm.afficherCarte(carte, equipe);
+				this.ihm.attendreReaction();
 			}
 			else if (etat == "Combat")
 			{

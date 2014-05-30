@@ -1,4 +1,7 @@
 import java.util.Random;
+import java.util.concurrent.TimeUnit;
+
+import javax.swing.SwingUtilities;
 
 public class Application
 {	
@@ -10,20 +13,17 @@ public class Application
 	 */
 	public static void main(String[] args)
 	{
-		for(int i=0;i<25;i++)
-		{
-			System.out.println(Item.genererEquipement(1).toString());
-		}
-		for(int i=0;i<25;i++)
-		{
-			System.out.println(Item.genererPotion(1).toString());
-		}
-		for(int i=0;i<40;i++)
-		{
-			System.out.println(Ennemi.genererEnnemi(10).toString());
-		}
 		System.out.println("Création de la partie");
-		Partie partie = new Partie();
+		IHM ihm = new IHM();
+		SwingUtilities.invokeLater(ihm);
+		while(!ihm.obtenirPret()) 
+		{
+			try {
+			    TimeUnit.MILLISECONDS.sleep(1);
+			} catch (InterruptedException e) {
+			}
+		}
+		Partie partie = new Partie(ihm);
 		System.out.println("Demarrage de la partie");
 		partie.lancerPartie();
 		System.out.println("Fin de la partie");
