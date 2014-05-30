@@ -5,7 +5,7 @@
  */
 public class Ennemi extends Personnage
 {
-private static final String[] NOMS_MONSTRES={"Rat","Zombie","Lucane","Loup","Squelette","Fleur Carnivore Mutante","Ours-Garou","Pousse de Bambou","Lapin-Garou","Chaton"};
+private static final String[] NOMS_MONSTRES={"Rat","Zombie","Lucane","Loup","Squelette","Fleur Carnivore Mutante","Ours-Garou","Pousse de Bambou","Lapin-Garou","Chaton","Robin","Chauve-Souris"};
 private static final String[] ADJECTIFS_POSITIFS={"Intelligent","Monstrueux","Divin","Rusé","Rapide","Géant","Bien Constitué","Alpha","Habile","Rapide","Légendaire"};
 private static final String[] ZONE_HABITAT = {"des Plaines","des Bois","des Montagnes Glacées","des Egouts","de la Mine Profonde","de la Toundra","D'enclos","de Mer"};
 private static final String[] ADJECTIFS_NEGATIFS ={"Infecté","Boiteux","Affamé","Lépreux","Fiévreux","Immangeable","en Décomposition","à l'Esprit Faible"};
