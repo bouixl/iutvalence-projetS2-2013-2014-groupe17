@@ -63,7 +63,7 @@ private double chanceRecompense;
 	{
 		return this.chanceRecompense;
 	}
-	public static Item genererEnnemi(int niveau) {
+	public static Ennemi genererEnnemi(int niveau) {
 		String nomMonstre;
 		String[] adjectifs;
 		int pointsDeVie;
