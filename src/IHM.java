@@ -96,9 +96,7 @@ public class IHM implements Runnable, ActionListener, KeyListener {
 				}
 			}
 		}
-		this.panneau.getViewport().scrollRectToVisible(new Rectangle((equipe.obtenirColonne()*32)-320,(equipe.obtenirLigne()*32)-240,(equipe.obtenirColonne()*32),(equipe.obtenirLigne()*32)));
 		this.panneauCarte.updateUI();
-		
 	}
 
 	public void finJeu()
@@ -146,7 +144,8 @@ public class IHM implements Runnable, ActionListener, KeyListener {
 		barreDeMenu.add(menu);
 		this.fenetre.setJMenuBar(barreDeMenu);
 
-		this.panneau = new JScrollPane(JScrollPane.VERTICAL_SCROLLBAR_NEVER,JScrollPane.HORIZONTAL_SCROLLBAR_NEVER);
+		//this.panneau = new JScrollPane(JScrollPane.VERTICAL_SCROLLBAR_NEVER,JScrollPane.HORIZONTAL_SCROLLBAR_NEVER);
+		this.panneau = new JScrollPane();
 		this.panneauCarte = new JPanel();
 		this.panneauCarte.setBackground(Color.BLACK);
 		this.panneau.getViewport().add(this.panneauCarte);
