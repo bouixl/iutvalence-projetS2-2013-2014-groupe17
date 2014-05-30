@@ -18,7 +18,7 @@ public class Application
 		{
 			System.out.println(Item.genererPotion(1).toString());
 		}
-		for(int i=0;i<25;i++)
+		for(int i=0;i<40;i++)
 		{
 			System.out.println(Ennemi.genererEnnemi(10).toString());
 		}
