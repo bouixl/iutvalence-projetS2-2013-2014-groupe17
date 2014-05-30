@@ -20,7 +20,6 @@ public enum Classes
 	/**
 	 * Soigneur par les plantes
 	 */
-
 	DRUIDE(40,40,2,4,10,4, 2,4,1,2,4,2);
 
 	

@@ -2,34 +2,33 @@
 public class Equipe
 {
 	
-	private int X;
-	private int Y;
-	private int id_map;
-	private int Orientation;
+	private int x;
+	private int y;
+	private Personnage[] composition; 
+	
+	public Equipe()
+	{
+		this.x = 3;
+		this.y = 3;
+		//this.composition[0] = new Personnage("Bob", Classes.ASSASSIN);
+		//this.composition[1] = new Personnage("Bub", Classes.BARBARE);
+		//this.composition[2] = new Personnage("Bib", Classes.DRUIDE);
+		//this.composition[3] = new Personnage("Bab", Classes.MAGISTER);
+	}
 	
 	public int getX()
 	{
-		return this.X;
+		return this.x;
 	}
 
 	public int getY()
 	{
-		return this.Y;
-	}
-
-	public int getid_map()
-	{
-		return this.id_map;
+		return this.y;
 	}
 	
-	public int getOrientation()
+	public void ajouterPersonnage(Personnage personnage, int emplacement)
 	{
-		return this.Orientation;
-	}
-	
-	public void ajoutpersonnage(Personnage personnage)
-	{
-		
+		this.composition[emplacement] = personnage;
 	}
 	
 	

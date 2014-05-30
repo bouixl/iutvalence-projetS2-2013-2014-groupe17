@@ -1,3 +1,5 @@
+import java.io.IOException;
+
 /** 
  * @author bouixl
  * Represente la partie de jeu
@@ -32,14 +34,51 @@ public class Partie
 	 */
 	public void lancerPartie()
 	{
-		
+		this.etat = "Carte";
+		boucleJeu();
 	}
 	
 	/**
 	 * Boucle principale du jeu
 	 */
-	public void gameLoop()
+	public void boucleJeu()
+	{
+		while (etat != "Fin")
+		{
+			ecranSuivant();
+			if (etat == "Carte")
+			{
+				afficherCarte();
+			}
+			else if (etat == "Combat")
+			{
+				
+			}
+			else if (etat == "Menu")
+			{
+				
+			}
+			else
+			{
+				System.out.println("Erreur, état imprévu.");
+			}
+			attendreReaction();
+		}
+	}
+	
+	public void ecranSuivant()
+	{
+		System.out.print("\n\n\n\n\n\n\n\n\n\n");
+		System.out.println("-------- "+etat+" --------");
+	}
+	
+	public void attendreReaction()
 	{
 		
+	}
+	
+	public void afficherCarte()
+	{
+		System.out.println(this.carte.toString());
 	}
 }

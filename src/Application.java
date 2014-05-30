@@ -12,7 +12,7 @@ public class Application
 	{
 		for(int i=0;i<25;i++)
 		{
-			System.out.println(Item.genererEquipement(20).toString());
+			System.out.println(Item.genererEquipement(1).toString());
 		}
 		for(int i=0;i<25;i++)
 		{
