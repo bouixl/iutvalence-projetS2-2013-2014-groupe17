@@ -10,6 +10,10 @@ private static final String[] ADJECTIFS_POSITIFS={"Intelligent","Monstrueux","Di
 private static final String[] ZONE_HABITAT = {"des Plaines","des Bois","des Montagnes Glacées","des Egouts","de la Mine Profonde","de la Toundra","D'enclos","de Mer"};
 private static final String[] ADJECTIFS_NEGATIFS ={"Infecté","Boiteux","Affamé","Lépreux","Fiévreux","Immangeable","en Décomposition","à l'Esprit Faible"};
 private static final String[] ADJECTIFS_NORMAL = {"Sauvage","Vaudou","Agressif","Pacifique","Primaire","Chasseur","Poli","Malveillant"};
+
+private static final int STATS_DE_BASE = 20;
+private static final int STATS_PAR_NIVEAU = 9;
+
 /**
  * 
  */
@@ -77,11 +81,8 @@ private double chanceRecompense;
 		double mult = 1.0;
 		Item recompense =  (Item.genererEquipement(niveau));
 
-		
-		
 		id=Application.RNG.nextInt(NOMS_MONSTRES.length);
 		nomMonstre = " "+NOMS_MONSTRES[id];
-		
 
 		chance = Application.RNG.nextInt(100);
 		if (chance>60)
@@ -118,17 +119,31 @@ private double chanceRecompense;
 		}
 		
 
-		pointsDeVie += (Application.RNG.nextInt(10)+1 )* (niveau   + 30) * mult;
+		pointsDeVie += 45 + ((Application.RNG.nextInt(4)+2 )*niveau*mult);
+		pointsDeMana += 30 + ((Application.RNG.nextInt(4)+1)*niveau*mult);
 			
-		pointsDeMana += (Application.RNG.nextInt(8) +1) * (niveau   +20) * mult;
-			
-		force += (Application.RNG.nextInt(4) +1) * (niveau   + 2) * mult;
-			
-		constitution += (Application.RNG.nextInt(4) +1)* (niveau   +2)* mult;
-			
-		intelligence+= (Application.RNG.nextInt(4)+1)* (niveau   +2)* mult;
-		
-		dexterite += (Application.RNG.nextInt(4)+1)*( niveau   +2)* mult;
+		for(int i=0; i<(STATS_DE_BASE+(niveau*STATS_PAR_NIVEAU)); i++)
+		{
+			switch (Application.RNG.nextInt(4))
+			{
+				case 0:
+					force += 1;
+					break;
+				case 1:
+					constitution += 1;
+					break;
+				case 2:
+					intelligence += 1;
+					break;
+				case 3:
+					dexterite += 1;
+					break;
+			}
+		}
+		force *= mult;
+		constitution *= mult;
+		intelligence *= mult;
+		dexterite *= mult;
 
 
 		id=Application.RNG.nextInt(ZONE_HABITAT.length);
