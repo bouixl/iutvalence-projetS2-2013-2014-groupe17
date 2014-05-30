@@ -2,7 +2,7 @@ public enum Carte
 {
 	CARTE_DEPART;
 	
-	private final int[][] layers;
+	private final Tile[][] cases;
 	private final int largeur;
 	private final int hauteur;
 	private Evenement[] evenements;
@@ -12,52 +12,42 @@ public enum Carte
 	{
 		this.largeur = 10;
 		this.hauteur = 8;
-		int[][] layers = 	{
-								{
-									1,1,1,1,1,1,2,1,1,1,
-									1,1,1,1,1,2,2,2,1,1,
-									1,1,1,1,1,1,2,1,1,1,
-									1,1,1,1,1,1,1,1,1,1,
-									1,1,1,1,1,1,1,1,1,1,
-									1,1,1,1,1,1,1,1,1,1,
-									1,1,1,1,1,2,2,2,1,1,
-									1,1,1,1,2,2,2,2,2,1
-								},{
-									0,0,0,0,0,0,0,0,0,0,
-									0,3,0,0,0,0,3,0,0,0,
-									0,0,0,0,0,0,0,0,3,0,
-									0,0,0,0,0,0,0,0,0,0,
-									0,0,0,0,0,0,0,0,0,0,
-									0,0,0,0,3,0,0,0,0,0,
-									0,0,0,0,0,0,0,4,5,0,
-									0,0,0,0,0,0,0,0,0,0
-								},{
-									0,0,0,0,0,0,0,0,0,0,
-									0,0,0,0,0,0,0,0,0,0,
-									0,0,0,0,0,0,0,0,0,0,
-									0,0,0,0,0,0,0,0,0,0,
-									0,0,0,0,0,0,0,0,0,0,
-									0,0,0,0,0,0,0,6,7,0,
-									0,0,0,0,0,0,0,0,0,0,
-									0,0,0,0,0,0,0,0,0,0
-								}
-							};
-		this.layers = layers;
+		Tile[][] cases = {
+							{Tile.SOL,Tile.SOL,Tile.SOL,Tile.SOL,Tile.SOL,Tile.SOL,Tile.SOL,Tile.SOL,Tile.SOL,Tile.SOL},
+							{Tile.SOL,Tile.MUR,Tile.MUR,Tile.MUR,Tile.MUR,Tile.MUR,Tile.MUR,Tile.MUR,Tile.SOL,Tile.SOL},
+							{Tile.SOL,Tile.MUR,Tile.SOL,Tile.SOL,Tile.SOL,Tile.MUR,Tile.SOL,Tile.SOL,Tile.SOL,Tile.SOL},
+							{Tile.SOL,Tile.MUR,Tile.SOL,Tile.SOL,Tile.SOL,Tile.MUR,Tile.MUR,Tile.MUR,Tile.SOL,Tile.SOL},
+							{Tile.SOL,Tile.MUR,Tile.SOL,Tile.SOL,Tile.SOL,Tile.MUR,Tile.SOL,Tile.MUR,Tile.SOL,Tile.SOL},
+							{Tile.SOL,Tile.MUR,Tile.MUR,Tile.SOL,Tile.MUR,Tile.MUR,Tile.SOL,Tile.MUR,Tile.SOL,Tile.SOL},
+							{Tile.SOL,Tile.SOL,Tile.SOL,Tile.SOL,Tile.SOL,Tile.SOL,Tile.SOL,Tile.SOL,Tile.SOL,Tile.MUR},
+							{Tile.SOL,Tile.SOL,Tile.SOL,Tile.SOL,Tile.SOL,Tile.SOL,Tile.SOL,Tile.SOL,Tile.MUR,Tile.MUR}
+						};
+		this.cases = cases;
 		this.evenements = null;
-		this.combatsAleatoires = false;
+		this.combatsAleatoires = true;
 	}
 	
-	private Carte(int[][] layers, int largeur, int hauteur, Evenement[] evenements, boolean combatsAleatoires)
+	private Carte(Tile[][] cases, int largeur, int hauteur, Evenement[] evenements, boolean combatsAleatoires)
 	{
-		this.layers = layers;
+		this.cases = cases;
 		this.largeur = largeur;
 		this.hauteur = hauteur;
 		this.evenements = evenements;
 		this.combatsAleatoires = combatsAleatoires;
 	}
 	
-	public void afficher()
+	public String toString()
 	{
-
+		String chaine = null;
+		
+		for(int i=0; i<this.hauteur; i++)
+		{
+			for(int j=0; j<this.largeur; j++)
+			{
+				chaine += this.cases[i][j].obtenirApparence();
+			}
+			chaine += "\n";
+		}
+		return chaine;
 	}
 }
