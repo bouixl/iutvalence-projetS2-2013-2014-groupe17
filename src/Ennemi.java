@@ -25,7 +25,7 @@ private double chanceRecompense;
 /**
  * 
  * @param nom nom de l'ennemi
- * @param recompense recompense donné par l'ennemi quand il est tue
+ * @param recompense recompense donné par l'ennemi quand il est tué
  * @param force force de l'ennemi
  * @param dexterite dexterite de l'ennemi
  * @param constitution constitution de l'ennemi

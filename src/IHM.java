@@ -3,8 +3,6 @@ import java.awt.Dimension;
 import java.awt.Graphics2D;
 import java.awt.GridLayout;
 import java.awt.Image;
-import java.awt.Point;
-import java.awt.Rectangle;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.awt.event.KeyEvent;
@@ -73,7 +71,7 @@ public class IHM implements Runnable, ActionListener, KeyListener {
 	public void afficherCarte()
 	{
 		this.panneauActuel = panneauCarte;
-		
+		Position position;
 		Carte carte = this.partie.obtenirCarte();
 		Equipe equipe = this.partie.obtenirEquipe();
 		this.panneauCarte.removeAll();
@@ -82,36 +80,25 @@ public class IHM implements Runnable, ActionListener, KeyListener {
 		{
 			for (int colonne = 0; colonne < carte.obtenirLargeur(); colonne++)
 			{
-				if(equipe.obtenirColonne()==colonne && equipe.obtenirLigne()==ligne)
+				position = new Position(ligne,colonne);
+				
+				Image img_case = carte.obtenirCase(position);
+				BufferedImage img_finale = new BufferedImage(32, 32, BufferedImage.TYPE_INT_ARGB);
+				Graphics2D g2 = img_finale.createGraphics();
+				g2.drawImage(img_case, 0, 0, null);
+				if(carte.evenementPresent(position))
 				{
-					ImageIcon apparence_tile = carte.obtenirTile(ligne,colonne).obtenirApparence(); 
-					ImageIcon apparence_equipe = equipe.obtenirApparence();
-					Image img1 = apparence_tile.getImage();
-					Image img2 = apparence_equipe.getImage();
-					BufferedImage img3 = new BufferedImage(32, 32, 1);
-					Graphics2D g2 = img3.createGraphics();
-					g2.drawImage(img1, 0, 0, null);
-					g2.drawImage(img2, 0, 0, null);
-					g2.dispose();
-					this.panneauCarte.add((new JLabel(new ImageIcon(img3))));
+					Image img_event = carte.obtenirEvenement(position).obtenirApparence();
+					g2.drawImage(img_event, 0, 0, null);
 				}
-				else if(carte.obtenirEvenement(ligne,colonne)!=Evenement.NULL)
+				if(equipe.obtenirPosition().equals(position))
 				{
-					ImageIcon apparence_tile = carte.obtenirTile(ligne,colonne).obtenirApparence(); 
-					ImageIcon apparence_event = carte.obtenirEvenement(ligne,colonne).obtenirApparence();
-					Image img1 = apparence_tile.getImage();
-					Image img2 = apparence_event.getImage();
-					BufferedImage img3 = new BufferedImage(32, 32, 1);
-					Graphics2D g2 = img3.createGraphics();
-					g2.drawImage(img1, 0, 0, null);
-					g2.drawImage(img2, 0, 0, null);
-					g2.dispose();
-					this.panneauCarte.add((new JLabel(new ImageIcon(img3))));
+					Image img_equipe = equipe.obtenirApparence();
+					g2.drawImage(img_equipe, 0, 0, null);
 				}
-				else
-				{
-					this.panneauCarte.add((new JLabel(carte.obtenirTile(ligne,colonne).obtenirApparence())));
-				}
+				g2.dispose();
+				
+				this.panneauCarte.add((new JLabel(new ImageIcon(img_finale))));
 			}
 		}
 		this.panneauActuel.updateUI();
@@ -213,12 +200,12 @@ public class IHM implements Runnable, ActionListener, KeyListener {
 			char touche = arg0.getKeyChar();
 			if(this.partie.obtenirEtat()=="Carte")
 			{
-				int direction;
+				Direction direction;
 				switch(touche)
 				{
 					case 'z':
-						direction = 0;
-						if(this.partie.obtenirCarte().peutAller(direction, this.partie.obtenirEquipe().obtenirLigne(), this.partie.obtenirEquipe().obtenirColonne()))
+						direction = Direction.HAUT;
+						if(this.partie.obtenirCarte().peutAller(direction, this.partie.obtenirEquipe().obtenirPosition()))
 						{
 							this.partie.obtenirEquipe().deplacer(direction);
 						}
@@ -230,8 +217,8 @@ public class IHM implements Runnable, ActionListener, KeyListener {
 						this.partie.essaiCombat();
 						break;
 					case 'd':
-						direction = 1;
-						if(this.partie.obtenirCarte().peutAller(direction, this.partie.obtenirEquipe().obtenirLigne(), this.partie.obtenirEquipe().obtenirColonne()))
+						direction = Direction.DROITE;
+						if(this.partie.obtenirCarte().peutAller(direction, this.partie.obtenirEquipe().obtenirPosition()))
 						{
 							this.partie.obtenirEquipe().deplacer(direction);
 						}
@@ -243,8 +230,8 @@ public class IHM implements Runnable, ActionListener, KeyListener {
 						this.partie.essaiCombat();
 						break;
 					case 's':
-						direction = 2;
-						if(this.partie.obtenirCarte().peutAller(direction, this.partie.obtenirEquipe().obtenirLigne(), this.partie.obtenirEquipe().obtenirColonne()))
+						direction = Direction.BAS;
+						if(this.partie.obtenirCarte().peutAller(direction, this.partie.obtenirEquipe().obtenirPosition()))
 						{
 							this.partie.obtenirEquipe().deplacer(direction);
 						}
@@ -256,8 +243,8 @@ public class IHM implements Runnable, ActionListener, KeyListener {
 						this.partie.essaiCombat();
 						break;
 					case 'q':
-						direction = 3;
-						if(this.partie.obtenirCarte().peutAller(direction, this.partie.obtenirEquipe().obtenirLigne(), this.partie.obtenirEquipe().obtenirColonne()))
+						direction = Direction.GAUCHE;
+						if(this.partie.obtenirCarte().peutAller(direction, this.partie.obtenirEquipe().obtenirPosition()))
 						{
 							this.partie.obtenirEquipe().deplacer(direction);
 						}

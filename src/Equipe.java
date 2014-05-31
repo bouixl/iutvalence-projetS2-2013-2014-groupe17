@@ -1,19 +1,21 @@
+import java.awt.Graphics2D;
+import java.awt.Image;
+import java.awt.image.BufferedImage;
+
 import javax.swing.ImageIcon;
 
 
 public class Equipe
 {
 	
-	private int ligne;
-	private int colonne;
-	private String orientation;
+	private Position position;
+	private Direction direction;
 	private Personnage[] composition; 
 	
 	public Equipe()
 	{
-		this.ligne = 7;
-		this.colonne = 7;
-		this.orientation = "bas";
+		this.position = new Position(7,7);
+		this.direction = Direction.BAS;
 		this.composition = new Personnage[4];
 		this.composition[0] = new Personnage("Bob", Classes.ASSASSIN);
 		this.composition[1] = new Personnage("Bub", Classes.BARBARE);
@@ -21,65 +23,39 @@ public class Equipe
 		this.composition[3] = new Personnage("Bab", Classes.MAGISTER);
 	}
 	
-	public int obtenirLigne()
+	public Position obtenirPosition()
 	{
-		return this.ligne;
+		return this.position;
 	}
 
-	public int obtenirColonne()
+	public void deplacer(Direction direction)
 	{
-		return this.colonne;
+		this.direction = direction;
+		this.position = this.position.ajouterOffset(direction);
+	}
+	public void changerDirection(Direction direction)
+	{
+		this.direction = direction;
 	}
 	
-	public void deplacer(int direction)
+	public Direction obtenirDirection()
 	{
-		switch (direction)
-		{
-			case 0:
-				this.orientation = "haut";
-				this.ligne--;
-				break;
-			case 1:
-				this.orientation = "droite";
-				this.colonne++;
-				break;
-			case 2:
-				this.orientation = "bas";
-				this.ligne++;
-				break;
-			case 3:
-				this.orientation = "gauche";
-				this.colonne--;
-				break;
-		}
-	}
-	public void changerDirection(int direction)
-	{
-		switch (direction)
-		{
-			case 0:
-				this.orientation = "haut";
-				break;
-			case 1:
-				this.orientation = "droite";
-				break;
-			case 2:
-				this.orientation = "bas";
-				break;
-			case 3:
-				this.orientation = "gauche";
-				break;
-		}
+		return this.direction;
 	}
 	
-	public String obtenirOrientation()
+	public Image obtenirApparence()
 	{
-		return this.orientation;
-	}
-	
-	public ImageIcon obtenirApparence()
-	{
-		return new ImageIcon(this.orientation+".png");
+		ImageIcon texture = new ImageIcon("textures/personnages/equipe.png");
+		Image img_equipe = texture.getImage();
+
+		BufferedImage img_equipe_decoupe = new BufferedImage(img_equipe.getWidth(null), img_equipe.getHeight(null), BufferedImage.TYPE_INT_ARGB);
+	    Graphics2D bGr = img_equipe_decoupe.createGraphics();
+	    bGr.drawImage(img_equipe, 0, 0, null);
+	    bGr.dispose();
+
+		img_equipe = img_equipe_decoupe.getSubimage(0,this.direction.obtenirIndexTexture()*32,32,32);
+
+		return img_equipe;
 	}
 	
 	public void ajouterPersonnage(Personnage personnage, int emplacement)
