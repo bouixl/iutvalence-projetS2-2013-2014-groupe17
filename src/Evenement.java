@@ -62,4 +62,14 @@ public class Evenement
 		this.interrupteursLocaux[idInterrupteur] = !this.interrupteursLocaux[idInterrupteur];
 	}
 
+	public void effectuerActions() {
+		int indexAction;
+		String[] actionCourante;
+		int indexBranche = 0;
+		for(indexAction = 0; indexAction < this.actions[0].length; indexAction++)
+		{
+			actionCourante = actions[indexBranche][indexAction].split(" ");
+			System.out.println(actionCourante[0]+","+actionCourante[1]);
+		}
+	}
 }

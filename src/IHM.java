@@ -257,7 +257,7 @@ public class IHM implements Runnable, ActionListener, KeyListener {
 						break;
 					case ' ':
 						if (this.partie.obtenirCarte().evenementPresent(this.partie.obtenirEquipe().obtenirPosition().ajouterOffset(this.partie.obtenirEquipe().obtenirDirection())))
-							this.partie.obtenirCarte().obtenirEvenement(this.partie.obtenirEquipe().obtenirPosition().ajouterOffset(this.partie.obtenirEquipe().obtenirDirection())).changerBloquant();
+							this.partie.obtenirCarte().obtenirEvenement(this.partie.obtenirEquipe().obtenirPosition().ajouterOffset(this.partie.obtenirEquipe().obtenirDirection())).effectuerActions();
 						break;
 				}
 				this.attendreReaction = false;

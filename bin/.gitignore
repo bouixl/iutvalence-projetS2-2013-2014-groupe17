@@ -12,3 +12,6 @@
 /Personnage.class
 /Position.class
 /Tile.class
+/Evenement$Color.class
+/Evenement$Acrion.class
+/Evenement$Action.class
