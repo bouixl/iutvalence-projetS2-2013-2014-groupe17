@@ -1,4 +1,8 @@
-import javax.swing.ImageIcon;
+import java.awt.image.BufferedImage;
+import java.io.File;
+import java.io.IOException;
+
+import javax.imageio.ImageIO;
 
 public enum Tile
 {
@@ -14,20 +18,26 @@ public enum Tile
 	TABOURET("textures/tiles/tabouret.png",false),
 	TAS_PIERRE("textures/tiles/tas_pierre.png",true),
 	TOMBE("textures/tiles/tombe.png",true),
-	OMBRE("textures/tiles/ombre.png",false);
+	OMBRE("textures/tiles/ombre.png",false),
+	VIDE("textures/tiles/vide.png",false);
 	
-	private final ImageIcon apparence;
+	
+	private BufferedImage apparence;
 	private final String url;
 	private final boolean bloquant;
 			
 	private Tile(String url, boolean bloquant)
 	{
-		this.apparence = new ImageIcon(url);
+		this.apparence = null;
+		try {
+			this.apparence = ImageIO.read(new File(url));
+		} catch (IOException e) {
+		}
 		this.url = url;
 		this.bloquant = bloquant;
 	}
 	
-	public ImageIcon obtenirApparence()
+	public BufferedImage obtenirApparence()
 	{
 		return this.apparence;
 	}

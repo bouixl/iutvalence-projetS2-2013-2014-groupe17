@@ -1,3 +1,5 @@
+import java.util.HashMap;
+
 /** 
  * @author bouixl
  * Represente la partie de jeu
@@ -8,6 +10,10 @@ public class Partie
 	 * L'équipe qui sera utilisée par le joueur
 	 */
 	private Equipe equipe;
+	/**
+	 * Les cartes du jeu
+	 */
+	private HashMap<String, Carte> ensemble_cartes;
 	/**
 	 * La carte actuellement chargée
 	 */
@@ -26,7 +32,7 @@ public class Partie
 	public Partie(IHM ihm)
 	{
 		this.equipe = new Equipe();
-		this.carte = Carte.CARTE_DEPART;
+		this.ensemble_cartes = new HashMap<String, Carte> ();
 		this.etat = "init";
 		this.combat = null;
 		this.ihm = ihm;
@@ -38,10 +44,102 @@ public class Partie
 	 */
 	public void lancerPartie()
 	{
+		creerCartes();
+		this.carte = ensemble_cartes.get("TestZone");
 		this.etat = "Carte";
 		boucleJeu();
 	}
 	
+	private void creerCartes() {
+		this.ensemble_cartes.put("TestZone", new Carte(new Tile[][] 
+				{
+					{Tile.MUR_PIERRE,Tile.MUR_PIERRE,Tile.MUR_PIERRE,Tile.SOL_PIERRE_2,Tile.MUR_PIERRE,Tile.MUR_PIERRE,Tile.MUR_PIERRE,Tile.MUR_PIERRE,Tile.MUR_PIERRE,Tile.MUR_PIERRE,Tile.MUR_PIERRE,Tile.MUR_PIERRE,Tile.MUR_PIERRE,Tile.MUR_PIERRE,Tile.MUR_PIERRE,Tile.MUR_PIERRE,Tile.MUR_PIERRE,Tile.MUR_PIERRE,Tile.MUR_PIERRE,Tile.MUR_PIERRE,Tile.MUR_PIERRE,Tile.MUR_PIERRE,Tile.MUR_PIERRE,Tile.SOL_PIERRE_2,Tile.MUR_PIERRE,Tile.MUR_PIERRE,
+					Tile.MUR_PIERRE,Tile.SOL_PIERRE_2,Tile.SOL_PIERRE_2,Tile.SOL_PIERRE_2,Tile.SOL_PIERRE_2,Tile.SOL_PIERRE_2,Tile.SOL_PIERRE_2,Tile.SOL_PIERRE_2,Tile.SOL_PIERRE_2,Tile.SOL_PIERRE_2,Tile.SOL_PIERRE_2,Tile.SOL_PIERRE_2,Tile.SOL_PIERRE_2,Tile.SOL_PIERRE_2,Tile.SOL_PIERRE_2,Tile.SOL_PIERRE_2,Tile.SOL_PIERRE_2,Tile.SOL_PIERRE_2,Tile.SOL_PIERRE_2,Tile.SOL_PIERRE_2,Tile.SOL_PIERRE_2,Tile.SOL_PIERRE_2,Tile.SOL_PIERRE_2,Tile.SOL_PIERRE_2,Tile.SOL_PIERRE_2,Tile.MUR_PIERRE,
+					Tile.MUR_PIERRE,Tile.SOL_PIERRE_2,Tile.SOL_PIERRE_2,Tile.SOL_PIERRE_2,Tile.SOL_PIERRE_2,Tile.SOL_PIERRE_2,Tile.SOL_PIERRE_2,Tile.SOL_PIERRE_2,Tile.SOL_PIERRE_2,Tile.SOL_PIERRE_2,Tile.SOL_PIERRE_2,Tile.SOL_PIERRE_2,Tile.SOL_PIERRE_2,Tile.SOL_PIERRE_2,Tile.SOL_PIERRE_2,Tile.SOL_PIERRE_2,Tile.SOL_PIERRE_2,Tile.SOL_PIERRE_2,Tile.SOL_PIERRE_2,Tile.SOL_PIERRE_2,Tile.SOL_PIERRE_2,Tile.SOL_PIERRE_2,Tile.SOL_PIERRE_2,Tile.SOL_PIERRE_2,Tile.SOL_PIERRE_2,Tile.SOL_PIERRE_2,
+					Tile.MUR_PIERRE,Tile.SOL_PIERRE_2,Tile.SOL_PIERRE_2,Tile.SOL_PIERRE_2,Tile.SOL_PIERRE_2,Tile.SOL_PIERRE_2,Tile.SOL_PIERRE_2,Tile.SOL_PIERRE_2,Tile.SOL_PIERRE_2,Tile.SOL_PIERRE_2,Tile.SOL_PIERRE_2,Tile.SOL_PIERRE_2,Tile.SOL_PIERRE_2,Tile.SOL_PIERRE_2,Tile.SOL_PIERRE_2,Tile.SOL_PIERRE_2,Tile.SOL_PIERRE_2,Tile.SOL_PIERRE_2,Tile.SOL_PIERRE_2,Tile.SOL_PIERRE_2,Tile.SOL_PIERRE_2,Tile.SOL_PIERRE_2,Tile.SOL_PIERRE_2,Tile.SOL_PIERRE_2,Tile.SOL_PIERRE_2,Tile.MUR_PIERRE,
+					Tile.MUR_PIERRE,Tile.SOL_PIERRE_2,Tile.SOL_PIERRE_2,Tile.SOL_PIERRE_2,Tile.SOL_PIERRE_2,Tile.SOL_PIERRE_2,Tile.SOL_PIERRE_2,Tile.SOL_PIERRE_2,Tile.SOL_PIERRE_2,Tile.SOL_PIERRE_2,Tile.SOL_PIERRE_2,Tile.SOL_PIERRE_2,Tile.SOL_PIERRE_2,Tile.SOL_PIERRE_2,Tile.SOL_PIERRE_2,Tile.SOL_PIERRE_2,Tile.SOL_PIERRE_2,Tile.SOL_PIERRE_2,Tile.SOL_PIERRE_2,Tile.SOL_PIERRE_2,Tile.SOL_PIERRE_2,Tile.SOL_PIERRE_2,Tile.SOL_PIERRE_2,Tile.SOL_PIERRE_2,Tile.SOL_PIERRE_2,Tile.MUR_PIERRE,
+					Tile.MUR_PIERRE,Tile.SOL_PIERRE_2,Tile.SOL_PIERRE_2,Tile.SOL_PIERRE_2,Tile.SOL_PIERRE_2,Tile.SOL_PIERRE_2,Tile.SOL_PIERRE_2,Tile.SOL_PIERRE_2,Tile.SOL_PIERRE_2,Tile.SOL_PIERRE_2,Tile.SOL_PIERRE_2,Tile.SOL_PIERRE_2,Tile.SOL_PIERRE_2,Tile.SOL_PIERRE_2,Tile.SOL_PIERRE_2,Tile.SOL_PIERRE_2,Tile.SOL_PIERRE_2,Tile.SOL_PIERRE_2,Tile.SOL_PIERRE_2,Tile.SOL_PIERRE_2,Tile.SOL_PIERRE_2,Tile.SOL_PIERRE_2,Tile.SOL_PIERRE_2,Tile.SOL_PIERRE_2,Tile.SOL_PIERRE_2,Tile.MUR_PIERRE,
+					Tile.MUR_PIERRE,Tile.SOL_PIERRE_2,Tile.MUR_PIERRE,Tile.MUR_PIERRE,Tile.MUR_PIERRE,Tile.MUR_PIERRE,Tile.MUR_PIERRE,Tile.MUR_PIERRE,Tile.MUR_PIERRE,Tile.SOL_PIERRE_2,Tile.SOL_PIERRE_2,Tile.SOL_PIERRE_2,Tile.SOL_PIERRE_2,Tile.SOL_PIERRE_2,Tile.SOL_PIERRE_2,Tile.SOL_PIERRE_2,Tile.SOL_PIERRE_2,Tile.SOL_PIERRE_2,Tile.SOL_PIERRE_2,Tile.SOL_PIERRE_2,Tile.SOL_PIERRE_2,Tile.SOL_PIERRE_2,Tile.SOL_PIERRE_2,Tile.SOL_PIERRE_2,Tile.SOL_PIERRE_2,Tile.MUR_PIERRE,
+					Tile.MUR_PIERRE,Tile.SOL_PIERRE_2,Tile.MUR_PIERRE,Tile.SOL_PIERRE_2,Tile.SOL_PIERRE_2,Tile.SOL_PIERRE_2,Tile.MUR_PIERRE,Tile.SOL_PIERRE_2,Tile.SOL_PIERRE_2,Tile.SOL_PIERRE_2,Tile.SOL_PIERRE_2,Tile.SOL_PIERRE_2,Tile.SOL_PIERRE_2,Tile.SOL_PIERRE_2,Tile.SOL_PIERRE_2,Tile.SOL_PIERRE_2,Tile.SOL_PIERRE_2,Tile.SOL_PIERRE_2,Tile.SOL_PIERRE_2,Tile.SOL_PIERRE_2,Tile.SOL_PIERRE_2,Tile.SOL_PIERRE_2,Tile.SOL_PIERRE_2,Tile.SOL_PIERRE_2,Tile.SOL_PIERRE_2,Tile.MUR_PIERRE,
+					Tile.MUR_PIERRE,Tile.SOL_PIERRE_2,Tile.MUR_PIERRE,Tile.SOL_PIERRE_2,Tile.SOL_PIERRE_2,Tile.SOL_PIERRE_2,Tile.MUR_PIERRE,Tile.MUR_PIERRE,Tile.MUR_PIERRE,Tile.SOL_PIERRE_2,Tile.SOL_PIERRE_2,Tile.SOL_PIERRE_2,Tile.SOL_PIERRE_2,Tile.SOL_PIERRE_2,Tile.SOL_PIERRE_2,Tile.SOL_PIERRE_2,Tile.SOL_PIERRE_2,Tile.SOL_PIERRE_2,Tile.SOL_PIERRE_2,Tile.SOL_PIERRE_2,Tile.SOL_PIERRE_2,Tile.SOL_PIERRE_2,Tile.SOL_PIERRE_2,Tile.SOL_PIERRE_2,Tile.SOL_PIERRE_2,Tile.MUR_PIERRE,
+					Tile.MUR_PIERRE,Tile.SOL_PIERRE_2,Tile.MUR_PIERRE,Tile.SOL_PIERRE_2,Tile.SOL_PIERRE_2,Tile.SOL_PIERRE_2,Tile.MUR_PIERRE,Tile.SOL_PIERRE_2,Tile.MUR_PIERRE,Tile.SOL_PIERRE_2,Tile.SOL_PIERRE_2,Tile.SOL_PIERRE_2,Tile.SOL_PIERRE_2,Tile.SOL_PIERRE_2,Tile.SOL_PIERRE_2,Tile.SOL_PIERRE_2,Tile.SOL_PIERRE_2,Tile.SOL_PIERRE_2,Tile.SOL_PIERRE_2,Tile.SOL_PIERRE_2,Tile.SOL_PIERRE_2,Tile.SOL_PIERRE_2,Tile.SOL_PIERRE_2,Tile.SOL_PIERRE_2,Tile.SOL_PIERRE_2,Tile.MUR_PIERRE,
+					Tile.MUR_PIERRE,Tile.SOL_PIERRE_2,Tile.MUR_PIERRE,Tile.MUR_PIERRE,Tile.SOL_PIERRE_2,Tile.MUR_PIERRE,Tile.MUR_PIERRE,Tile.SOL_PIERRE_2,Tile.MUR_PIERRE,Tile.SOL_PIERRE_2,Tile.SOL_PIERRE_2,Tile.SOL_PIERRE_2,Tile.SOL_PIERRE_2,Tile.SOL_PIERRE_2,Tile.SOL_PIERRE_2,Tile.SOL_PIERRE_2,Tile.SOL_PIERRE_2,Tile.SOL_PIERRE_2,Tile.SOL_PIERRE_2,Tile.SOL_PIERRE_2,Tile.SOL_PIERRE_2,Tile.SOL_PIERRE_2,Tile.SOL_PIERRE_2,Tile.SOL_PIERRE_2,Tile.SOL_PIERRE_2,Tile.MUR_PIERRE,
+					Tile.MUR_PIERRE,Tile.SOL_PIERRE_2,Tile.SOL_PIERRE_2,Tile.SOL_PIERRE_2,Tile.SOL_PIERRE_2,Tile.SOL_PIERRE_2,Tile.SOL_PIERRE_2,Tile.SOL_PIERRE_2,Tile.SOL_PIERRE_2,Tile.SOL_PIERRE_2,Tile.SOL_PIERRE_2,Tile.SOL_PIERRE_2,Tile.SOL_PIERRE_2,Tile.SOL_PIERRE_2,Tile.SOL_PIERRE_2,Tile.SOL_PIERRE_2,Tile.SOL_PIERRE_2,Tile.SOL_PIERRE_2,Tile.SOL_PIERRE_2,Tile.SOL_PIERRE_2,Tile.SOL_PIERRE_2,Tile.SOL_PIERRE_2,Tile.SOL_PIERRE_2,Tile.SOL_PIERRE_2,Tile.SOL_PIERRE_2,Tile.MUR_PIERRE,
+					Tile.MUR_PIERRE,Tile.SOL_PIERRE_2,Tile.SOL_PIERRE_2,Tile.SOL_PIERRE_2,Tile.SOL_PIERRE_2,Tile.SOL_PIERRE_2,Tile.SOL_PIERRE_2,Tile.SOL_PIERRE_2,Tile.SOL_PIERRE_2,Tile.SOL_PIERRE_2,Tile.SOL_PIERRE_2,Tile.SOL_PIERRE_2,Tile.SOL_PIERRE_2,Tile.SOL_PIERRE_2,Tile.SOL_PIERRE_2,Tile.SOL_PIERRE_2,Tile.SOL_PIERRE_2,Tile.SOL_PIERRE_2,Tile.SOL_PIERRE_2,Tile.SOL_PIERRE_2,Tile.SOL_PIERRE_2,Tile.SOL_PIERRE_2,Tile.SOL_PIERRE_2,Tile.SOL_PIERRE_2,Tile.SOL_PIERRE_2,Tile.MUR_PIERRE,
+					Tile.MUR_PIERRE,Tile.SOL_PIERRE_2,Tile.SOL_PIERRE_2,Tile.SOL_PIERRE_2,Tile.SOL_PIERRE_2,Tile.SOL_PIERRE_2,Tile.SOL_PIERRE_2,Tile.MUR_PIERRE,Tile.MUR_PIERRE,Tile.SOL_PIERRE_2,Tile.MUR_PIERRE,Tile.MUR_PIERRE,Tile.SOL_PIERRE_2,Tile.SOL_PIERRE_2,Tile.SOL_PIERRE_2,Tile.SOL_PIERRE_2,Tile.SOL_PIERRE_2,Tile.SOL_PIERRE_2,Tile.SOL_PIERRE_2,Tile.SOL_PIERRE_2,Tile.SOL_PIERRE_2,Tile.SOL_PIERRE_2,Tile.SOL_PIERRE_2,Tile.SOL_PIERRE_2,Tile.SOL_PIERRE_2,Tile.MUR_PIERRE,
+					Tile.MUR_PIERRE,Tile.SOL_PIERRE_2,Tile.SOL_PIERRE_2,Tile.SOL_PIERRE_2,Tile.SOL_PIERRE_2,Tile.SOL_PIERRE_2,Tile.SOL_PIERRE_2,Tile.MUR_PIERRE,Tile.SOL_PIERRE_2,Tile.SOL_PIERRE_2,Tile.SOL_PIERRE_2,Tile.MUR_PIERRE,Tile.SOL_PIERRE_2,Tile.SOL_PIERRE_2,Tile.SOL_PIERRE_2,Tile.SOL_PIERRE_2,Tile.SOL_PIERRE_2,Tile.SOL_PIERRE_2,Tile.SOL_PIERRE_2,Tile.SOL_PIERRE_2,Tile.SOL_PIERRE_2,Tile.SOL_PIERRE_2,Tile.SOL_PIERRE_2,Tile.SOL_PIERRE_2,Tile.SOL_PIERRE_2,Tile.MUR_PIERRE,
+					Tile.MUR_PIERRE,Tile.SOL_PIERRE_2,Tile.SOL_PIERRE_2,Tile.SOL_PIERRE_2,Tile.SOL_PIERRE_2,Tile.SOL_PIERRE_2,Tile.SOL_PIERRE_2,Tile.MUR_PIERRE,Tile.SOL_PIERRE_2,Tile.MUR_PIERRE,Tile.SOL_PIERRE_2,Tile.MUR_PIERRE,Tile.SOL_PIERRE_2,Tile.SOL_PIERRE_2,Tile.SOL_PIERRE_2,Tile.SOL_PIERRE_2,Tile.SOL_PIERRE_2,Tile.SOL_PIERRE_2,Tile.SOL_PIERRE_2,Tile.SOL_PIERRE_2,Tile.SOL_PIERRE_2,Tile.SOL_PIERRE_2,Tile.SOL_PIERRE_2,Tile.SOL_PIERRE_2,Tile.SOL_PIERRE_2,Tile.MUR_PIERRE,
+					Tile.MUR_PIERRE,Tile.SOL_PIERRE_2,Tile.SOL_PIERRE_2,Tile.SOL_PIERRE_2,Tile.SOL_PIERRE_2,Tile.SOL_PIERRE_2,Tile.SOL_PIERRE_2,Tile.MUR_PIERRE,Tile.SOL_PIERRE_2,Tile.SOL_PIERRE_2,Tile.SOL_PIERRE_2,Tile.MUR_PIERRE,Tile.SOL_PIERRE_2,Tile.SOL_PIERRE_2,Tile.SOL_PIERRE_2,Tile.SOL_PIERRE_2,Tile.SOL_PIERRE_2,Tile.SOL_PIERRE_2,Tile.SOL_PIERRE_2,Tile.SOL_PIERRE_2,Tile.SOL_PIERRE_2,Tile.SOL_PIERRE_2,Tile.SOL_PIERRE_2,Tile.SOL_PIERRE_2,Tile.SOL_PIERRE_2,Tile.MUR_PIERRE,
+					Tile.MUR_PIERRE,Tile.SOL_PIERRE_2,Tile.SOL_PIERRE_2,Tile.SOL_PIERRE_2,Tile.SOL_PIERRE_2,Tile.SOL_PIERRE_2,Tile.SOL_PIERRE_2,Tile.MUR_PIERRE,Tile.MUR_PIERRE,Tile.MUR_PIERRE,Tile.MUR_PIERRE,Tile.MUR_PIERRE,Tile.SOL_PIERRE_2,Tile.SOL_PIERRE_2,Tile.SOL_PIERRE_2,Tile.SOL_PIERRE_2,Tile.SOL_PIERRE_2,Tile.SOL_PIERRE_2,Tile.SOL_PIERRE_2,Tile.SOL_PIERRE_2,Tile.SOL_PIERRE_2,Tile.SOL_PIERRE_2,Tile.SOL_PIERRE_2,Tile.SOL_PIERRE_2,Tile.SOL_PIERRE_2,Tile.MUR_PIERRE,
+					Tile.MUR_PIERRE,Tile.SOL_PIERRE_2,Tile.SOL_PIERRE_2,Tile.SOL_PIERRE_2,Tile.SOL_PIERRE_2,Tile.SOL_PIERRE_2,Tile.SOL_PIERRE_2,Tile.SOL_PIERRE_2,Tile.SOL_PIERRE_2,Tile.SOL_PIERRE_2,Tile.SOL_PIERRE_2,Tile.SOL_PIERRE_2,Tile.SOL_PIERRE_2,Tile.SOL_PIERRE_2,Tile.SOL_PIERRE_2,Tile.SOL_PIERRE_2,Tile.SOL_PIERRE_2,Tile.SOL_PIERRE_2,Tile.SOL_PIERRE_2,Tile.SOL_PIERRE_2,Tile.SOL_PIERRE_2,Tile.SOL_PIERRE_2,Tile.SOL_PIERRE_2,Tile.SOL_PIERRE_2,Tile.SOL_PIERRE_2,Tile.MUR_PIERRE,
+					Tile.MUR_PIERRE,Tile.SOL_PIERRE_2,Tile.SOL_PIERRE_2,Tile.SOL_PIERRE_2,Tile.SOL_PIERRE_2,Tile.SOL_PIERRE_2,Tile.SOL_PIERRE_2,Tile.SOL_PIERRE_2,Tile.SOL_PIERRE_2,Tile.SOL_PIERRE_2,Tile.SOL_PIERRE_2,Tile.SOL_PIERRE_2,Tile.SOL_PIERRE_2,Tile.SOL_PIERRE_2,Tile.SOL_PIERRE_2,Tile.SOL_PIERRE_2,Tile.SOL_PIERRE_2,Tile.SOL_PIERRE_2,Tile.SOL_PIERRE_2,Tile.SOL_PIERRE_2,Tile.SOL_PIERRE_2,Tile.SOL_PIERRE_2,Tile.SOL_PIERRE_2,Tile.SOL_PIERRE_2,Tile.SOL_PIERRE_2,Tile.MUR_PIERRE,
+					Tile.MUR_PIERRE,Tile.SOL_PIERRE_2,Tile.SOL_PIERRE_2,Tile.SOL_PIERRE_2,Tile.SOL_PIERRE_2,Tile.SOL_PIERRE_2,Tile.SOL_PIERRE_2,Tile.SOL_PIERRE_2,Tile.SOL_PIERRE_2,Tile.SOL_PIERRE_2,Tile.SOL_PIERRE_2,Tile.SOL_PIERRE_2,Tile.SOL_PIERRE_2,Tile.SOL_PIERRE_2,Tile.SOL_PIERRE_2,Tile.SOL_PIERRE_2,Tile.SOL_PIERRE_2,Tile.SOL_PIERRE_2,Tile.SOL_PIERRE_2,Tile.SOL_PIERRE_2,Tile.SOL_PIERRE_2,Tile.SOL_PIERRE_2,Tile.SOL_PIERRE_2,Tile.SOL_PIERRE_2,Tile.SOL_PIERRE_2,Tile.MUR_PIERRE,
+					Tile.SOL_PIERRE_2,Tile.SOL_PIERRE_2,Tile.SOL_PIERRE_2,Tile.SOL_PIERRE_2,Tile.SOL_PIERRE_2,Tile.SOL_PIERRE_2,Tile.SOL_PIERRE_2,Tile.SOL_PIERRE_2,Tile.SOL_PIERRE_2,Tile.SOL_PIERRE_2,Tile.SOL_PIERRE_2,Tile.SOL_PIERRE_2,Tile.SOL_PIERRE_2,Tile.SOL_PIERRE_2,Tile.SOL_PIERRE_2,Tile.SOL_PIERRE_2,Tile.SOL_PIERRE_2,Tile.SOL_PIERRE_2,Tile.SOL_PIERRE_2,Tile.SOL_PIERRE_2,Tile.SOL_PIERRE_2,Tile.SOL_PIERRE_2,Tile.SOL_PIERRE_2,Tile.SOL_PIERRE_2,Tile.SOL_PIERRE_2,Tile.MUR_PIERRE,
+					Tile.MUR_PIERRE,Tile.SOL_PIERRE_2,Tile.SOL_PIERRE_2,Tile.SOL_PIERRE_2,Tile.SOL_PIERRE_2,Tile.SOL_PIERRE_2,Tile.SOL_PIERRE_2,Tile.SOL_PIERRE_2,Tile.SOL_PIERRE_2,Tile.SOL_PIERRE_2,Tile.SOL_PIERRE_2,Tile.SOL_PIERRE_2,Tile.SOL_PIERRE_2,Tile.SOL_PIERRE_2,Tile.SOL_PIERRE_2,Tile.SOL_PIERRE_2,Tile.SOL_PIERRE_2,Tile.SOL_PIERRE_2,Tile.SOL_PIERRE_2,Tile.SOL_PIERRE_2,Tile.SOL_PIERRE_2,Tile.SOL_PIERRE_2,Tile.SOL_PIERRE_2,Tile.SOL_PIERRE_2,Tile.SOL_PIERRE_2,Tile.MUR_PIERRE,
+					Tile.MUR_PIERRE,Tile.MUR_PIERRE,Tile.SOL_PIERRE_2,Tile.MUR_PIERRE,Tile.MUR_PIERRE,Tile.MUR_PIERRE,Tile.MUR_PIERRE,Tile.MUR_PIERRE,Tile.MUR_PIERRE,Tile.MUR_PIERRE,Tile.SOL_PIERRE_2,Tile.MUR_PIERRE,Tile.MUR_PIERRE,Tile.MUR_PIERRE,Tile.MUR_PIERRE,Tile.MUR_PIERRE,Tile.MUR_PIERRE,Tile.MUR_PIERRE,Tile.SOL_PIERRE_2,Tile.MUR_PIERRE,Tile.MUR_PIERRE,Tile.MUR_PIERRE,Tile.MUR_PIERRE,Tile.MUR_PIERRE,Tile.MUR_PIERRE,Tile.MUR_PIERRE},
+					{null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,
+					null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,
+					null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,
+					null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,
+					null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,
+					null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,
+					null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,
+					null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,
+					null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,
+					null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,Tile.TABLE,null,null,null,null,null,null,null,null,null,null,
+					null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,Tile.TABOURET,null,null,null,null,null,null,null,null,null,null,
+					null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,
+					null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,
+					null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,
+					null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,
+					null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,
+					null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,
+					null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,
+					null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,
+					null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,
+					null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,
+					null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,
+					null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,
+					null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null}
+				},26,24,false));
+		ensemble_cartes.get("TestZone").ajouterEvenement(new Position(13,12), new Evenement("EventTest","textures/evenements/livre.png",Direction.BAS,true,null));
+		
+		
+		this.ensemble_cartes.put("MiniZone", new Carte(new Tile[][] 
+				{
+					{Tile.MUR_PIERRE,Tile.MUR_PIERRE,Tile.MUR_PIERRE,Tile.MUR_PIERRE,Tile.MUR_PIERRE,Tile.VIDE,Tile.VIDE,Tile.VIDE,Tile.VIDE,Tile.VIDE,Tile.VIDE,Tile.VIDE,Tile.VIDE,Tile.VIDE,Tile.VIDE,Tile.VIDE,Tile.VIDE,Tile.VIDE,Tile.VIDE,Tile.VIDE,
+					Tile.MUR_PIERRE,Tile.SOL_PIERRE_2,Tile.SOL_PIERRE_2,Tile.SOL_PIERRE_2,Tile.MUR_PIERRE,Tile.VIDE,Tile.VIDE,Tile.VIDE,Tile.VIDE,Tile.VIDE,Tile.VIDE,Tile.VIDE,Tile.VIDE,Tile.VIDE,Tile.VIDE,Tile.VIDE,Tile.VIDE,Tile.VIDE,Tile.VIDE,Tile.VIDE,
+					Tile.MUR_PIERRE,Tile.SOL_PIERRE_2,Tile.SOL_PIERRE_2,Tile.SOL_PIERRE_2,Tile.MUR_PIERRE,Tile.VIDE,Tile.VIDE,Tile.VIDE,Tile.VIDE,Tile.VIDE,Tile.VIDE,Tile.VIDE,Tile.VIDE,Tile.VIDE,Tile.VIDE,Tile.VIDE,Tile.VIDE,Tile.VIDE,Tile.VIDE,Tile.VIDE,
+					Tile.MUR_PIERRE,Tile.SOL_PIERRE_2,Tile.SOL_PIERRE_2,Tile.SOL_PIERRE_2,Tile.MUR_PIERRE,Tile.VIDE,Tile.VIDE,Tile.VIDE,Tile.VIDE,Tile.VIDE,Tile.VIDE,Tile.VIDE,Tile.VIDE,Tile.VIDE,Tile.VIDE,Tile.VIDE,Tile.VIDE,Tile.VIDE,Tile.VIDE,Tile.VIDE,
+					Tile.MUR_PIERRE,Tile.SOL_PIERRE_2,Tile.SOL_PIERRE_2,Tile.SOL_PIERRE_2,Tile.MUR_PIERRE,Tile.VIDE,Tile.VIDE,Tile.VIDE,Tile.VIDE,Tile.VIDE,Tile.VIDE,Tile.VIDE,Tile.VIDE,Tile.VIDE,Tile.VIDE,Tile.VIDE,Tile.VIDE,Tile.VIDE,Tile.VIDE,Tile.VIDE,
+					Tile.MUR_PIERRE,Tile.MUR_PIERRE,Tile.MUR_PIERRE,Tile.MUR_PIERRE,Tile.MUR_PIERRE,Tile.VIDE,Tile.VIDE,Tile.VIDE,Tile.VIDE,Tile.VIDE,Tile.VIDE,Tile.VIDE,Tile.VIDE,Tile.VIDE,Tile.VIDE,Tile.VIDE,Tile.VIDE,Tile.VIDE,Tile.VIDE,Tile.VIDE,
+					Tile.VIDE,Tile.VIDE,Tile.VIDE,Tile.VIDE,Tile.VIDE,Tile.VIDE,Tile.VIDE,Tile.VIDE,Tile.VIDE,Tile.VIDE,Tile.VIDE,Tile.VIDE,Tile.VIDE,Tile.VIDE,Tile.VIDE,Tile.VIDE,Tile.VIDE,Tile.VIDE,Tile.VIDE,Tile.VIDE,
+					Tile.VIDE,Tile.VIDE,Tile.VIDE,Tile.VIDE,Tile.VIDE,Tile.VIDE,Tile.VIDE,Tile.VIDE,Tile.VIDE,Tile.VIDE,Tile.VIDE,Tile.VIDE,Tile.VIDE,Tile.VIDE,Tile.VIDE,Tile.VIDE,Tile.VIDE,Tile.VIDE,Tile.VIDE,Tile.VIDE,
+					Tile.VIDE,Tile.VIDE,Tile.VIDE,Tile.VIDE,Tile.VIDE,Tile.VIDE,Tile.VIDE,Tile.VIDE,Tile.VIDE,Tile.VIDE,Tile.VIDE,Tile.VIDE,Tile.VIDE,Tile.VIDE,Tile.VIDE,Tile.VIDE,Tile.VIDE,Tile.VIDE,Tile.VIDE,Tile.VIDE,
+					Tile.VIDE,Tile.VIDE,Tile.VIDE,Tile.VIDE,Tile.VIDE,Tile.VIDE,Tile.VIDE,Tile.VIDE,Tile.VIDE,Tile.VIDE,Tile.VIDE,Tile.VIDE,Tile.VIDE,Tile.VIDE,Tile.VIDE,Tile.VIDE,Tile.VIDE,Tile.VIDE,Tile.VIDE,Tile.VIDE,
+					Tile.VIDE,Tile.VIDE,Tile.VIDE,Tile.VIDE,Tile.VIDE,Tile.VIDE,Tile.VIDE,Tile.VIDE,Tile.VIDE,Tile.VIDE,Tile.VIDE,Tile.VIDE,Tile.VIDE,Tile.VIDE,Tile.VIDE,Tile.VIDE,Tile.VIDE,Tile.VIDE,Tile.VIDE,Tile.VIDE,
+					Tile.VIDE,Tile.VIDE,Tile.VIDE,Tile.VIDE,Tile.VIDE,Tile.VIDE,Tile.VIDE,Tile.VIDE,Tile.VIDE,Tile.VIDE,Tile.VIDE,Tile.VIDE,Tile.VIDE,Tile.VIDE,Tile.VIDE,Tile.VIDE,Tile.VIDE,Tile.VIDE,Tile.VIDE,Tile.VIDE,
+					Tile.VIDE,Tile.VIDE,Tile.VIDE,Tile.VIDE,Tile.VIDE,Tile.VIDE,Tile.VIDE,Tile.VIDE,Tile.VIDE,Tile.VIDE,Tile.VIDE,Tile.VIDE,Tile.VIDE,Tile.VIDE,Tile.VIDE,Tile.VIDE,Tile.VIDE,Tile.VIDE,Tile.VIDE,Tile.VIDE,
+					Tile.VIDE,Tile.VIDE,Tile.VIDE,Tile.VIDE,Tile.VIDE,Tile.VIDE,Tile.VIDE,Tile.VIDE,Tile.VIDE,Tile.VIDE,Tile.VIDE,Tile.VIDE,Tile.VIDE,Tile.VIDE,Tile.VIDE,Tile.VIDE,Tile.VIDE,Tile.VIDE,Tile.VIDE,Tile.VIDE,
+					Tile.VIDE,Tile.VIDE,Tile.VIDE,Tile.VIDE,Tile.VIDE,Tile.VIDE,Tile.VIDE,Tile.VIDE,Tile.VIDE,Tile.VIDE,Tile.VIDE,Tile.VIDE,Tile.VIDE,Tile.VIDE,Tile.VIDE,Tile.VIDE,Tile.VIDE,Tile.VIDE,Tile.VIDE,Tile.VIDE},
+					{null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,
+					null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,
+					null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,
+					null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,
+					null,null,null,Tile.SOL_TROU,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,
+					null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,
+					null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,
+					null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,
+					null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,
+					null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,
+					null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,
+					null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,
+					null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,
+					null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,
+					null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null}
+				},20,15,false));
+	}
+
 	/**
 	 * Boucle principale du jeu
 	 */
@@ -69,11 +167,6 @@ public class Partie
 		}
 	}
 	
-	public void afficherCarte()
-	{
-		System.out.println(this.carte.toString());
-	}
-	
 	public void essaiCombat()
 	{
 		if(Application.RNG.nextInt(45)==0 && this.carte.obtenirCombatAleatoires())
@@ -89,11 +182,14 @@ public class Partie
 	public void changerEtat(String etat)
 	{
 		this.etat = etat;
+		System.gc();
 	}
 	
-	public void changerCarte(Carte carte)
+	public void changerCarte(String carte, Position position)
 	{
-		this.carte = carte;
+		this.carte = ensemble_cartes.get(carte);
+		this.equipe.forcerPosition(position);
+		System.gc();
 	}
 	
 	public void changerCombat(Combat combat)

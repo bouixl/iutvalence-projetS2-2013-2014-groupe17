@@ -1,8 +1,9 @@
 import java.awt.Graphics2D;
-import java.awt.Image;
 import java.awt.image.BufferedImage;
+import java.io.File;
+import java.io.IOException;
 
-import javax.swing.ImageIcon;
+import javax.imageio.ImageIO;
 
 
 public class Equipe
@@ -11,11 +12,17 @@ public class Equipe
 	private Position position;
 	private Direction direction;
 	private Personnage[] composition; 
+	private BufferedImage apparence;
 	
 	public Equipe()
 	{
 		this.position = new Position(7,7);
 		this.direction = Direction.BAS;
+		this.apparence = null;
+		try {
+			this.apparence = ImageIO.read(new File("textures/personnages/equipe.png"));
+		} catch (IOException e) {
+		}
 		this.composition = new Personnage[4];
 		this.composition[0] = new Personnage("Bob", Classes.ASSASSIN);
 		this.composition[1] = new Personnage("Bub", Classes.BARBARE);
@@ -43,19 +50,14 @@ public class Equipe
 		return this.direction;
 	}
 	
-	public Image obtenirApparence()
+	public BufferedImage obtenirApparence()
 	{
-		ImageIcon texture = new ImageIcon("textures/personnages/equipe.png");
-		Image img_equipe = texture.getImage();
-
-		BufferedImage img_equipe_decoupe = new BufferedImage(img_equipe.getWidth(null), img_equipe.getHeight(null), BufferedImage.TYPE_INT_ARGB);
+		BufferedImage img_equipe_decoupe = new BufferedImage(apparence.getWidth(null), apparence.getHeight(null), BufferedImage.TYPE_INT_ARGB);
 	    Graphics2D bGr = img_equipe_decoupe.createGraphics();
-	    bGr.drawImage(img_equipe, 0, 0, null);
+	    bGr.drawImage(apparence, 0, 0, null);
 	    bGr.dispose();
 
-		img_equipe = img_equipe_decoupe.getSubimage(0,this.direction.obtenirIndexTexture()*32,32,32);
-
-		return img_equipe;
+		return img_equipe_decoupe.getSubimage(0,this.direction.obtenirIndexTexture()*32,32,32);
 	}
 	
 	public void ajouterPersonnage(Personnage personnage, int emplacement)
@@ -71,6 +73,10 @@ public class Equipe
 		}
 		niveauMoyen /= this.composition.length;
 		return niveauMoyen;
+	}
+
+	public void forcerPosition(Position position) {
+		this.position = position;
 	}
 	
 	

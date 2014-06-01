@@ -2,7 +2,6 @@ import java.awt.Color;
 import java.awt.Dimension;
 import java.awt.Graphics2D;
 import java.awt.GridLayout;
-import java.awt.Image;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.awt.event.KeyEvent;
@@ -82,23 +81,22 @@ public class IHM implements Runnable, ActionListener, KeyListener {
 			{
 				position = new Position(ligne,colonne);
 				
-				Image img_case = carte.obtenirCase(position);
+				//Image img_case = carte.obtenirCase(position);
 				BufferedImage img_finale = new BufferedImage(32, 32, BufferedImage.TYPE_INT_ARGB);
 				Graphics2D g2 = img_finale.createGraphics();
-				g2.drawImage(img_case, 0, 0, null);
+				g2.drawImage(carte.obtenirCase(position), 0, 0, null);
 				if(carte.evenementPresent(position))
 				{
-					Image img_event = carte.obtenirEvenement(position).obtenirApparence();
-					g2.drawImage(img_event, 0, 0, null);
+					g2.drawImage(carte.obtenirEvenement(position).obtenirApparence(), 0, 0, null);
 				}
 				if(equipe.obtenirPosition().equals(position))
 				{
-					Image img_equipe = equipe.obtenirApparence();
-					g2.drawImage(img_equipe, 0, 0, null);
+					g2.drawImage(equipe.obtenirApparence(), 0, 0, null);
 				}
 				g2.dispose();
 				
 				this.panneauCarte.add((new JLabel(new ImageIcon(img_finale))));
+				img_finale = null;
 			}
 		}
 		this.panneauActuel.updateUI();
@@ -208,54 +206,61 @@ public class IHM implements Runnable, ActionListener, KeyListener {
 						if(this.partie.obtenirCarte().peutAller(direction, this.partie.obtenirEquipe().obtenirPosition()))
 						{
 							this.partie.obtenirEquipe().deplacer(direction);
+							this.partie.essaiCombat();
 						}
 						else
 						{
 							this.partie.obtenirEquipe().changerDirection(direction);
 						}
-						this.attendreReaction = false;
-						this.partie.essaiCombat();
 						break;
 					case 'd':
 						direction = Direction.DROITE;
 						if(this.partie.obtenirCarte().peutAller(direction, this.partie.obtenirEquipe().obtenirPosition()))
 						{
 							this.partie.obtenirEquipe().deplacer(direction);
+							this.partie.essaiCombat();
 						}
 						else
 						{
 							this.partie.obtenirEquipe().changerDirection(direction);
 						}
-						this.attendreReaction = false;
-						this.partie.essaiCombat();
 						break;
 					case 's':
 						direction = Direction.BAS;
 						if(this.partie.obtenirCarte().peutAller(direction, this.partie.obtenirEquipe().obtenirPosition()))
 						{
 							this.partie.obtenirEquipe().deplacer(direction);
+							this.partie.essaiCombat();
 						}
 						else
 						{
 							this.partie.obtenirEquipe().changerDirection(direction);
 						}
-						this.attendreReaction = false;
-						this.partie.essaiCombat();
 						break;
 					case 'q':
 						direction = Direction.GAUCHE;
 						if(this.partie.obtenirCarte().peutAller(direction, this.partie.obtenirEquipe().obtenirPosition()))
 						{
 							this.partie.obtenirEquipe().deplacer(direction);
+							this.partie.essaiCombat();
 						}
 						else
 						{
 							this.partie.obtenirEquipe().changerDirection(direction);
 						}
-						this.attendreReaction = false;
-						this.partie.essaiCombat();
+						break;
+					case 'n':
+						this.partie.changerCarte("MiniZone", new Position(2,2));
+						break;
+					case 'b':
+						this.partie.changerCarte("TestZone", new Position(3,2));
+						break;
+					case ' ':
+						if (this.partie.obtenirCarte().evenementPresent(this.partie.obtenirEquipe().obtenirPosition().ajouterOffset(this.partie.obtenirEquipe().obtenirDirection())))
+							this.partie.obtenirCarte().obtenirEvenement(this.partie.obtenirEquipe().obtenirPosition().ajouterOffset(this.partie.obtenirEquipe().obtenirDirection())).changerBloquant();
 						break;
 				}
+				this.attendreReaction = false;
 			}
 		}
 	}

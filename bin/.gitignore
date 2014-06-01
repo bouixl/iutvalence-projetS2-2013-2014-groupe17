@@ -2,6 +2,7 @@
 /Carte.class
 /Classes.class
 /Combat.class
+/Direction.class
 /Ennemi.class
 /Equipe.class
 /Evenement.class
@@ -9,6 +10,5 @@
 /Item.class
 /Partie.class
 /Personnage.class
-/Tile.class
 /Position.class
-/Direction.class
+/Tile.class
