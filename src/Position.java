@@ -1,3 +1,5 @@
+import java.awt.Point;
+
 
 public class Position {
 	private int ligne;
@@ -49,5 +51,21 @@ public class Position {
 	@Override
 	public String toString() {
 		return "Position [ligne=" + ligne + ", colonne=" + colonne + "]";
+	}
+
+	public Point toPoint() {
+		return new Point(this.colonne*32,this.ligne*32);
+	}
+	
+	public Point toPointCentre() {
+		Point point = this.toPoint();
+		int dx = -320;
+		int dy = -256;
+		if(point.x<320)
+			dx = -point.x;
+		if(point.y<256)
+			dy = -point.y;
+		point.translate(dx, dy);
+		return point;
 	}
 }

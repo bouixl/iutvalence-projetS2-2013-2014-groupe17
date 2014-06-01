@@ -75,13 +75,13 @@ public class IHM implements Runnable, ActionListener, KeyListener {
 		Equipe equipe = this.partie.obtenirEquipe();
 		this.panneauCarte.removeAll();
 		this.panneauCarte.setLayout(new GridLayout(carte.obtenirHauteur(), carte.obtenirLargeur()));
+		
 		for (int ligne = 0; ligne < carte.obtenirHauteur(); ligne++)
 		{
 			for (int colonne = 0; colonne < carte.obtenirLargeur(); colonne++)
 			{
 				position = new Position(ligne,colonne);
 				
-				//Image img_case = carte.obtenirCase(position);
 				BufferedImage img_finale = new BufferedImage(32, 32, BufferedImage.TYPE_INT_ARGB);
 				Graphics2D g2 = img_finale.createGraphics();
 				g2.drawImage(carte.obtenirCase(position), 0, 0, null);
@@ -99,7 +99,9 @@ public class IHM implements Runnable, ActionListener, KeyListener {
 				img_finale = null;
 			}
 		}
+		
 		this.panneauActuel.updateUI();
+		this.panneau.getViewport().setViewPosition(equipe.obtenirPosition().toPointCentre());
 	}
 
 	public void finJeu()
@@ -131,7 +133,7 @@ public class IHM implements Runnable, ActionListener, KeyListener {
 	public void run() {
 		this.fenetre = new JFrame();
 		this.fenetre.setTitle("Projet 17");
-		this.fenetre.setSize(658, 544);
+		this.fenetre.setSize(650, 534);
 		this.fenetre.setResizable(false);
 		this.fenetre.setDefaultCloseOperation(WindowConstants.EXIT_ON_CLOSE);
 		this.fenetre.setLocationRelativeTo(null);
@@ -147,14 +149,15 @@ public class IHM implements Runnable, ActionListener, KeyListener {
 		barreDeMenu.add(menu);
 		this.fenetre.setJMenuBar(barreDeMenu);
 
-		//this.panneau = new JScrollPane(JScrollPane.VERTICAL_SCROLLBAR_NEVER,JScrollPane.HORIZONTAL_SCROLLBAR_NEVER);
-		this.panneau = new JScrollPane();
+		this.panneau = new JScrollPane(JScrollPane.VERTICAL_SCROLLBAR_NEVER,JScrollPane.HORIZONTAL_SCROLLBAR_NEVER);
+		//this.panneau = new JScrollPane();
 		this.panneauCombat = new JPanel();
 		this.panneauCombat.setBackground(Color.RED);
 		this.panneauCarte = new JPanel();
 		this.panneauCarte.setBackground(Color.BLACK);
 		this.panneauActuel = panneauCarte;
 		this.panneau.getViewport().add(this.panneauActuel);
+		this.panneau.getViewport().setBackground(Color.BLACK);
 		this.panneau.setPreferredSize(new Dimension(640, 480));
 		this.fenetre.add(this.panneau);
 		
@@ -182,7 +185,6 @@ public class IHM implements Runnable, ActionListener, KeyListener {
 	@Override
 	public void keyPressed(KeyEvent arg0) {
 		// TODO Auto-generated method stub
-		
 	}
 
 	@Override

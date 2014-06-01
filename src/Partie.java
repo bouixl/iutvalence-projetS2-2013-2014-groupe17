@@ -169,14 +169,19 @@ public class Partie
 	
 	public void essaiCombat()
 	{
-		if(Application.RNG.nextInt(45)==0 && this.carte.obtenirCombatAleatoires())
-			this.etat = "Combat";
-			Ennemi[] ennemis = new Ennemi[Application.RNG.nextInt(4)+1];
-			for (int i = 0; i < ennemis.length; i++)
+		if (this.carte.obtenirCombatAleatoires())
+		{
+			if(Application.RNG.nextInt(45)==0)
 			{
-				ennemis[i] = Ennemi.genererEnnemi(this.equipe.obtenirNiveauMoyen());
+				this.etat = "Combat";
+				Ennemi[] ennemis = new Ennemi[Application.RNG.nextInt(4)+1];
+				for (int i = 0; i < ennemis.length; i++)
+				{
+					ennemis[i] = Ennemi.genererEnnemi(this.equipe.obtenirNiveauMoyen());
+				}
+				this.combat = new Combat(this.equipe, ennemis, this.ihm);
 			}
-			this.combat = new Combat(this.equipe, ennemis, this.ihm);
+		}
 	}
 	
 	public void changerEtat(String etat)
