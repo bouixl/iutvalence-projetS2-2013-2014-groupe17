@@ -87,7 +87,7 @@ public class IHM implements Runnable, ActionListener, KeyListener {
 			{
 				position = new Position(ligne,colonne);
 				
-				BufferedImage img_finale = new BufferedImage(32, 32, BufferedImage.TYPE_INT_ARGB);
+				BufferedImage img_finale = new BufferedImage(Application.LARGEUR_TILE, Application.HAUTEUR_TILE, BufferedImage.TYPE_INT_ARGB);
 				Graphics2D g2 = img_finale.createGraphics();
 				g2.drawImage(carte.obtenirCase(position), 0, 0, null);
 				if(carte.evenementPresent(position))
@@ -138,7 +138,7 @@ public class IHM implements Runnable, ActionListener, KeyListener {
 	public void run() {
 		this.fenetre = new JFrame();
 		this.fenetre.setTitle("Projet 17");
-		this.fenetre.setSize(650, 534);
+		this.fenetre.setSize(Application.LARGEUR_ECRAN+10, Application.HAUTEUR_ECRAN+54);
 		this.fenetre.setResizable(false);
 		this.fenetre.setDefaultCloseOperation(WindowConstants.EXIT_ON_CLOSE);
 		this.fenetre.setLocationRelativeTo(null);
@@ -155,7 +155,6 @@ public class IHM implements Runnable, ActionListener, KeyListener {
 		this.fenetre.setJMenuBar(barreDeMenu);
 
 		this.panneau = new JScrollPane(JScrollPane.VERTICAL_SCROLLBAR_NEVER,JScrollPane.HORIZONTAL_SCROLLBAR_NEVER);
-		//this.panneau = new JScrollPane();
 		this.panneauCombat = new JPanel();
 		this.panneauCombat.setBackground(Color.RED);
 		this.panneauCarte = new JPanel();
@@ -163,7 +162,7 @@ public class IHM implements Runnable, ActionListener, KeyListener {
 		this.panneauActuel = panneauCarte;
 		this.panneau.getViewport().add(this.panneauActuel);
 		this.panneau.getViewport().setBackground(Color.BLACK);
-		this.panneau.setPreferredSize(new Dimension(640, 480));
+		this.panneau.setPreferredSize(new Dimension(Application.LARGEUR_ECRAN, Application.HAUTEUR_ECRAN));
 		this.fenetre.add(this.panneau);
 		
 		this.fenetre.addKeyListener(this);
@@ -188,15 +187,10 @@ public class IHM implements Runnable, ActionListener, KeyListener {
 	}
 
 	@Override
-	public void keyPressed(KeyEvent arg0) {
-		// TODO Auto-generated method stub
-	}
+	public void keyPressed(KeyEvent arg0) {}
 
 	@Override
-	public void keyReleased(KeyEvent arg0) {
-		// TODO Auto-generated method stub
-		
-	}
+	public void keyReleased(KeyEvent arg0) {}
 
 	@Override
 	public void keyTyped(KeyEvent arg0) {
@@ -255,12 +249,6 @@ public class IHM implements Runnable, ActionListener, KeyListener {
 						{
 							this.partie.obtenirEquipe().changerDirection(direction);
 						}
-						break;
-					case 'n':
-						this.partie.changerCarte("MiniZone", new Position(2,2));
-						break;
-					case 'b':
-						this.partie.changerCarte("TestZone", new Position(3,2));
 						break;
 					case ' ':
 						if (this.partie.obtenirCarte().evenementPresent(this.partie.obtenirEquipe().obtenirPosition().ajouterOffset(this.partie.obtenirEquipe().obtenirDirection())))

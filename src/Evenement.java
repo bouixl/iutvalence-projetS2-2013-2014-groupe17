@@ -39,7 +39,7 @@ public class Evenement
 		bGr.drawImage(apparence, 0, 0, null);
 		bGr.dispose();
 		
-		return img_event_decoupe.getSubimage(0,this.direction.obtenirIndexTexture()*32,32,32);
+		return img_event_decoupe.getSubimage(0,this.direction.obtenirIndexTexture()*Application.HAUTEUR_TILE,Application.LARGEUR_TILE, Application.HAUTEUR_TILE);
 	}
 	
 	public boolean estBloquant() {

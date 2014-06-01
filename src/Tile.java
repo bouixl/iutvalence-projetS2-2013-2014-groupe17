@@ -21,7 +21,6 @@ public enum Tile
 	OMBRE("textures/tiles/ombre.png",false),
 	VIDE("textures/tiles/vide.png",false);
 	
-	
 	private BufferedImage apparence;
 	private final String url;
 	private final boolean bloquant;

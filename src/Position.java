@@ -54,16 +54,16 @@ public class Position {
 	}
 
 	public Point toPoint() {
-		return new Point(this.colonne*32,this.ligne*32);
+		return new Point(this.colonne*Application.LARGEUR_TILE,this.ligne*Application.HAUTEUR_TILE);
 	}
 	
 	public Point toPointCentre() {
 		Point point = this.toPoint();
-		int dx = -320;
-		int dy = -256;
-		if(point.x<320)
+		int dx = -(Application.LARGEUR_ECRAN/2);
+		int dy = -((Application.HAUTEUR_ECRAN/2)+(Application.HAUTEUR_TILE/2));
+		if(point.x<-dx)
 			dx = -point.x;
-		if(point.y<256)
+		if(point.y<-dy)
 			dy = -point.y;
 		point.translate(dx, dy);
 		return point;

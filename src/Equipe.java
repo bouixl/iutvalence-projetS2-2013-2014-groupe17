@@ -2,9 +2,7 @@ import java.awt.Graphics2D;
 import java.awt.image.BufferedImage;
 import java.io.File;
 import java.io.IOException;
-
 import javax.imageio.ImageIO;
-
 
 public class Equipe
 {
@@ -57,7 +55,7 @@ public class Equipe
 	    bGr.drawImage(apparence, 0, 0, null);
 	    bGr.dispose();
 
-		return img_equipe_decoupe.getSubimage(0,this.direction.obtenirIndexTexture()*32,32,32);
+		return img_equipe_decoupe.getSubimage(0,this.direction.obtenirIndexTexture()*Application.HAUTEUR_TILE,Application.LARGEUR_TILE, Application.HAUTEUR_TILE);
 	}
 	
 	public void ajouterPersonnage(Personnage personnage, int emplacement)
