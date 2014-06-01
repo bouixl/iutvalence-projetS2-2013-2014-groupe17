@@ -67,6 +67,11 @@ public class IHM implements Runnable, ActionListener, KeyListener {
 		
 	}
 	
+	public void afficherMessage(String nom, String message)
+	{
+		JOptionPane.showMessageDialog(this.fenetre, message, nom, JOptionPane.INFORMATION_MESSAGE);
+	}
+	
 	public void afficherCarte()
 	{
 		this.panneauActuel = panneauCarte;
@@ -169,7 +174,7 @@ public class IHM implements Runnable, ActionListener, KeyListener {
 	
 	public void attendreReaction() {
 		this.attendreReaction = true;
-		while(this.attendreReaction) 
+		while(this.attendreReaction)
 		{
 			try {
 			    TimeUnit.MILLISECONDS.sleep(1);
@@ -259,7 +264,7 @@ public class IHM implements Runnable, ActionListener, KeyListener {
 						break;
 					case ' ':
 						if (this.partie.obtenirCarte().evenementPresent(this.partie.obtenirEquipe().obtenirPosition().ajouterOffset(this.partie.obtenirEquipe().obtenirDirection())))
-							this.partie.obtenirCarte().obtenirEvenement(this.partie.obtenirEquipe().obtenirPosition().ajouterOffset(this.partie.obtenirEquipe().obtenirDirection())).effectuerActions();
+							this.partie.obtenirCarte().obtenirEvenement(this.partie.obtenirEquipe().obtenirPosition().ajouterOffset(this.partie.obtenirEquipe().obtenirDirection())).effectuerActions(this);
 						break;
 				}
 				this.attendreReaction = false;
@@ -267,5 +272,9 @@ public class IHM implements Runnable, ActionListener, KeyListener {
 		}
 	}
 	
+	public Partie renvoyerPartie()
+	{
+		return this.partie;
+	}
 	
 }
