@@ -6,15 +6,16 @@ import javax.imageio.ImageIO;
 
 public class Equipe
 {
-	
 	private Position position;
 	private Direction direction;
-	private Personnage[] composition; 
+	private Personnage[] composition;
 	private BufferedImage apparence;
+	private Inventaire inventaire;
 	
 	public Equipe()
 	{
 		this.position = new Position(7,7);
+		this.inventaire = null;
 		this.direction = Direction.BAS;
 		this.apparence = null;
 		try {
@@ -46,6 +47,11 @@ public class Equipe
 	public Direction obtenirDirection()
 	{
 		return this.direction;
+	}
+	
+	public Inventaire obtenirInventaire()
+	{
+		return this.inventaire;
 	}
 	
 	public BufferedImage obtenirApparence()

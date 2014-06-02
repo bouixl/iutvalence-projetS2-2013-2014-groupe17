@@ -102,7 +102,9 @@ public class Partie
 					null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,
 					null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null}
 				},26,24,false));
-		ensemble_cartes.get("TestZone").ajouterEvenement(new Position(13,12), new Evenement("EventTest","textures/evenements/livre.png",Direction.BAS,true,new String[][] {{"MESSAGE blargh\nblargh autre ligne","CHOIX Oui 1 Blargh 0 Cette option marche ?","MESSAGE Pourquoi non ?",null},{null,null,"MESSAGE Les embranchements semblent marcher.","ALLERA 0 0"}}));
+		ensemble_cartes.get("TestZone").ajouterEvenement(new Position(13,12), new Evenement("Livre","textures/evenements/livre.png",Direction.BAS,true,new String[][] {{"MESSAGE blargh\nblargh autre ligne","CHOIX Oui 1 Blargh 0 Cette option marche ?","MESSAGE Pourquoi non ?",null},{null,null,"MESSAGE Les embranchements semblent marcher.","ALLERA 0 0"}}));
+		ensemble_cartes.get("TestZone").ajouterEvenement(new Position(13,9), new Evenement("Grille","textures/evenements/portes/grille_fermee.png",Direction.BAS,true,new String[][] {{"TESTEREVENT 0 1 0 TestZone LevierRouge ","MESSAGE La grille est fermée..."},{null,null}}));
+		ensemble_cartes.get("TestZone").ajouterEvenement(new Position(9,7), new Evenement("LevierRouge","textures/evenements/leviers/levier_rouge_gauche.png",Direction.BAS,true,new String[][] {{"TESTEREVENT 0 2 0","CHOIX Oui 1 Non 0 Pousser le levier ?",null,null,null,null,null},{null,null,"MESSAGE Un clic metallique se faite entendre non loin.","INTERRUPTEUR 0","APPARENCE textures/evenements/leviers/levier_rouge_droite.png","APPARENCE textures/evenements/portes/grille_ouverte.png TestZone Grille","COLLISION false TestZone Grille"},{null,"MESSAGE Le levier est bloqué...",null,null,null,null,null}}));
 		
 		
 		this.ensemble_cartes.put("MiniZone", new Carte(new Tile[][] 

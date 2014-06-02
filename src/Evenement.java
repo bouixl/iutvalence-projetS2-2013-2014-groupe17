@@ -19,11 +19,12 @@ public class Evenement
 		MESSAGE, // MESSAGE message
 		TELEPORTER, // TELEPORTER carte x y
 		INTERRUPTEUR, // INTERRUPTEUR id_interrupteur
-		APPARENCE, // APPARENCE url_texture
-		COLLISION, // COLLISION true/false
+		APPARENCE, // APPARENCE url_texture [carte nom_evenement]
+		COLLISION, // COLLISION true/false [carte nom_evenement]
 		CHOIX, // CHOIX option1 id_branche_option1 option2 id_branche_option2 question
 		ALLERA, // ALLERA id_branche id_action
-		TESTEVENT; // TESTEVENT carte nom_evenement id_interrupteur id_branche_option_si_on id_branche_option_si_off
+		TESTERMOI, // TESTERMOI id_interrupteur id_branche_option_si_on id_branche_option_si_off
+		TESTEREVENT; // TESTEREVENT id_interrupteur id_branche_option_si_on id_branche_option_si_off [carte nom_evenement]
 	}
 
 	public Evenement(String nom, String texture_url, Direction direction, boolean bloquant, String[][] actions)
@@ -53,8 +54,8 @@ public class Evenement
 		return this.bloquant;
 	}
 	
-	public void changerBloquant() {
-		this.bloquant = !this.bloquant;
+	public void changerBloquant(boolean nouvelEtat) {
+		this.bloquant = nouvelEtat;
 	}
 	
 	public void changerApparence(String texture_url) {
@@ -77,6 +78,7 @@ public class Evenement
 		int indexAction;
 		String[] actionCourante;
 		int indexBranche = 0;
+		Evenement cible;
 		for(indexAction = 0; indexAction < this.actions[0].length; indexAction++)
 		{
 			if(actions[indexBranche][indexAction]!=null)
@@ -100,10 +102,16 @@ public class Evenement
 						this.interrupteursLocaux[Integer.parseInt(actionCourante[1])] = !this.interrupteursLocaux[Integer.parseInt(actionCourante[1])];
 						break;
 					case APPARENCE:
-						changerApparence(actionCourante[1]);
+						cible = this;
+						if(actionCourante.length>2)
+							cible = recupererEvenement(ihm.renvoyerPartie().obtenirEnsembleCartes().get(actionCourante[2]),actionCourante[3]);
+						cible.changerApparence(actionCourante[1]);
 						break;
 					case COLLISION:
-						this.bloquant = Boolean.valueOf(actionCourante[1]);
+						cible = this;
+						if(actionCourante.length>2)
+							cible = recupererEvenement(ihm.renvoyerPartie().obtenirEnsembleCartes().get(actionCourante[2]),actionCourante[3]);
+						cible.changerBloquant(Boolean.valueOf(actionCourante[1]));
 						break;
 					case CHOIX:
 						String question = "";
@@ -123,30 +131,43 @@ public class Evenement
 						indexAction = Integer.parseInt(actionCourante[2]);
 						indexAction--;
 						break;
-					case TESTEVENT:
-						Carte carte = ihm.renvoyerPartie().obtenirEnsembleCartes().get(actionCourante[1]);
-						Position position;
-						boolean test = false;
-						for (int ligne = 0; ligne < carte.obtenirHauteur(); ligne++)
-						{
-							for (int colonne = 0; colonne < carte.obtenirLargeur(); colonne++)
-							{
-								position = new Position(ligne,colonne);
-								if(carte.evenementPresent(position))
-								{
-									if(carte.obtenirEvenement(position).obtenirNom() == actionCourante[2])
-										test = carte.obtenirEvenement(position).testerInterrupteur(Integer.parseInt(actionCourante[3]));
-								}
-							}
-						}
-						if(test)
-							indexBranche = Integer.parseInt(actionCourante[4]);
+					case TESTERMOI:
+						if(this.testerInterrupteur(Integer.parseInt(actionCourante[1])))
+							indexBranche = Integer.parseInt(actionCourante[2]);
 						else
-							indexBranche = Integer.parseInt(actionCourante[5]);
+							indexBranche = Integer.parseInt(actionCourante[3]);
+						break;
+					case TESTEREVENT:
+						cible = this;
+						if(actionCourante.length>4)
+							cible = recupererEvenement(ihm.renvoyerPartie().obtenirEnsembleCartes().get(actionCourante[4]),actionCourante[5]);
+						if(cible.testerInterrupteur(Integer.parseInt(actionCourante[1])))
+							indexBranche = Integer.parseInt(actionCourante[2]);
+						else
+							indexBranche = Integer.parseInt(actionCourante[3]);
 						break;
 				}
 			}
 		}
+	}
+
+	private Evenement recupererEvenement(Carte carte, String nom_event) {
+		Position position;
+		for (int ligne = 0; ligne < carte.obtenirHauteur(); ligne++)
+		{
+			for (int colonne = 0; colonne < carte.obtenirLargeur(); colonne++)
+			{
+				position = new Position(ligne,colonne);
+				if(carte.evenementPresent(position))
+				{
+					if(carte.obtenirEvenement(position).obtenirNom().equals(nom_event))
+					{
+						return carte.obtenirEvenement(position);
+					}
+				}
+			}
+		}
+		return null;
 	}
 
 	private String obtenirNom() {
