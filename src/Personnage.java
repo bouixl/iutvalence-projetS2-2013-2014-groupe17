@@ -112,6 +112,7 @@ public class Personnage
 		this.pointsDeMana = classe.obtenirPm();
 		this.pointsDeVie=classe.obtenirPv();
 		this.tourDeDefense = 0;
+		this.equipement = new Item[2];
 		this.equipement[0] = null;
 		this.equipement[1] = null;
 	}
