@@ -28,7 +28,6 @@ public class Item
 		this.effets = effets;
 	}
 
-
 	/**
 	 * @return le type de l'objet
 	 */
@@ -36,14 +35,12 @@ public class Item
 		return this.type;
 	}
 
-
 	/**
 	 * @return le nom de l'objet
 	 */
 	public String obtenirNom() {
 		return this.nom;
 	}
-
 
 	/**
 	 * @return les effets(PV PM FORCE CONST INT DEX) de l'objet

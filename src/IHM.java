@@ -69,7 +69,13 @@ public class IHM implements Runnable, ActionListener, KeyListener {
 	
 	public void afficherMessage(String nom, String message)
 	{
-		JOptionPane.showMessageDialog(this.fenetre, message, nom, JOptionPane.INFORMATION_MESSAGE);
+		JOptionPane.showMessageDialog(this.fenetre, message, nom, JOptionPane.PLAIN_MESSAGE);
+	}
+	
+	public int proposerChoix(String nom, String question, String[] options)
+	{
+		int reponse = JOptionPane.showOptionDialog(this.fenetre, question, nom, JOptionPane.YES_NO_OPTION, JOptionPane.QUESTION_MESSAGE, null, options, null);
+		return reponse;
 	}
 	
 	public void afficherCarte()

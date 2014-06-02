@@ -16,7 +16,7 @@ public class Evenement
 	private boolean[] interrupteursLocaux;
 	
 	private enum Action {
-		MESSAGE, TELEPORTER, INTERRUPTEUR;
+		MESSAGE, TELEPORTER, INTERRUPTEUR, APPARENCE, COLLISION, CHOIX, ALLERA;
 	}
 
 	public Evenement(String nom, String texture_url, Direction direction, boolean bloquant, String[][] actions)
@@ -72,24 +72,51 @@ public class Evenement
 		int indexBranche = 0;
 		for(indexAction = 0; indexAction < this.actions[0].length; indexAction++)
 		{
-			actionCourante = actions[indexBranche][indexAction].split(" ");
-			switch(Action.valueOf(actionCourante[0]))
+			if(actions[indexBranche][indexAction]!=null)
 			{
-				case MESSAGE:
-					String message = "";
-					for(int i = 1; i<actionCourante.length; i++)
-					{
-						message += actionCourante[i]+" ";
-					}
-					ihm.afficherMessage(this.nom, message);
-					message = null;
-					break;
-				case TELEPORTER:
-					ihm.renvoyerPartie().changerCarte(actionCourante[1], new Position(Integer.parseInt(actionCourante[2]),Integer.parseInt(actionCourante[3])));
-					break;
-				case INTERRUPTEUR:
-					this.interrupteursLocaux[Integer.parseInt(actionCourante[1])] = !this.interrupteursLocaux[Integer.parseInt(actionCourante[1])];
-					break;
+				actionCourante = actions[indexBranche][indexAction].split(" ");
+				switch(Action.valueOf(actionCourante[0]))
+				{
+					case MESSAGE:
+						String message = "";
+						for(int i = 1; i<actionCourante.length; i++)
+						{
+							message += actionCourante[i]+" ";
+						}
+						ihm.afficherMessage(this.nom, message);
+						message = null;
+						break;
+					case TELEPORTER:
+						ihm.renvoyerPartie().changerCarte(actionCourante[1], new Position(Integer.parseInt(actionCourante[2]),Integer.parseInt(actionCourante[3])));
+						break;
+					case INTERRUPTEUR:
+						this.interrupteursLocaux[Integer.parseInt(actionCourante[1])] = !this.interrupteursLocaux[Integer.parseInt(actionCourante[1])];
+						break;
+					case APPARENCE:
+						changerApparence(actionCourante[1]);
+						break;
+					case COLLISION:
+						this.bloquant = Boolean.valueOf(actionCourante[1]);
+						break;
+					case CHOIX:
+						String question = "";
+						for(int i = 5; i<actionCourante.length; i++)
+						{
+							question += actionCourante[i]+" ";
+						}
+						int reponse = ihm.proposerChoix(this.nom, question, new String[] {actionCourante[1], actionCourante[3]});
+						if(reponse == 0)
+							indexBranche = Integer.parseInt(actionCourante[2]);
+						else
+							indexBranche = Integer.parseInt(actionCourante[4]);
+						question = null;
+						break;
+					case ALLERA:
+						indexBranche = Integer.parseInt(actionCourante[1]);
+						indexAction = Integer.parseInt(actionCourante[2]);
+						indexAction--;
+						break;
+				}
 			}
 		}
 	}

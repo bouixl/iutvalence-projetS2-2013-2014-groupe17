@@ -102,7 +102,7 @@ public class Partie
 					null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,
 					null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null}
 				},26,24,false));
-		ensemble_cartes.get("TestZone").ajouterEvenement(new Position(13,12), new Evenement("EventTest","textures/evenements/livre.png",Direction.BAS,true,new String[][] {{"MESSAGE blargh\nblargh autre ligne","TELEPORTER MiniZone 2 3"}}));
+		ensemble_cartes.get("TestZone").ajouterEvenement(new Position(13,12), new Evenement("EventTest","textures/evenements/livre.png",Direction.BAS,true,new String[][] {{"MESSAGE blargh\nblargh autre ligne","CHOIX Oui 1 Blargh 0 Cette option marche ?","MESSAGE Pourquoi non ?",null},{null,null,"MESSAGE Les embranchements semblent marcher.","ALLERA 0 0"}}));
 		
 		
 		this.ensemble_cartes.put("MiniZone", new Carte(new Tile[][] 
