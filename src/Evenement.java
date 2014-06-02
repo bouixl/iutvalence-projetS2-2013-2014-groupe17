@@ -5,6 +5,8 @@ import java.io.File;
 import java.io.IOException;
 
 import javax.imageio.ImageIO;
+import javax.swing.ImageIcon;
+import javax.swing.JLabel;
 
 public class Evenement
 {
@@ -16,7 +18,14 @@ public class Evenement
 	private boolean[] interrupteursLocaux;
 	
 	private enum Action {
-		MESSAGE, TELEPORTER, INTERRUPTEUR, APPARENCE, COLLISION, CHOIX, ALLERA;
+		MESSAGE, // MESSAGE message
+		TELEPORTER, // TELEPORTER carte x y
+		INTERRUPTEUR, // INTERRUPTEUR id_interrupteur
+		APPARENCE, // APPARENCE url_texture
+		COLLISION, // COLLISION true/false
+		CHOIX, // CHOIX option1 id_branche_option1 option2 id_branche_option2 question
+		ALLERA, // ALLERA id_branche id_action
+		TESTEVENT; // TESTEVENT carte nom_evenement id_interrupteur id_branche_option_si_on id_branche_option_si_off
 	}
 
 	public Evenement(String nom, String texture_url, Direction direction, boolean bloquant, String[][] actions)
@@ -116,8 +125,33 @@ public class Evenement
 						indexAction = Integer.parseInt(actionCourante[2]);
 						indexAction--;
 						break;
+					case TESTEVENT:
+						Carte carte = ihm.renvoyerPartie().obtenirEnsembleCartes().get(actionCourante[1]);
+						Position position;
+						boolean test = false;
+						for (int ligne = 0; ligne < carte.obtenirHauteur(); ligne++)
+						{
+							for (int colonne = 0; colonne < carte.obtenirLargeur(); colonne++)
+							{
+								position = new Position(ligne,colonne);
+								if(carte.evenementPresent(position))
+								{
+									if(carte.obtenirEvenement(position).obtenirNom() == actionCourante[2])
+										test = carte.obtenirEvenement(position).testerInterrupteur(Integer.parseInt(actionCourante[3]));
+								}
+							}
+						}
+						if(test)
+							indexBranche = Integer.parseInt(actionCourante[4]);
+						else
+							indexBranche = Integer.parseInt(actionCourante[5]);
+						break;
 				}
 			}
 		}
+	}
+
+	private String obtenirNom() {
+		return this.nom;
 	}
 }

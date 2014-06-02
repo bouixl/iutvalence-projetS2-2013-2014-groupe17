@@ -210,6 +210,11 @@ public class Partie
 		return this.carte;
 	}
 	
+	public HashMap<String, Carte> obtenirEnsembleCartes()
+	{
+		return this.ensemble_cartes;
+	}
+	
 	public Combat obtenirCombat()
 	{
 		return this.combat;
