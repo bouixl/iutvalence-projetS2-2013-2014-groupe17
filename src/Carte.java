@@ -38,7 +38,7 @@ public class Carte
 		g2.drawImage(cases[0][indexCase].obtenirApparence(), 0, 0, null);
 		if (indexCase-1 >= 0 && cases[0][indexCase] != Tile.MUR_PIERRE && cases[0][indexCase] != Tile.SOL_TROU)
 		{
-			if (cases[0][indexCase-1] == Tile.MUR_PIERRE)
+			if (cases[0][indexCase-1] == Tile.MUR_PIERRE && position.obtenirColonne()!=0)
 			{
 				g2.drawImage(Tile.OMBRE.obtenirApparence(), 0, 0, null);
 			}
