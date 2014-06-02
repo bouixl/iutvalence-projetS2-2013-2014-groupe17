@@ -49,6 +49,18 @@ public class Item
 		return this.effets;
 	}
 	
+	public void utiliserObjet(Personnage cible)
+	{
+		if (this.type==TYPE_ARME || this.type==TYPE_ARMURE)
+		{
+			
+		}
+		else if (this.type==TYPE_POTION)
+		{
+			cible.appliquerEffets(this.effets);
+		}
+	}
+	
 	public static Item genererEquipement(int niveau) {
 		String nomProduit;
 		String[] categorie;
@@ -215,15 +227,20 @@ public class Item
 			chaine = "Arme: ";
 		else if (this.type==TYPE_ARMURE)
 			chaine = "Armure: ";
-		else
+		else if (this.type==TYPE_POTION)
 			chaine = "Potion: ";
-		chaine += this.nom+" [ ";
+		else 
+			chaine = "Objet clé: ";
+		chaine += this.nom;
 		
+		/*
+		chaine += " [ ";
 		for(int i=0; i<6; i++)
 		{
 			chaine += this.effets[i]+" ";
 		}
 		chaine += "]";
+		*/
 		
 		return chaine;
 	}

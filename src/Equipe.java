@@ -15,7 +15,7 @@ public class Equipe
 	public Equipe()
 	{
 		this.position = new Position(7,7);
-		this.inventaire = null;
+		this.inventaire = new Inventaire();
 		this.direction = Direction.BAS;
 		this.apparence = null;
 		try {

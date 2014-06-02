@@ -112,6 +112,8 @@ public class Personnage
 		this.pointsDeMana = classe.obtenirPm();
 		this.pointsDeVie=classe.obtenirPv();
 		this.tourDeDefense = 0;
+		this.equipement[0] = null;
+		this.equipement[1] = null;
 	}
 
 	/**
@@ -302,6 +304,15 @@ public class Personnage
 	 */
 	public int obtenirTourDeDefense() {
 		return this.tourDeDefense;
+	}
+
+	public void appliquerEffets(int[] effets) {
+		this.pointsDeVie += effets[0];
+		this.pointsDeMana += effets[1];
+		this.force += effets[2];
+		this.constitution += effets[3];
+		this.intelligence += effets[4];
+		this.dexterite += effets[5];
 	}
 	
 }
