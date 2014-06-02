@@ -19,7 +19,7 @@ public enum Tile
 	TAS_PIERRE("textures/tiles/tas_pierre.png",true),
 	TOMBE("textures/tiles/tombe.png",true),
 	OMBRE("textures/tiles/ombre.png",false),
-	VIDE("textures/tiles/vide.png",false);
+	VIDE("textures/tiles/vide.png",true);
 	
 	private BufferedImage apparence;
 	private final String url;

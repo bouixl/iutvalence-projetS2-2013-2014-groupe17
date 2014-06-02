@@ -187,14 +187,12 @@ public class Partie
 	public void changerEtat(String etat)
 	{
 		this.etat = etat;
-		System.gc();
 	}
 	
 	public void changerCarte(String carte, Position position)
 	{
 		this.carte = ensemble_cartes.get(carte);
 		this.equipe.forcerPosition(position);
-		System.gc();
 	}
 	
 	public void changerCombat(Combat combat)
