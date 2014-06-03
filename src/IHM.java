@@ -40,6 +40,7 @@ public class IHM implements Runnable, ActionListener, KeyListener {
 	private boolean toucheDroiteEnfoncee;
 	private boolean toucheGaucheEnfoncee;
 	private long lastMoveTime;
+	private Direction lastMoveDirection;
 	
 	public IHM()
 	{
@@ -197,9 +198,10 @@ public class IHM implements Runnable, ActionListener, KeyListener {
 			    TimeUnit.MILLISECONDS.sleep(1);
 			} catch (InterruptedException e) {
 			}
-			if(this.directionMouvement!=null && (System.nanoTime()-this.lastMoveTime)>100000000)
+			if(this.directionMouvement!=null && ((System.nanoTime()-this.lastMoveTime)>150000000 || this.lastMoveDirection!=this.directionMouvement))
 			{
 				this.lastMoveTime = System.nanoTime();
+				this.lastMoveDirection = this.directionMouvement;
 				if(this.partie.obtenirCarte().peutAller(this.directionMouvement, this.partie.obtenirEquipe().obtenirPosition()))
 				{
 					this.partie.obtenirEquipe().deplacer(this.directionMouvement);
