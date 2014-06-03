@@ -204,7 +204,13 @@ public class IHM implements Runnable, ActionListener, KeyListener {
 			} catch (InterruptedException e) {
 			}
 			if(this.toucheShiftEnfoncee&&Partie.MAPPING)
-				this.partie.obtenirCarte().setCase(this.partie.obtenirEquipe().obtenirPosition(), Tile.values()[this.tileEnMain], this.layerEnEdition);
+			{
+				if(this.partie.obtenirCarte().obtenirTileCase(this.partie.obtenirEquipe().obtenirPosition(),this.layerEnEdition)!=Tile.values()[this.tileEnMain])
+				{
+					this.partie.obtenirCarte().setCase(this.partie.obtenirEquipe().obtenirPosition(), Tile.values()[this.tileEnMain], this.layerEnEdition);
+					actualiserCarte(false);
+				}
+			}
 			if(this.directionMouvement!=null && ((System.nanoTime()-this.lastMoveTime)>150000000 || this.lastMoveDirection!=this.directionMouvement))
 			{
 				this.lastMoveTime = System.nanoTime();
@@ -462,6 +468,21 @@ public class IHM implements Runnable, ActionListener, KeyListener {
 		g2.drawImage(equipe.obtenirApparence(), 0, 0, null);
 		g2.dispose();
 		this.panneauCarte.add((new JLabel(new ImageIcon(img_finale))),indexCase);
+		
+		if(Partie.MAPPING)
+		{
+			indexCase = equipe.obtenirPosition().ajouterOffset(Direction.DROITE).obtenirColonne()+(carte.obtenirLargeur()*(equipe.obtenirPosition().obtenirLigne()));
+			this.panneauCarte.remove(indexCase);
+			img_finale = new BufferedImage(Application.LARGEUR_TILE, Application.HAUTEUR_TILE, BufferedImage.TYPE_INT_ARGB);
+			g2 = img_finale.createGraphics();
+			g2.drawImage(carte.obtenirCase(equipe.obtenirPosition().ajouterOffset(Direction.DROITE)), 0, 0, null);
+			if(carte.evenementPresent(equipe.obtenirPosition().ajouterOffset(Direction.DROITE)))
+			{
+				g2.drawImage(carte.obtenirEvenement(equipe.obtenirPosition().ajouterOffset(Direction.DROITE)).obtenirApparence(), 0, 0, null);
+			}
+			g2.dispose();
+			this.panneauCarte.add((new JLabel(new ImageIcon(img_finale))),indexCase);
+		}
 		
 		indexCase = equipe.obtenirAnciennePosition().obtenirColonne()+(carte.obtenirLargeur()*(equipe.obtenirAnciennePosition().obtenirLigne()));
 		this.panneauCarte.remove(indexCase);

@@ -97,6 +97,11 @@ public class Carte
 		
 		this.cases[couche][indexCase] = tile;
 	}
+	
+	public Tile obtenirTileCase(Position position, int couche) {
+		int indexCase = position.obtenirColonne()+(this.largeur*(position.obtenirLigne()));
+		return this.cases[couche][indexCase];
+	}
 
 	public String toString()
 	{
