@@ -205,9 +205,14 @@ public class IHM implements Runnable, ActionListener, KeyListener {
 			}
 			if(this.toucheShiftEnfoncee&&Partie.MAPPING)
 			{
-				if(this.partie.obtenirCarte().obtenirTileCase(this.partie.obtenirEquipe().obtenirPosition(),this.layerEnEdition)!=Tile.values()[this.tileEnMain])
+				Tile tile;
+				if(this.tileEnMain!=13)
+					tile = Tile.values()[this.tileEnMain];
+				else
+					tile = null;
+				if(this.partie.obtenirCarte().obtenirTileCase(this.partie.obtenirEquipe().obtenirPosition(),this.layerEnEdition)!=tile)
 				{
-					this.partie.obtenirCarte().setCase(this.partie.obtenirEquipe().obtenirPosition(), Tile.values()[this.tileEnMain], this.layerEnEdition);
+					this.partie.obtenirCarte().setCase(this.partie.obtenirEquipe().obtenirPosition(), tile, this.layerEnEdition);
 					actualiserCarte(false);
 				}
 			}
@@ -313,10 +318,13 @@ public class IHM implements Runnable, ActionListener, KeyListener {
 							}
 							else
 							{
-								if(this.tileEnMain==13)
+								if(this.tileEnMain==14)
 									this.tileEnMain = 6;
 							}
-							System.out.println("Vous utilisez le tile: "+Tile.values()[this.tileEnMain]);
+							if(this.tileEnMain!=13)
+								System.out.println("Vous utilisez le tile: "+Tile.values()[this.tileEnMain]);
+							else
+								System.out.println("Vous utilisez le tile: null");
 						}
 						break;
 					case Application.TOUCHE_CHANGERLAYER:
