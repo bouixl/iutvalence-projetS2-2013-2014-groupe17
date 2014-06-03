@@ -151,15 +151,16 @@ public class Partie
 	 */
 	public void boucleJeu()
 	{
+		this.ihm.afficherCarte();
 		while (this.etat != "Fin")
 		{
 			if (this.etat == "Carte")
 			{
-				this.ihm.afficherCarte();
+				this.ihm.actualiserCarte(false);
 			}
 			else if (this.etat == "Combat")
 			{
-				this.ihm.afficherCombat();
+				
 			}
 			else if (this.etat == "Menu")
 			{
@@ -193,12 +194,15 @@ public class Partie
 	public void changerEtat(String etat)
 	{
 		this.etat = etat;
+		if(this.etat == "Carte")
+			this.ihm.afficherCarte();
 	}
 	
 	public void changerCarte(String carte, Position position)
 	{
 		this.carte = this.ensemble_cartes.get(carte);
 		this.equipe.forcerPosition(position);
+		this.ihm.afficherCarte();
 	}
 	
 	public void changerCombat(Combat combat)

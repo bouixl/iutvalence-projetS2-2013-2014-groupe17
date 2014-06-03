@@ -11,10 +11,12 @@ public class Equipe
 	private Personnage[] composition;
 	private BufferedImage apparence;
 	private Inventaire inventaire;
+	private Position anciennePosition;
 	
 	public Equipe()
 	{
 		this.position = new Position(7,7);
+		this.anciennePosition = this.position;
 		this.inventaire = new Inventaire();
 		this.direction = Direction.BAS;
 		this.apparence = null;
@@ -37,6 +39,7 @@ public class Equipe
 	public void deplacer(Direction direction)
 	{
 		this.direction = direction;
+		this.anciennePosition = this.position;
 		this.position = this.position.ajouterOffset(direction);
 	}
 	public void changerDirection(Direction direction)
@@ -80,7 +83,12 @@ public class Equipe
 	}
 
 	public void forcerPosition(Position position) {
+		this.anciennePosition = new Position(0,0);
 		this.position = position;
+	}
+
+	public Position obtenirAnciennePosition() {
+		return this.anciennePosition;
 	}
 	
 	

@@ -123,6 +123,7 @@ public class Evenement
 						if(actionCourante.length>2)
 							cible = recupererEvenement(ihm.renvoyerPartie().obtenirEnsembleCartes().get(actionCourante[2]),actionCourante[3]);
 						cible.changerApparence(actionCourante[1]);
+						ihm.actualiserCarte(true);
 						break;
 					case COLLISION:
 						cible = this;

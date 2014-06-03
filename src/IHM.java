@@ -284,5 +284,75 @@ public class IHM implements Runnable, ActionListener, KeyListener {
 	{
 		return this.partie;
 	}
+
+	public void actualiserCarte(boolean evenementsAussi) {
+		Carte carte = this.partie.obtenirCarte();
+		Equipe equipe = this.partie.obtenirEquipe();
+		int indexCase;
+		Position position;
+		Graphics2D g2;
+		BufferedImage img_finale;
+		
+		if(evenementsAussi)
+		{
+			for (int ligne = 0; ligne < carte.obtenirHauteur(); ligne++)
+			{
+				for (int colonne = 0; colonne < carte.obtenirLargeur(); colonne++)
+				{
+					position = new Position(ligne,colonne);
+					if(carte.evenementPresent(position))
+					{
+						indexCase = position.obtenirColonne()+(carte.obtenirLargeur()*(position.obtenirLigne()));
+						this.panneauCarte.remove(indexCase);
+						img_finale = new BufferedImage(Application.LARGEUR_TILE, Application.HAUTEUR_TILE, BufferedImage.TYPE_INT_ARGB);
+						g2 = img_finale.createGraphics();
+						g2.drawImage(carte.obtenirCase(position), 0, 0, null);
+						g2.drawImage(carte.obtenirEvenement(position).obtenirApparence(), 0, 0, null);
+						if(equipe.obtenirPosition().equals(position))
+						{
+							g2.drawImage(equipe.obtenirApparence(), 0, 0, null);
+						}
+						g2.dispose();
+					
+						this.panneauCarte.add((new JLabel(new ImageIcon(img_finale))),indexCase);
+					}
+				}
+			}
+			position = null;
+		}
+		
+		indexCase = equipe.obtenirPosition().obtenirColonne()+(carte.obtenirLargeur()*(equipe.obtenirPosition().obtenirLigne()));
+		this.panneauCarte.remove(indexCase);
+		img_finale = new BufferedImage(Application.LARGEUR_TILE, Application.HAUTEUR_TILE, BufferedImage.TYPE_INT_ARGB);
+		g2 = img_finale.createGraphics();
+		g2.drawImage(carte.obtenirCase(equipe.obtenirPosition()), 0, 0, null);
+		if(carte.evenementPresent(equipe.obtenirPosition()))
+		{
+			g2.drawImage(carte.obtenirEvenement(equipe.obtenirPosition()).obtenirApparence(), 0, 0, null);
+		}
+		g2.drawImage(equipe.obtenirApparence(), 0, 0, null);
+		g2.dispose();
+		this.panneauCarte.add((new JLabel(new ImageIcon(img_finale))),indexCase);
+		
+		indexCase = equipe.obtenirAnciennePosition().obtenirColonne()+(carte.obtenirLargeur()*(equipe.obtenirAnciennePosition().obtenirLigne()));
+		this.panneauCarte.remove(indexCase);
+		img_finale = new BufferedImage(Application.LARGEUR_TILE, Application.HAUTEUR_TILE, BufferedImage.TYPE_INT_ARGB);
+		g2 = img_finale.createGraphics();
+		g2.drawImage(carte.obtenirCase(equipe.obtenirAnciennePosition()), 0, 0, null);
+		if(carte.evenementPresent(equipe.obtenirAnciennePosition()))
+		{
+			g2.drawImage(carte.obtenirEvenement(equipe.obtenirAnciennePosition()).obtenirApparence(), 0, 0, null);
+		}
+		if(equipe.obtenirPosition().equals(equipe.obtenirAnciennePosition()))
+		{
+			g2.drawImage(equipe.obtenirApparence(), 0, 0, null);
+		}
+		g2.dispose();
+		this.panneauCarte.add((new JLabel(new ImageIcon(img_finale))),indexCase);
+		
+		img_finale = null;
+		this.panneauActuel.updateUI();
+		this.panneau.getViewport().setViewPosition(equipe.obtenirPosition().toPointCentre());
+	}
 	
 }
