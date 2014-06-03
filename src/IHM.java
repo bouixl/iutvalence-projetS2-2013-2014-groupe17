@@ -194,79 +194,90 @@ public class IHM implements Runnable, ActionListener, KeyListener {
 	}
 
 	@Override
-	public void keyPressed(KeyEvent arg0) {}
+	public void keyPressed(KeyEvent arg0) {
+		if(this.attendreReaction)
+		{
+			int touche = arg0.getKeyCode();
+			if(this.partie.obtenirEtat()=="Carte")
+			{
+				Direction direction;
+				boolean aBouge=false;
+				switch(touche)
+				{
+					case KeyEvent.VK_Z:
+						direction = Direction.HAUT;
+						if(this.partie.obtenirCarte().peutAller(direction, this.partie.obtenirEquipe().obtenirPosition()))
+						{
+							this.partie.obtenirEquipe().deplacer(direction);
+							aBouge = true;
+						}
+						else
+						{
+							this.partie.obtenirEquipe().changerDirection(direction);
+						}
+						break;
+					case KeyEvent.VK_D:
+						direction = Direction.DROITE;
+						if(this.partie.obtenirCarte().peutAller(direction, this.partie.obtenirEquipe().obtenirPosition()))
+						{
+							this.partie.obtenirEquipe().deplacer(direction);
+							aBouge = true;
+						}
+						else
+						{
+							this.partie.obtenirEquipe().changerDirection(direction);
+						}
+						break;
+					case KeyEvent.VK_S:
+						direction = Direction.BAS;
+						if(this.partie.obtenirCarte().peutAller(direction, this.partie.obtenirEquipe().obtenirPosition()))
+						{
+							this.partie.obtenirEquipe().deplacer(direction);
+							aBouge = true;
+						}
+						else
+						{
+							this.partie.obtenirEquipe().changerDirection(direction);
+						}
+						break;
+					case KeyEvent.VK_Q:
+						direction = Direction.GAUCHE;
+						if(this.partie.obtenirCarte().peutAller(direction, this.partie.obtenirEquipe().obtenirPosition()))
+						{
+							this.partie.obtenirEquipe().deplacer(direction);
+							aBouge = true;
+						}
+						else
+						{
+							this.partie.obtenirEquipe().changerDirection(direction);
+						}
+						break;
+					case KeyEvent.VK_SPACE:
+						if (this.partie.obtenirCarte().evenementPresent(this.partie.obtenirEquipe().obtenirPosition().ajouterOffset(this.partie.obtenirEquipe().obtenirDirection())))
+							if(!this.partie.obtenirCarte().obtenirEvenement(this.partie.obtenirEquipe().obtenirPosition().ajouterOffset(this.partie.obtenirEquipe().obtenirDirection())).auContact())
+								this.partie.obtenirCarte().obtenirEvenement(this.partie.obtenirEquipe().obtenirPosition().ajouterOffset(this.partie.obtenirEquipe().obtenirDirection())).effectuerActions(this);
+						break;
+					default:
+						break;
+				}
+				if(aBouge)
+				{
+					if(this.partie.obtenirCarte().evenementPresent(this.partie.obtenirEquipe().obtenirPosition()))
+						if(this.partie.obtenirCarte().obtenirEvenement(this.partie.obtenirEquipe().obtenirPosition()).auContact())
+							this.partie.obtenirCarte().obtenirEvenement(this.partie.obtenirEquipe().obtenirPosition()).effectuerActions(this);
+					this.partie.essaiCombat();
+				}
+				this.attendreReaction = false;
+			}
+		}
+	}
 
 	@Override
 	public void keyReleased(KeyEvent arg0) {}
 
 	@Override
 	public void keyTyped(KeyEvent arg0) {
-		if(this.attendreReaction)
-		{
-			char touche = arg0.getKeyChar();
-			if(this.partie.obtenirEtat()=="Carte")
-			{
-				Direction direction;
-				switch(touche)
-				{
-					case 'z':
-						direction = Direction.HAUT;
-						if(this.partie.obtenirCarte().peutAller(direction, this.partie.obtenirEquipe().obtenirPosition()))
-						{
-							this.partie.obtenirEquipe().deplacer(direction);
-							this.partie.essaiCombat();
-						}
-						else
-						{
-							this.partie.obtenirEquipe().changerDirection(direction);
-						}
-						break;
-					case 'd':
-						direction = Direction.DROITE;
-						if(this.partie.obtenirCarte().peutAller(direction, this.partie.obtenirEquipe().obtenirPosition()))
-						{
-							this.partie.obtenirEquipe().deplacer(direction);
-							this.partie.essaiCombat();
-						}
-						else
-						{
-							this.partie.obtenirEquipe().changerDirection(direction);
-						}
-						break;
-					case 's':
-						direction = Direction.BAS;
-						if(this.partie.obtenirCarte().peutAller(direction, this.partie.obtenirEquipe().obtenirPosition()))
-						{
-							this.partie.obtenirEquipe().deplacer(direction);
-							this.partie.essaiCombat();
-						}
-						else
-						{
-							this.partie.obtenirEquipe().changerDirection(direction);
-						}
-						break;
-					case 'q':
-						direction = Direction.GAUCHE;
-						if(this.partie.obtenirCarte().peutAller(direction, this.partie.obtenirEquipe().obtenirPosition()))
-						{
-							this.partie.obtenirEquipe().deplacer(direction);
-							this.partie.essaiCombat();
-						}
-						else
-						{
-							this.partie.obtenirEquipe().changerDirection(direction);
-						}
-						break;
-					case ' ':
-						if (this.partie.obtenirCarte().evenementPresent(this.partie.obtenirEquipe().obtenirPosition().ajouterOffset(this.partie.obtenirEquipe().obtenirDirection())))
-							this.partie.obtenirCarte().obtenirEvenement(this.partie.obtenirEquipe().obtenirPosition().ajouterOffset(this.partie.obtenirEquipe().obtenirDirection())).effectuerActions(this);
-						break;
-					default:
-						break;
-				}
-				this.attendreReaction = false;
-			}
-		}
+
 	}
 	
 	public Partie renvoyerPartie()

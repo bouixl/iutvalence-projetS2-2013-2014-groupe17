@@ -14,6 +14,7 @@ public class Evenement
 	private final String nom;
 	private BufferedImage apparence;
 	private boolean[] interrupteursLocaux;
+	private boolean auContact;
 	
 	private enum Action {
 		MESSAGE, // MESSAGE message
@@ -23,7 +24,6 @@ public class Evenement
 		COLLISION, // COLLISION true/false [carte nom_evenement]
 		CHOIX, // CHOIX option1 id_branche_option1 option2 id_branche_option2 question
 		ALLERA, // ALLERA id_branche id_action
-		TESTERMOI, // TESTERMOI id_interrupteur id_branche_option_si_on id_branche_option_si_off
 		TESTEREVENT, // TESTEREVENT id_interrupteur id_branche_option_si_on id_branche_option_si_off [carte nom_evenement]
 		TESTERVAR, // TESTERVAR nom_variable mode valeur id_branche_option_si_vrai id_branche_option_si_faux
 		MAJVAR; // MAJVAR nom_variable mode valeur
@@ -41,6 +41,21 @@ public class Evenement
 		this.bloquant = bloquant;
 		this.nom = nom;
 		this.interrupteursLocaux = new boolean[5];
+		this.auContact = false;
+	}
+	public Evenement(String nom, String texture_url, Direction direction, String[][] actions, boolean auContact)
+	{
+		this.actions = actions;
+		this.apparence = null;
+		try {
+			this.apparence = ImageIO.read(new File(texture_url));
+		} catch (IOException e) {
+		}
+		this.direction = direction;
+		this.bloquant = false;
+		this.nom = nom;
+		this.interrupteursLocaux = new boolean[5];
+		this.auContact = auContact;
 	}
 	
 	public Image obtenirApparence() {
@@ -133,12 +148,6 @@ public class Evenement
 						indexAction = Integer.parseInt(actionCourante[2]);
 						indexAction--;
 						break;
-					case TESTERMOI:
-						if(this.testerInterrupteur(Integer.parseInt(actionCourante[1])))
-							indexBranche = Integer.parseInt(actionCourante[2]);
-						else
-							indexBranche = Integer.parseInt(actionCourante[3]);
-						break;
 					case TESTEREVENT:
 						cible = this;
 						if(actionCourante.length>4)
@@ -212,5 +221,10 @@ public class Evenement
 
 	private String obtenirNom() {
 		return this.nom;
+	}
+
+	public boolean auContact()
+	{
+		return this.auContact;
 	}
 }
