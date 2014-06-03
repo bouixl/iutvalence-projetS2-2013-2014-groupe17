@@ -1,5 +1,4 @@
 import java.util.HashMap;
-import java.util.concurrent.TimeUnit;
 
 /** 
  * @author bouixl
@@ -27,6 +26,7 @@ public class Partie
 	private String etat;
 	private IHM ihm;
 	public static HashMap<String, Integer> variables = new HashMap<String, Integer> ();
+	public static boolean MAPPING = false;
 	
 	/**
 	 * Genère la partie et applique des valeurs par défaut à ses attributs

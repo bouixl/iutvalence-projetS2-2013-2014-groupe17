@@ -5,7 +5,7 @@ import java.util.HashMap;
 
 public class Carte
 {
-	private final Tile[][] cases;
+	private Tile[][] cases;
 	private final int largeur;
 	private final int hauteur;
 	private HashMap<Position, Evenement> evenements;
@@ -90,5 +90,46 @@ public class Carte
 	
 	public void retirerEvenement(Position position) {
 		this.evenements.remove(position);
+	}
+	
+	public void setCase(Position position, int tile, int couche) {
+		int indexCase = position.obtenirColonne()+(this.largeur*(position.obtenirLigne()));
+		
+		this.cases[couche][indexCase] = Tile.values()[tile];
+	}
+
+	public String toString()
+	{
+		String chaine = "this.ensemble_cartes.put(\"UneCarte\", new Carte(new Tile[][] {{";
+		int indexCase;
+		Position position;
+		for (int ligne = 0; ligne < this.obtenirHauteur(); ligne++)
+		{
+			for (int colonne = 0; colonne < this.obtenirLargeur(); colonne++)
+			{
+				position = new Position(ligne,colonne);
+				indexCase = position.obtenirColonne()+(this.largeur*(position.obtenirLigne()));
+				chaine += "Tile."+this.cases[0][indexCase].name();
+				if(indexCase+1!=this.largeur*this.hauteur)
+					chaine+=",";
+			}
+		}
+		chaine += "},{";
+		for (int ligne = 0; ligne < this.obtenirHauteur(); ligne++)
+		{
+			for (int colonne = 0; colonne < this.obtenirLargeur(); colonne++)
+			{
+				position = new Position(ligne,colonne);
+				indexCase = position.obtenirColonne()+(this.largeur*(position.obtenirLigne()));
+				if(this.cases[1][indexCase] != null)
+					chaine += "Tile."+this.cases[1][indexCase].name();
+				else
+					chaine += "null";
+				if(indexCase+1!=this.largeur*this.hauteur)
+					chaine+=",";
+			}
+		}
+		chaine += "}},"+this.obtenirLargeur()+","+this.obtenirHauteur()+",false));";
+		return chaine;
 	}
 }

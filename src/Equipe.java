@@ -12,16 +12,21 @@ public class Equipe
 	private BufferedImage apparence;
 	private Inventaire inventaire;
 	private Position anciennePosition;
+	private BufferedImage apparenceGhost;
 	
 	public Equipe()
 	{
-		this.position = new Position(7,7);
+		this.position = new Position(2,2);
 		this.anciennePosition = this.position;
 		this.inventaire = new Inventaire();
 		this.direction = Direction.BAS;
 		this.apparence = null;
 		try {
 			this.apparence = ImageIO.read(new File("textures/personnages/equipe.png"));
+		} catch (IOException e) {
+		}
+		try {
+			this.apparenceGhost = ImageIO.read(new File("textures/personnages/guide.png"));
 		} catch (IOException e) {
 		}
 		this.composition = new Personnage[4];
@@ -59,9 +64,13 @@ public class Equipe
 	
 	public BufferedImage obtenirApparence()
 	{
+		
 		BufferedImage img_equipe_decoupe = new BufferedImage(this.apparence.getWidth(null), this.apparence.getHeight(null), BufferedImage.TYPE_INT_ARGB);
 	    Graphics2D bGr = img_equipe_decoupe.createGraphics();
-	    bGr.drawImage(this.apparence, 0, 0, null);
+	    if(Partie.GHOST)
+	    	bGr.drawImage(this.apparenceGhost, 0, 0, null);
+	    else
+	    	bGr.drawImage(this.apparence, 0, 0, null);
 	    bGr.dispose();
 
 		return img_equipe_decoupe.getSubimage(0,this.direction.obtenirIndexTexture()*Application.HAUTEUR_TILE,Application.LARGEUR_TILE, Application.HAUTEUR_TILE);

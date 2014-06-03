@@ -42,8 +42,10 @@ public class IHM implements Runnable, ActionListener, KeyListener {
 	private boolean toucheGaucheEnfoncee;
 	private long lastMoveTime;
 	private Direction lastMoveDirection;
-	private int idMap;
 	private Iterator<String> iterateurCartes;
+	private boolean toucheShiftEnfoncee;
+	private int tileEnMain;
+	private int layerEnEdition;
 	
 	public IHM()
 	{
@@ -201,6 +203,8 @@ public class IHM implements Runnable, ActionListener, KeyListener {
 			    TimeUnit.MILLISECONDS.sleep(1);
 			} catch (InterruptedException e) {
 			}
+			if(this.toucheShiftEnfoncee&&Partie.MAPPING)
+				this.partie.obtenirCarte().setCase(this.partie.obtenirEquipe().obtenirPosition(), this.tileEnMain, this.layerEnEdition);
 			if(this.directionMouvement!=null && ((System.nanoTime()-this.lastMoveTime)>150000000 || this.lastMoveDirection!=this.directionMouvement))
 			{
 				this.lastMoveTime = System.nanoTime();
@@ -239,36 +243,79 @@ public class IHM implements Runnable, ActionListener, KeyListener {
 			{
 				switch(touche)
 				{
-					case KeyEvent.VK_Z:
+					case Application.TOUCHE_HAUT:
 						this.directionMouvement = Direction.HAUT;
 						this.toucheHautEnfoncee = true;
 						break;
-					case KeyEvent.VK_D:
+					case Application.TOUCHE_DROITE:
 						this.directionMouvement = Direction.DROITE;
 						this.toucheDroiteEnfoncee = true;
 						break;
-					case KeyEvent.VK_S:
+					case Application.TOUCHE_BAS:
 						this.directionMouvement = Direction.BAS;
 						this.toucheBasEnfoncee = true;
 						break;
-					case KeyEvent.VK_Q:
+					case Application.TOUCHE_GAUCHE:
 						this.directionMouvement = Direction.GAUCHE;
 						this.toucheGaucheEnfoncee = true;
 						break;
-					case KeyEvent.VK_SPACE:
+					case Application.TOUCHE_ACTION:
 						if (this.partie.obtenirCarte().evenementPresent(this.partie.obtenirEquipe().obtenirPosition().ajouterOffset(this.partie.obtenirEquipe().obtenirDirection())))
 							if(!this.partie.obtenirCarte().obtenirEvenement(this.partie.obtenirEquipe().obtenirPosition().ajouterOffset(this.partie.obtenirEquipe().obtenirDirection())).auContact())
 								this.partie.obtenirCarte().obtenirEvenement(this.partie.obtenirEquipe().obtenirPosition().ajouterOffset(this.partie.obtenirEquipe().obtenirDirection())).effectuerActions(this);
 						break;
-					case KeyEvent.VK_F7:
+					case Application.TOUCHE_CYCLEMAP:
 						if(this.iterateurCartes==null)
 							this.iterateurCartes = this.partie.obtenirEnsembleCartes().keySet().iterator();
 						if(this.iterateurCartes.hasNext())
 							this.partie.changerCarte(this.iterateurCartes.next(), new Position(0,0));
 						else
 							this.iterateurCartes = null;
-					case KeyEvent.VK_F8:
+						break;
+					case Application.TOUCHE_GHOST:
 						Partie.GHOST = !Partie.GHOST;
+						break;
+					case Application.TOUCHE_MAPPING:
+						Partie.MAPPING = !Partie.MAPPING;
+						Partie.GHOST = Partie.MAPPING;
+						this.tileEnMain = 0;
+						break;
+					case Application.TOUCHE_POSERTILE:
+						this.toucheShiftEnfoncee = true;
+						break;
+					case Application.TOUCHE_CYCLETILE:
+						this.tileEnMain++;
+						if(this.layerEnEdition==0)
+						{
+							if(this.tileEnMain==6)
+								this.tileEnMain = 0;
+						}
+						else
+						{
+							if(this.tileEnMain==13)
+								this.tileEnMain = 6;
+						}
+						System.out.println("Vous utilisez le tile: "+Tile.values()[this.tileEnMain]);
+						break;
+					case Application.TOUCHE_CHANGERLAYER:
+						if(this.layerEnEdition==0)
+						{
+							this.layerEnEdition = 1;
+							this.tileEnMain = 6;
+							
+						}
+						else
+						{
+							this.layerEnEdition = 0;
+							this.tileEnMain = 0;
+						}
+						System.out.println("Vous éditez la couche: "+this.layerEnEdition);
+						System.out.println("Vous utilisez le tile: "+Tile.values()[this.tileEnMain]);
+						break;
+					case Application.TOUCHE_EXPORTER:
+						System.out.println("N'oubliez pas de modifier le nom de la carte.");
+						System.out.println(this.partie.obtenirCarte().toString());
+						break;
 					default:
 						break;
 				}
@@ -284,25 +331,28 @@ public class IHM implements Runnable, ActionListener, KeyListener {
 		{
 			switch(touche)
 			{
-				case KeyEvent.VK_Z:
+				case Application.TOUCHE_HAUT:
 					this.toucheHautEnfoncee = false;
 					if(this.directionMouvement==Direction.HAUT)
 						this.directionMouvement = null;
 					break;
-				case KeyEvent.VK_D:
+				case Application.TOUCHE_DROITE:
 					this.toucheDroiteEnfoncee = false;
 					if(this.directionMouvement==Direction.DROITE)
 						this.directionMouvement = null;
 					break;
-				case KeyEvent.VK_S:
+				case Application.TOUCHE_BAS:
 					this.toucheBasEnfoncee = false;
 					if(this.directionMouvement==Direction.BAS)
 						this.directionMouvement = null;
 					break;
-				case KeyEvent.VK_Q:
+				case Application.TOUCHE_GAUCHE:
 					this.toucheGaucheEnfoncee = false;
 					if(this.directionMouvement==Direction.GAUCHE)
 						this.directionMouvement = null;
+					break;
+				case Application.TOUCHE_POSERTILE:
+					this.toucheShiftEnfoncee = false;
 					break;
 				default:
 					break;
