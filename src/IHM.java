@@ -274,11 +274,14 @@ public class IHM implements Runnable, ActionListener, KeyListener {
 						break;
 					case Application.TOUCHE_GHOST:
 						Partie.GHOST = !Partie.GHOST;
+						System.out.println("Mode ghost: "+Boolean.toString(Partie.MAPPING));
 						break;
 					case Application.TOUCHE_MAPPING:
 						Partie.MAPPING = !Partie.MAPPING;
 						Partie.GHOST = Partie.MAPPING;
 						this.tileEnMain = 0;
+						System.out.println("Mode mapping: "+Boolean.toString(Partie.MAPPING));
+						System.out.println("Mode ghost: "+Boolean.toString(Partie.MAPPING));
 						break;
 					case Application.TOUCHE_POSERTILE:
 						this.toucheShiftEnfoncee = true;
