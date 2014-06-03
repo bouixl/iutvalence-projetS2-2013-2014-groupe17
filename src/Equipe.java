@@ -90,7 +90,5 @@ public class Equipe
 	public Position obtenirAnciennePosition() {
 		return this.anciennePosition;
 	}
-	
-	
 }
 

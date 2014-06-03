@@ -34,10 +34,21 @@ public class IHM implements Runnable, ActionListener, KeyListener {
 	private Partie partie;
 	private JPanel panneauActuel;
 	private JPanel panneauCombat;
+	private Direction directionMouvement;
+	private boolean toucheHautEnfoncee;
+	private boolean toucheBasEnfoncee;
+	private boolean toucheDroiteEnfoncee;
+	private boolean toucheGaucheEnfoncee;
+	private long lastMoveTime;
 	
 	public IHM()
 	{
 		this.pret = false;
+		this.toucheHautEnfoncee = false;
+		this.toucheBasEnfoncee = false;
+		this.toucheDroiteEnfoncee = false;
+		this.toucheGaucheEnfoncee = false;
+		this.directionMouvement = null;
 	}
 	
 	public boolean obtenirPret()
@@ -186,6 +197,27 @@ public class IHM implements Runnable, ActionListener, KeyListener {
 			    TimeUnit.MILLISECONDS.sleep(1);
 			} catch (InterruptedException e) {
 			}
+			if(this.directionMouvement!=null && (System.nanoTime()-this.lastMoveTime)>100000000)
+			{
+				this.lastMoveTime = System.nanoTime();
+				if(this.partie.obtenirCarte().peutAller(this.directionMouvement, this.partie.obtenirEquipe().obtenirPosition()))
+				{
+					this.partie.obtenirEquipe().deplacer(this.directionMouvement);
+					if(this.partie.obtenirCarte().evenementPresent(this.partie.obtenirEquipe().obtenirPosition()))
+						if(this.partie.obtenirCarte().obtenirEvenement(this.partie.obtenirEquipe().obtenirPosition()).auContact())
+							this.partie.obtenirCarte().obtenirEvenement(this.partie.obtenirEquipe().obtenirPosition()).effectuerActions(this);
+					this.partie.essaiCombat();
+				}
+				else
+				{
+					this.partie.obtenirEquipe().changerDirection(this.directionMouvement);
+				}
+				try {
+				    TimeUnit.MILLISECONDS.sleep(9);
+				} catch (InterruptedException e) {
+				}
+				this.attendreReaction = false;
+			}
 		}
 	}
 
@@ -200,57 +232,23 @@ public class IHM implements Runnable, ActionListener, KeyListener {
 			int touche = arg0.getKeyCode();
 			if(this.partie.obtenirEtat()=="Carte")
 			{
-				Direction direction;
-				boolean aBouge=false;
 				switch(touche)
 				{
 					case KeyEvent.VK_Z:
-						direction = Direction.HAUT;
-						if(this.partie.obtenirCarte().peutAller(direction, this.partie.obtenirEquipe().obtenirPosition()))
-						{
-							this.partie.obtenirEquipe().deplacer(direction);
-							aBouge = true;
-						}
-						else
-						{
-							this.partie.obtenirEquipe().changerDirection(direction);
-						}
+						this.directionMouvement = Direction.HAUT;
+						this.toucheHautEnfoncee = true;
 						break;
 					case KeyEvent.VK_D:
-						direction = Direction.DROITE;
-						if(this.partie.obtenirCarte().peutAller(direction, this.partie.obtenirEquipe().obtenirPosition()))
-						{
-							this.partie.obtenirEquipe().deplacer(direction);
-							aBouge = true;
-						}
-						else
-						{
-							this.partie.obtenirEquipe().changerDirection(direction);
-						}
+						this.directionMouvement = Direction.DROITE;
+						this.toucheDroiteEnfoncee = true;
 						break;
 					case KeyEvent.VK_S:
-						direction = Direction.BAS;
-						if(this.partie.obtenirCarte().peutAller(direction, this.partie.obtenirEquipe().obtenirPosition()))
-						{
-							this.partie.obtenirEquipe().deplacer(direction);
-							aBouge = true;
-						}
-						else
-						{
-							this.partie.obtenirEquipe().changerDirection(direction);
-						}
+						this.directionMouvement = Direction.BAS;
+						this.toucheBasEnfoncee = true;
 						break;
 					case KeyEvent.VK_Q:
-						direction = Direction.GAUCHE;
-						if(this.partie.obtenirCarte().peutAller(direction, this.partie.obtenirEquipe().obtenirPosition()))
-						{
-							this.partie.obtenirEquipe().deplacer(direction);
-							aBouge = true;
-						}
-						else
-						{
-							this.partie.obtenirEquipe().changerDirection(direction);
-						}
+						this.directionMouvement = Direction.GAUCHE;
+						this.toucheGaucheEnfoncee = true;
 						break;
 					case KeyEvent.VK_SPACE:
 						if (this.partie.obtenirCarte().evenementPresent(this.partie.obtenirEquipe().obtenirPosition().ajouterOffset(this.partie.obtenirEquipe().obtenirDirection())))
@@ -260,20 +258,61 @@ public class IHM implements Runnable, ActionListener, KeyListener {
 					default:
 						break;
 				}
-				if(aBouge)
-				{
-					if(this.partie.obtenirCarte().evenementPresent(this.partie.obtenirEquipe().obtenirPosition()))
-						if(this.partie.obtenirCarte().obtenirEvenement(this.partie.obtenirEquipe().obtenirPosition()).auContact())
-							this.partie.obtenirCarte().obtenirEvenement(this.partie.obtenirEquipe().obtenirPosition()).effectuerActions(this);
-					this.partie.essaiCombat();
-				}
 				this.attendreReaction = false;
 			}
 		}
 	}
 
 	@Override
-	public void keyReleased(KeyEvent arg0) {}
+	public void keyReleased(KeyEvent arg0) {
+		int touche = arg0.getKeyCode();
+		if(this.partie.obtenirEtat()=="Carte")
+		{
+			switch(touche)
+			{
+				case KeyEvent.VK_Z:
+					this.toucheHautEnfoncee = false;
+					if(this.directionMouvement==Direction.HAUT)
+						this.directionMouvement = null;
+					break;
+				case KeyEvent.VK_D:
+					this.toucheDroiteEnfoncee = false;
+					if(this.directionMouvement==Direction.DROITE)
+						this.directionMouvement = null;
+					break;
+				case KeyEvent.VK_S:
+					this.toucheBasEnfoncee = false;
+					if(this.directionMouvement==Direction.BAS)
+						this.directionMouvement = null;
+					break;
+				case KeyEvent.VK_Q:
+					this.toucheGaucheEnfoncee = false;
+					if(this.directionMouvement==Direction.GAUCHE)
+						this.directionMouvement = null;
+					break;
+				default:
+					break;
+			}
+			if(!this.toucheHautEnfoncee&&!toucheDroiteEnfoncee&&!toucheBasEnfoncee&&!toucheGaucheEnfoncee)
+			{
+				this.directionMouvement = null;
+			}
+			else
+			{
+				if(this.directionMouvement == null)
+				{
+					if(this.toucheHautEnfoncee)
+						this.directionMouvement = Direction.HAUT;
+					else if(this.toucheDroiteEnfoncee)
+						this.directionMouvement = Direction.DROITE;
+					else if(this.toucheBasEnfoncee)
+						this.directionMouvement = Direction.BAS;
+					else if(this.toucheGaucheEnfoncee)
+						this.directionMouvement = Direction.GAUCHE;
+				}
+			}
+		}
+	}
 
 	@Override
 	public void keyTyped(KeyEvent arg0) {
