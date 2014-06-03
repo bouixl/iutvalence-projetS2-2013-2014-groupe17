@@ -92,10 +92,10 @@ public class Carte
 		this.evenements.remove(position);
 	}
 	
-	public void setCase(Position position, int tile, int couche) {
+	public void setCase(Position position, Tile tile, int couche) {
 		int indexCase = position.obtenirColonne()+(this.largeur*(position.obtenirLigne()));
 		
-		this.cases[couche][indexCase] = Tile.values()[tile];
+		this.cases[couche][indexCase] = tile;
 	}
 
 	public String toString()

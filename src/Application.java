@@ -17,12 +17,13 @@ public class Application
 	public static final int TOUCHE_GAUCHE = KeyEvent.VK_Q; // Maintenue
 	public static final int TOUCHE_BAS = KeyEvent.VK_S; // Maintenue
 	public static final int TOUCHE_ACTION = KeyEvent.VK_SPACE;
-	public static final int TOUCHE_GHOST = KeyEvent.VK_F9;
-	public static final int TOUCHE_CYCLEMAP = KeyEvent.VK_F10;
-	public static final int TOUCHE_MAPPING = KeyEvent.VK_F5;
-	public static final int TOUCHE_CYCLETILE = KeyEvent.VK_F7;
-	public static final int TOUCHE_CHANGERLAYER = KeyEvent.VK_F6;
-	public static final int TOUCHE_EXPORTER = KeyEvent.VK_F8;
+	public static final int TOUCHE_GHOST = KeyEvent.VK_9;
+	public static final int TOUCHE_CYCLEMAP = KeyEvent.VK_0;
+	public static final int TOUCHE_MAPPING = KeyEvent.VK_5;
+	public static final int TOUCHE_CYCLETILE = KeyEvent.VK_7;
+	public static final int TOUCHE_CHANGERLAYER = KeyEvent.VK_6;
+	public static final int TOUCHE_EXPORTER = KeyEvent.VK_8;
+	public static final int TOUCHE_CREERMAP = KeyEvent.VK_INSERT;
 	public static final int TOUCHE_POSERTILE = KeyEvent.VK_SHIFT; // Maintenue
 	
 	

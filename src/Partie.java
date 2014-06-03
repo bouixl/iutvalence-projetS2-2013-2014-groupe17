@@ -6,6 +6,7 @@ import java.util.HashMap;
  */
 public class Partie
 {
+	public final static boolean DEBUG = true;
 	public static boolean GHOST = false;
 	/**
 	 * L'équipe qui sera utilisée par le joueur
@@ -51,6 +52,20 @@ public class Partie
 		this.carte = this.ensemble_cartes.get("TestZone");
 		this.etat = "Carte";
 		boucleJeu();
+	}
+	
+	public void nouvelleCarte(int largeur, int hauteur, String nom) {
+		Position position;
+		this.ensemble_cartes.put(nom, new Carte(new Tile[2][largeur*hauteur], largeur, hauteur, false));
+		for (int ligne = 0; ligne < hauteur; ligne++)
+		{
+			for (int colonne = 0; colonne < largeur; colonne++)
+			{
+				position = new Position(ligne,colonne);
+				this.ensemble_cartes.get(nom).setCase(position, Tile.MUR_PIERRE, 0);
+				this.ensemble_cartes.get(nom).setCase(position, null, 1);
+			}
+		}
 	}
 	
 	private void creerCartes() {
