@@ -7,7 +7,7 @@ import java.util.concurrent.TimeUnit;
  */
 public class Partie
 {
-	public static final boolean GHOST = false;
+	public static boolean GHOST = false;
 	/**
 	 * L'équipe qui sera utilisée par le joueur
 	 */

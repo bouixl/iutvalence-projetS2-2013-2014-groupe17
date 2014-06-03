@@ -7,6 +7,7 @@ import java.awt.event.ActionListener;
 import java.awt.event.KeyEvent;
 import java.awt.event.KeyListener;
 import java.awt.image.BufferedImage;
+import java.util.Iterator;
 import java.util.concurrent.TimeUnit;
 
 import javax.swing.ImageIcon;
@@ -41,6 +42,8 @@ public class IHM implements Runnable, ActionListener, KeyListener {
 	private boolean toucheGaucheEnfoncee;
 	private long lastMoveTime;
 	private Direction lastMoveDirection;
+	private int idMap;
+	private Iterator<String> iterateurCartes;
 	
 	public IHM()
 	{
@@ -257,6 +260,15 @@ public class IHM implements Runnable, ActionListener, KeyListener {
 							if(!this.partie.obtenirCarte().obtenirEvenement(this.partie.obtenirEquipe().obtenirPosition().ajouterOffset(this.partie.obtenirEquipe().obtenirDirection())).auContact())
 								this.partie.obtenirCarte().obtenirEvenement(this.partie.obtenirEquipe().obtenirPosition().ajouterOffset(this.partie.obtenirEquipe().obtenirDirection())).effectuerActions(this);
 						break;
+					case KeyEvent.VK_F7:
+						if(this.iterateurCartes==null)
+							this.iterateurCartes = this.partie.obtenirEnsembleCartes().keySet().iterator();
+						if(this.iterateurCartes.hasNext())
+							this.partie.changerCarte(this.iterateurCartes.next(), new Position(0,0));
+						else
+							this.iterateurCartes = null;
+					case KeyEvent.VK_F8:
+						Partie.GHOST = !Partie.GHOST;
 					default:
 						break;
 				}
