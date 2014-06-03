@@ -31,8 +31,8 @@ public class Position {
 	public int hashCode() {
 		final int prime = 31;
 		int result = 1;
-		result = prime * result + colonne;
-		result = prime * result + ligne;
+		result = prime * result + this.colonne;
+		result = prime * result + this.ligne;
 		return result;
 	}
 
@@ -50,7 +50,7 @@ public class Position {
 
 	@Override
 	public String toString() {
-		return "Position [ligne=" + ligne + ", colonne=" + colonne + "]";
+		return "Position [ligne=" + this.ligne + ", colonne=" + this.colonne + "]";
 	}
 
 	public Point toPoint() {

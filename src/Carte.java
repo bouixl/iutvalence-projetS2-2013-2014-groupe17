@@ -35,17 +35,17 @@ public class Carte
 		
 		BufferedImage img_case = new BufferedImage(32, 32, 1);
 		Graphics2D g2 = img_case.createGraphics();
-		g2.drawImage(cases[0][indexCase].obtenirApparence(), 0, 0, null);
-		if (indexCase-1 >= 0 && cases[0][indexCase] != Tile.MUR_PIERRE && cases[0][indexCase] != Tile.SOL_TROU)
+		g2.drawImage(this.cases[0][indexCase].obtenirApparence(), 0, 0, null);
+		if (indexCase-1 >= 0 && this.cases[0][indexCase] != Tile.MUR_PIERRE && this.cases[0][indexCase] != Tile.SOL_TROU)
 		{
-			if (cases[0][indexCase-1] == Tile.MUR_PIERRE && position.obtenirColonne()!=0)
+			if (this.cases[0][indexCase-1] == Tile.MUR_PIERRE && position.obtenirColonne()!=0)
 			{
 				g2.drawImage(Tile.OMBRE.obtenirApparence(), 0, 0, null);
 			}
 		}
-		if (cases[1][indexCase] != null)
+		if (this.cases[1][indexCase] != null)
 		{
-			g2.drawImage(cases[1][indexCase].obtenirApparence(), 0, 0, null);
+			g2.drawImage(this.cases[1][indexCase].obtenirApparence(), 0, 0, null);
 		}
 		g2.dispose();
 		
@@ -53,7 +53,7 @@ public class Carte
 	}
 	
 	public Evenement obtenirEvenement(Position position) {
-		return evenements.get(position);
+		return this.evenements.get(position);
 	}
 
 	public boolean peutAller(Direction direction, Position position) 
@@ -63,11 +63,11 @@ public class Carte
 		
 		if (positionArrivee.estValideDansCarte(this))
 		{
-			if (cases[0][indexCase].estBloquant())
+			if (this.cases[0][indexCase].estBloquant())
 				return false;
-			if (cases[1][indexCase] != null)
+			if (this.cases[1][indexCase] != null)
 			{
-				if (cases[1][indexCase].estBloquant())
+				if (this.cases[1][indexCase].estBloquant())
 					return false;
 			}
 			if(evenementPresent(positionArrivee))
@@ -81,7 +81,7 @@ public class Carte
 	}
 
 	public boolean evenementPresent(Position position) {
-		return evenements.containsKey(position);
+		return this.evenements.containsKey(position);
 	}
 	
 	public void ajouterEvenement(Position position, Evenement evenement) {

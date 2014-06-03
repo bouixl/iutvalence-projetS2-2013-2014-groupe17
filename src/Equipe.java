@@ -56,9 +56,9 @@ public class Equipe
 	
 	public BufferedImage obtenirApparence()
 	{
-		BufferedImage img_equipe_decoupe = new BufferedImage(apparence.getWidth(null), apparence.getHeight(null), BufferedImage.TYPE_INT_ARGB);
+		BufferedImage img_equipe_decoupe = new BufferedImage(this.apparence.getWidth(null), this.apparence.getHeight(null), BufferedImage.TYPE_INT_ARGB);
 	    Graphics2D bGr = img_equipe_decoupe.createGraphics();
-	    bGr.drawImage(apparence, 0, 0, null);
+	    bGr.drawImage(this.apparence, 0, 0, null);
 	    bGr.dispose();
 
 		return img_equipe_decoupe.getSubimage(0,this.direction.obtenirIndexTexture()*Application.HAUTEUR_TILE,Application.LARGEUR_TILE, Application.HAUTEUR_TILE);

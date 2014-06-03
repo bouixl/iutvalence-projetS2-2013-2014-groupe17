@@ -138,6 +138,8 @@ private double chanceRecompense;
 				case 3:
 					dexterite += 1;
 					break;
+				default:
+					break;
 			}
 		}
 		force *= mult;
@@ -153,7 +155,7 @@ private double chanceRecompense;
 	}
 	public String toString() {
 		String chaine ="";
-		chaine += "Monstre : "+nom+ "["+pointsDeVieMax+","+pointsDeManaMax+","+force+","+constitution+","+intelligence+","+dexterite+"]";		
+		chaine += "Monstre : "+this.nom+ "["+this.pointsDeVieMax+","+this.pointsDeManaMax+","+this.force+","+this.constitution+","+this.intelligence+","+this.dexterite+"]";		
 		return chaine;
 	}
 

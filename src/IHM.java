@@ -18,6 +18,7 @@ import javax.swing.JMenuItem;
 import javax.swing.JOptionPane;
 import javax.swing.JPanel;
 import javax.swing.JScrollPane;
+import javax.swing.ScrollPaneConstants;
 import javax.swing.WindowConstants;
 
 public class IHM implements Runnable, ActionListener, KeyListener {
@@ -80,7 +81,7 @@ public class IHM implements Runnable, ActionListener, KeyListener {
 	
 	public void afficherCarte()
 	{
-		this.panneauActuel = panneauCarte;
+		this.panneauActuel = this.panneauCarte;
 		Position position;
 		Carte carte = this.partie.obtenirCarte();
 		Equipe equipe = this.partie.obtenirEquipe();
@@ -160,12 +161,12 @@ public class IHM implements Runnable, ActionListener, KeyListener {
 		barreDeMenu.add(menu);
 		this.fenetre.setJMenuBar(barreDeMenu);
 
-		this.panneau = new JScrollPane(JScrollPane.VERTICAL_SCROLLBAR_NEVER,JScrollPane.HORIZONTAL_SCROLLBAR_NEVER);
+		this.panneau = new JScrollPane(ScrollPaneConstants.VERTICAL_SCROLLBAR_NEVER,ScrollPaneConstants.HORIZONTAL_SCROLLBAR_NEVER);
 		this.panneauCombat = new JPanel();
 		this.panneauCombat.setBackground(Color.RED);
 		this.panneauCarte = new JPanel();
 		this.panneauCarte.setBackground(Color.BLACK);
-		this.panneauActuel = panneauCarte;
+		this.panneauActuel = this.panneauCarte;
 		this.panneau.getViewport().add(this.panneauActuel);
 		this.panneau.getViewport().setBackground(Color.BLACK);
 		this.panneau.setPreferredSize(new Dimension(Application.LARGEUR_ECRAN, Application.HAUTEUR_ECRAN));
@@ -259,6 +260,8 @@ public class IHM implements Runnable, ActionListener, KeyListener {
 					case ' ':
 						if (this.partie.obtenirCarte().evenementPresent(this.partie.obtenirEquipe().obtenirPosition().ajouterOffset(this.partie.obtenirEquipe().obtenirDirection())))
 							this.partie.obtenirCarte().obtenirEvenement(this.partie.obtenirEquipe().obtenirPosition().ajouterOffset(this.partie.obtenirEquipe().obtenirDirection())).effectuerActions(this);
+						break;
+					default:
 						break;
 				}
 				this.attendreReaction = false;

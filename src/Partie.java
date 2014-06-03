@@ -24,10 +24,11 @@ public class Partie
 	 */
 	private String etat;
 	private IHM ihm;
+	public static HashMap<String, Integer> variables = new HashMap<String, Integer> ();
 	
 	/**
 	 * Genère la partie et applique des valeurs par défaut à ses attributs
-	 * @param ihm 
+	 * @param ihm interface
 	 */
 	public Partie(IHM ihm)
 	{
@@ -45,7 +46,7 @@ public class Partie
 	public void lancerPartie()
 	{
 		creerCartes();
-		this.carte = ensemble_cartes.get("TestZone");
+		this.carte = this.ensemble_cartes.get("TestZone");
 		this.etat = "Carte";
 		boucleJeu();
 	}
@@ -102,9 +103,9 @@ public class Partie
 					null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,
 					null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null}
 				},26,24,false));
-		ensemble_cartes.get("TestZone").ajouterEvenement(new Position(13,12), new Evenement("Livre","textures/evenements/livre.png",Direction.BAS,true,new String[][] {{"MESSAGE blargh\nblargh autre ligne","CHOIX Oui 1 Blargh 0 Cette option marche ?","MESSAGE Pourquoi non ?",null},{null,null,"MESSAGE Les embranchements semblent marcher.","ALLERA 0 0"}}));
-		ensemble_cartes.get("TestZone").ajouterEvenement(new Position(13,9), new Evenement("Grille","textures/evenements/portes/grille_fermee.png",Direction.BAS,true,new String[][] {{"TESTEREVENT 0 1 0 TestZone LevierRouge ","MESSAGE La grille est fermée..."},{null,null}}));
-		ensemble_cartes.get("TestZone").ajouterEvenement(new Position(9,7), new Evenement("LevierRouge","textures/evenements/leviers/levier_rouge_gauche.png",Direction.BAS,true,new String[][] {{"TESTEREVENT 0 2 0","CHOIX Oui 1 Non 0 Pousser le levier ?",null,null,null,null,null},{null,null,"MESSAGE Un clic metallique se faite entendre non loin.","INTERRUPTEUR 0","APPARENCE textures/evenements/leviers/levier_rouge_droite.png","APPARENCE textures/evenements/portes/grille_ouverte.png TestZone Grille","COLLISION false TestZone Grille"},{null,"MESSAGE Le levier est bloqué...",null,null,null,null,null}}));
+		this.ensemble_cartes.get("TestZone").ajouterEvenement(new Position(13,12), new Evenement("Livre","textures/evenements/livre.png",Direction.BAS,true,new String[][] {{"MESSAGE blargh\nblargh autre ligne","CHOIX Oui 1 Blargh 0 Cette option marche ?","MESSAGE Pourquoi non ?",null},{null,null,"MESSAGE Les embranchements semblent marcher.","ALLERA 0 0"}}));
+		this.ensemble_cartes.get("TestZone").ajouterEvenement(new Position(13,9), new Evenement("Grille","textures/evenements/portes/grille_fermee.png",Direction.BAS,true,new String[][] {{"TESTEREVENT 0 1 0 TestZone LevierRouge ","MESSAGE La grille est fermée..."},{null,null}}));
+		this.ensemble_cartes.get("TestZone").ajouterEvenement(new Position(9,7), new Evenement("LevierRouge","textures/evenements/leviers/levier_rouge_gauche.png",Direction.BAS,true,new String[][] {{"TESTEREVENT 0 2 0","CHOIX Oui 1 Non 0 Pousser le levier ?",null,null,null,null,null},{null,null,"MESSAGE Un clic metallique se faite entendre non loin.","INTERRUPTEUR 0","APPARENCE textures/evenements/leviers/levier_rouge_droite.png","APPARENCE textures/evenements/portes/grille_ouverte.png TestZone Grille","COLLISION false TestZone Grille"},{null,"MESSAGE Le levier est bloqué...",null,null,null,null,null}}));
 		
 		
 		this.ensemble_cartes.put("MiniZone", new Carte(new Tile[][] 
@@ -140,6 +141,8 @@ public class Partie
 					null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,
 					null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null}
 				},20,15,false));
+		this.ensemble_cartes.put("Blargh", new Carte(new Tile[][] {{Tile.MUR_PIERRE,Tile.MUR_PIERRE,Tile.MUR_PIERRE,Tile.MUR_PIERRE,Tile.MUR_PIERRE,Tile.MUR_PIERRE,Tile.MUR_PIERRE,Tile.MUR_PIERRE,Tile.MUR_PIERRE,Tile.MUR_PIERRE,Tile.MUR_PIERRE,Tile.MUR_PIERRE,Tile.MUR_PIERRE,Tile.MUR_PIERRE,Tile.MUR_PIERRE,Tile.MUR_PIERRE,Tile.MUR_PIERRE,Tile.MUR_PIERRE,Tile.MUR_PIERRE,Tile.MUR_PIERRE,Tile.MUR_PIERRE,Tile.MUR_PIERRE,Tile.MUR_PIERRE,Tile.MUR_PIERRE,Tile.MUR_PIERRE,Tile.MUR_PIERRE,Tile.MUR_PIERRE,Tile.MUR_PIERRE,Tile.MUR_PIERRE,Tile.MUR_PIERRE,Tile.MUR_PIERRE,Tile.MUR_PIERRE,Tile.MUR_PIERRE,Tile.MUR_PIERRE,Tile.MUR_PIERRE,Tile.MUR_PIERRE,Tile.MUR_PIERRE,Tile.MUR_PIERRE,Tile.MUR_PIERRE,Tile.MUR_PIERRE,Tile.MUR_PIERRE,Tile.MUR_PIERRE,Tile.MUR_PIERRE,Tile.MUR_PIERRE,Tile.MUR_PIERRE,Tile.SOL_PIERRE_1,Tile.SOL_PIERRE_1,Tile.SOL_PIERRE_1,Tile.SOL_PIERRE_1,Tile.SOL_PIERRE_1,Tile.SOL_PIERRE_1,Tile.SOL_PIERRE_1,Tile.SOL_PIERRE_1,Tile.SOL_PIERRE_1,Tile.SOL_PIERRE_1,Tile.SOL_PIERRE_1,Tile.MUR_PIERRE,Tile.MUR_PIERRE,Tile.MUR_PIERRE,Tile.MUR_PIERRE,Tile.MUR_PIERRE,Tile.MUR_PIERRE,Tile.MUR_PIERRE,Tile.MUR_PIERRE,Tile.MUR_PIERRE,Tile.SOL_PIERRE_1,Tile.SOL_PIERRE_2,Tile.SOL_PIERRE_1,Tile.SOL_PIERRE_2,Tile.SOL_PIERRE_1,Tile.SOL_PIERRE_2,Tile.SOL_PIERRE_1,Tile.SOL_PIERRE_2,Tile.SOL_PIERRE_1,Tile.SOL_PIERRE_2,Tile.SOL_PIERRE_1,Tile.MUR_PIERRE,Tile.MUR_PIERRE,Tile.MUR_PIERRE,Tile.MUR_PIERRE,Tile.MUR_PIERRE,Tile.MUR_PIERRE,Tile.MUR_PIERRE,Tile.MUR_PIERRE,Tile.MUR_PIERRE,Tile.SOL_PIERRE_1,Tile.SOL_PIERRE_1,Tile.SOL_PIERRE_1,Tile.SOL_PIERRE_1,Tile.SOL_PIERRE_1,Tile.SOL_PIERRE_1,Tile.SOL_PIERRE_1,Tile.SOL_PIERRE_1,Tile.SOL_PIERRE_1,Tile.SOL_PIERRE_1,Tile.SOL_PIERRE_1,Tile.MUR_PIERRE,Tile.MUR_PIERRE,Tile.MUR_PIERRE,Tile.MUR_PIERRE,Tile.MUR_PIERRE,Tile.MUR_PIERRE,Tile.MUR_PIERRE,Tile.MUR_PIERRE,Tile.MUR_PIERRE,Tile.SOL_PIERRE_1,Tile.SOL_PIERRE_2,Tile.SOL_PIERRE_1,Tile.SOL_PIERRE_2,Tile.SOL_PIERRE_1,Tile.SOL_PIERRE_2,Tile.SOL_PIERRE_1,Tile.SOL_PIERRE_2,Tile.SOL_PIERRE_1,Tile.SOL_PIERRE_2,Tile.SOL_PIERRE_1,Tile.MUR_PIERRE,Tile.MUR_PIERRE,Tile.MUR_PIERRE,Tile.MUR_PIERRE,Tile.MUR_PIERRE,Tile.MUR_PIERRE,Tile.MUR_PIERRE,Tile.MUR_PIERRE,Tile.MUR_PIERRE,Tile.SOL_PIERRE_1,Tile.SOL_PIERRE_1,Tile.SOL_PIERRE_1,Tile.SOL_PIERRE_1,Tile.SOL_PIERRE_1,Tile.SOL_PIERRE_1,Tile.SOL_PIERRE_1,Tile.SOL_PIERRE_1,Tile.SOL_PIERRE_1,Tile.SOL_PIERRE_1,Tile.SOL_PIERRE_1,Tile.MUR_PIERRE,Tile.MUR_PIERRE,Tile.MUR_PIERRE,Tile.MUR_PIERRE,Tile.MUR_PIERRE,Tile.MUR_PIERRE,Tile.MUR_PIERRE,Tile.MUR_PIERRE,Tile.MUR_PIERRE,Tile.SOL_PIERRE_1,Tile.SOL_PIERRE_2,Tile.SOL_PIERRE_1,Tile.SOL_PIERRE_2,Tile.SOL_PIERRE_1,Tile.SOL_PIERRE_2,Tile.SOL_PIERRE_1,Tile.SOL_PIERRE_2,Tile.SOL_PIERRE_1,Tile.SOL_PIERRE_2,Tile.SOL_PIERRE_1,Tile.MUR_PIERRE,Tile.MUR_PIERRE,Tile.MUR_PIERRE,Tile.MUR_PIERRE,Tile.MUR_PIERRE,Tile.MUR_PIERRE,Tile.MUR_PIERRE,Tile.MUR_PIERRE,Tile.MUR_PIERRE,Tile.SOL_PIERRE_1,Tile.SOL_PIERRE_1,Tile.SOL_PIERRE_1,Tile.SOL_PIERRE_1,Tile.SOL_PIERRE_1,Tile.SOL_PIERRE_1,Tile.SOL_PIERRE_1,Tile.SOL_PIERRE_1,Tile.SOL_PIERRE_1,Tile.SOL_PIERRE_1,Tile.SOL_PIERRE_1,Tile.MUR_PIERRE,Tile.MUR_PIERRE,Tile.MUR_PIERRE,Tile.MUR_PIERRE,Tile.MUR_PIERRE,Tile.MUR_PIERRE,Tile.MUR_PIERRE,Tile.MUR_PIERRE,Tile.MUR_PIERRE,Tile.SOL_PIERRE_1,Tile.SOL_PIERRE_2,Tile.SOL_PIERRE_1,Tile.SOL_PIERRE_2,Tile.SOL_PIERRE_1,Tile.SOL_PIERRE_2,Tile.SOL_PIERRE_1,Tile.SOL_PIERRE_2,Tile.SOL_PIERRE_1,Tile.SOL_PIERRE_2,Tile.SOL_PIERRE_1,Tile.MUR_PIERRE,Tile.MUR_PIERRE,Tile.MUR_PIERRE,Tile.MUR_PIERRE,Tile.MUR_PIERRE,Tile.MUR_PIERRE,Tile.MUR_PIERRE,Tile.MUR_PIERRE,Tile.MUR_PIERRE,Tile.SOL_PIERRE_1,Tile.SOL_PIERRE_1,Tile.SOL_PIERRE_1,Tile.SOL_PIERRE_1,Tile.SOL_PIERRE_1,Tile.SOL_PIERRE_1,Tile.SOL_PIERRE_1,Tile.SOL_PIERRE_1,Tile.SOL_PIERRE_1,Tile.SOL_PIERRE_1,Tile.SOL_PIERRE_1,Tile.MUR_PIERRE,Tile.MUR_PIERRE,Tile.MUR_PIERRE,Tile.MUR_PIERRE,Tile.MUR_PIERRE,Tile.MUR_PIERRE,Tile.MUR_PIERRE,Tile.MUR_PIERRE,Tile.MUR_PIERRE,Tile.MUR_PIERRE,Tile.MUR_PIERRE,Tile.MUR_PIERRE,Tile.MUR_PIERRE,Tile.MUR_PIERRE,Tile.MUR_PIERRE,Tile.MUR_PIERRE,Tile.MUR_PIERRE,Tile.MUR_PIERRE,Tile.MUR_PIERRE,Tile.MUR_PIERRE,Tile.MUR_PIERRE,Tile.MUR_PIERRE,Tile.MUR_PIERRE,Tile.MUR_PIERRE,Tile.MUR_PIERRE,Tile.MUR_PIERRE,Tile.MUR_PIERRE,Tile.MUR_PIERRE,Tile.MUR_PIERRE,Tile.MUR_PIERRE,Tile.MUR_PIERRE,Tile.MUR_PIERRE,Tile.MUR_PIERRE,Tile.MUR_PIERRE,Tile.MUR_PIERRE,Tile.MUR_PIERRE,Tile.MUR_PIERRE,Tile.MUR_PIERRE,Tile.MUR_PIERRE,Tile.MUR_PIERRE,Tile.MUR_PIERRE,Tile.MUR_PIERRE,Tile.MUR_PIERRE,Tile.MUR_PIERRE,Tile.MUR_PIERRE,Tile.MUR_PIERRE,Tile.MUR_PIERRE,Tile.MUR_PIERRE,Tile.MUR_PIERRE,Tile.MUR_PIERRE,Tile.MUR_PIERRE,Tile.MUR_PIERRE,Tile.MUR_PIERRE,Tile.MUR_PIERRE,Tile.MUR_PIERRE,Tile.MUR_PIERRE,Tile.MUR_PIERRE,Tile.MUR_PIERRE,Tile.MUR_PIERRE,Tile.MUR_PIERRE,Tile.MUR_PIERRE,Tile.MUR_PIERRE,Tile.MUR_PIERRE,Tile.MUR_PIERRE,Tile.MUR_PIERRE,Tile.MUR_PIERRE,Tile.MUR_PIERRE,Tile.MUR_PIERRE,Tile.MUR_PIERRE,Tile.MUR_PIERRE,Tile.MUR_PIERRE,Tile.MUR_PIERRE,Tile.MUR_PIERRE,Tile.MUR_PIERRE,Tile.MUR_PIERRE,Tile.MUR_PIERRE,Tile.MUR_PIERRE,Tile.MUR_PIERRE,Tile.MUR_PIERRE,Tile.MUR_PIERRE,Tile.MUR_PIERRE,Tile.MUR_PIERRE,Tile.MUR_PIERRE,Tile.MUR_PIERRE},{null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,Tile.TOMBE,Tile.TOMBE,Tile.TOMBE,Tile.TOMBE,Tile.TOMBE,Tile.TOMBE,Tile.TOMBE,Tile.TOMBE,Tile.TAS_PIERRE,null,null,null,null,null,null,null,null,null,null,null,null,null,Tile.TOMBE,Tile.TOMBE,Tile.TOMBE,Tile.TOMBE,Tile.TOMBE,null,null,Tile.TABOURET_CASSE,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,Tile.TABOURET,Tile.TOMBE,Tile.ROCHER,null,Tile.TABLE_CASSE,null,null,null,null,null,null,null,null,null,null,null,null,Tile.ROCHER,Tile.TABLE_CASSE,Tile.ROCHER,Tile.ROCHER,Tile.ROCHER,Tile.ROCHER,Tile.ROCHER,Tile.TABOURET,null,null,null,null,null,null,null,null,null,null,null,Tile.TABLE_CASSE,null,Tile.TABLE_CASSE,Tile.TOMBE,Tile.TOMBE,Tile.TOMBE,null,null,Tile.TABLE,null,null,null,null,null,null,null,null,null,null,null,Tile.ROCHER,Tile.TABOURET_CASSE,null,null,null,null,Tile.ROCHER,null,Tile.ROCHER,null,null,null,null,null,null,null,null,null,null,null,Tile.ROCHER,null,null,null,Tile.TABOURET,null,null,null,Tile.ROCHER,null,null,null,null,null,null,null,null,null,null,null,Tile.ROCHER,null,null,Tile.TABOURET,Tile.TABLE_CASSE,Tile.TABOURET,null,null,Tile.ROCHER,null,null,null,null,null,null,null,null,null,null,null,null,Tile.ROCHER,Tile.ROCHER,Tile.ROCHER,Tile.ROCHER,Tile.ROCHER,null,Tile.ROCHER,Tile.ROCHER,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null}},20,15,false));
+
 	}
 
 	/**
@@ -147,17 +150,17 @@ public class Partie
 	 */
 	public void boucleJeu()
 	{
-		while (etat != "Fin")
+		while (this.etat != "Fin")
 		{
-			if (etat == "Carte")
+			if (this.etat == "Carte")
 			{
 				this.ihm.afficherCarte();
 			}
-			else if (etat == "Combat")
+			else if (this.etat == "Combat")
 			{
 				this.ihm.afficherCombat();
 			}
-			else if (etat == "Menu")
+			else if (this.etat == "Menu")
 			{
 				
 			}
@@ -193,7 +196,7 @@ public class Partie
 	
 	public void changerCarte(String carte, Position position)
 	{
-		this.carte = ensemble_cartes.get(carte);
+		this.carte = this.ensemble_cartes.get(carte);
 		this.equipe.forcerPosition(position);
 	}
 	
