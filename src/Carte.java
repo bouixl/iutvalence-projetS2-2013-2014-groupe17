@@ -64,16 +64,16 @@ public class Carte
 		if (positionArrivee.estValideDansCarte(this))
 		{
 			if (this.cases[0][indexCase].estBloquant())
-				return false;
+				return (Partie.GHOST || false);
 			if (this.cases[1][indexCase] != null)
 			{
 				if (this.cases[1][indexCase].estBloquant())
-					return false;
+					return (Partie.GHOST || false);
 			}
 			if(evenementPresent(positionArrivee))
 			{
 				if (obtenirEvenement(positionArrivee).estBloquant())
-					return false;
+					return (Partie.GHOST || false);
 			}
 			return true;
 		}

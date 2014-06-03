@@ -6,6 +6,7 @@ import java.util.HashMap;
  */
 public class Partie
 {
+	public static final boolean GHOST = false;
 	/**
 	 * L'équipe qui sera utilisée par le joueur
 	 */
