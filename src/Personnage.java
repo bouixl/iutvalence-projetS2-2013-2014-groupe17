@@ -191,7 +191,6 @@ public class Personnage
 		 this.niveau++;
 		 this.pointsDeVie = this.pointsDeVieMax;
 		 this.pointsDeMana = this.pointsDeManaMax;
-		 
 	 }
 
 
@@ -314,6 +313,13 @@ public class Personnage
 		this.constitution += effets[3];
 		this.intelligence += effets[4];
 		this.dexterite += effets[5];
+	}
+	
+	public void equiper(Item objet, Inventaire inventaire, String key)
+	{
+		if(this.equipement[objet.obtenirType()]!=null)
+			inventaire.ajouterObjet(key, this.equipement[objet.obtenirType()]);
+		this.equipement[objet.obtenirType()] = objet;
 	}
 	
 }

@@ -9,9 +9,9 @@ public class Item
 	private String nom;
 	private int[] effets;
 	
-	private static final int TYPE_ARME = 0;
-	private static final int TYPE_ARMURE = 1;
-	private static final int TYPE_POTION = 2;
+	public static final int TYPE_ARME = 0;
+	public static final int TYPE_ARMURE = 1;
+	public static final int TYPE_POTION = 2;
 	
 	private static final String[] NOMS_ARMES={"Epée","Hache","Poêle à frire","Hallebarde","Katana","Lance","Arbalète","Batte","Gourdin","Masse","Arc","Marteau","Espadon","Bâton","Claymore","Dague","Morgenstern","Poignard","Epieux","Glaive","Sabre","Bardiche","Flamberge","Wakizashi"};
 	private static final String[] NOMS_ARMURES={"Côte de mailles","Robe","Plastron","Harnois","Haubert","Brigandine"};
@@ -49,15 +49,23 @@ public class Item
 		return this.effets;
 	}
 	
-	public void utiliserObjet(Personnage cible)
+	public void utiliserObjet(Personnage cible, Inventaire inventaire, String key)
 	{
-		if (this.type==TYPE_ARME || this.type==TYPE_ARMURE)
-		{
-			
-		}
-		else if (this.type==TYPE_POTION)
-		{
+		switch(this.type) {
+		case TYPE_ARME:
+			inventaire.retirerObjet(key);
+			cible.equiper(this, inventaire, key);
+			break;
+		case TYPE_ARMURE:
+			inventaire.retirerObjet(key);
+			cible.equiper(this, inventaire, key);
+			break;
+		case TYPE_POTION:
+			inventaire.retirerObjet(key);
 			cible.appliquerEffets(this.effets);
+			break;
+		default:
+			break;
 		}
 	}
 	
@@ -229,7 +237,7 @@ public class Item
 			chaine = "Armure: ";
 		else if (this.type==TYPE_POTION)
 			chaine = "Potion: ";
-		else 
+		else
 			chaine = "Objet clé: ";
 		chaine += this.nom;
 		

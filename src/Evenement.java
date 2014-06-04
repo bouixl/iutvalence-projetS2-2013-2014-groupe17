@@ -26,6 +26,8 @@ public class Evenement
 		ALLERA, // ALLERA id_branche id_action
 		TESTEREVENT, // TESTEREVENT id_interrupteur id_branche_option_si_on id_branche_option_si_off [carte nom_evenement]
 		TESTERVAR, // TESTERVAR nom_variable mode valeur id_branche_option_si_vrai id_branche_option_si_faux
+		AJOUTEROBJET, // AJOUTEROBJET etiquette type [pv pm force const dex int nom]/[niveau]
+		RETIREROBJET, // RETIREROBJET etiquette
 		MAJVAR; // MAJVAR nom_variable mode valeur
 	}
 
@@ -193,6 +195,32 @@ public class Evenement
 							else if((actionCourante[2].equals("=")))
 								Partie.variables.put(actionCourante[1],Integer.parseInt(actionCourante[3]));
 						}
+						break;
+					case AJOUTEROBJET:
+						Item objet;
+						if(actionCourante.length>5)
+						{
+							String nom = "";
+							for(int i = 9; i<actionCourante.length; i++)
+							{
+								nom += actionCourante[i]+" ";
+							}
+							objet = new Item(Integer.parseInt(actionCourante[2]), nom, new int[] {Integer.parseInt(actionCourante[3]),Integer.parseInt(actionCourante[4]),Integer.parseInt(actionCourante[5]),Integer.parseInt(actionCourante[6]),Integer.parseInt(actionCourante[7]),Integer.parseInt(actionCourante[8])});
+						}
+						else
+						{
+							if(Integer.parseInt(actionCourante[2])!=Item.TYPE_POTION)
+								objet = Item.genererEquipement(Integer.parseInt(actionCourante[3]));
+							else
+								objet = Item.genererPotion(Integer.parseInt(actionCourante[3]));
+						}
+						if(actionCourante[1].equals("0"))
+							ihm.renvoyerPartie().obtenirEquipe().obtenirInventaire().ajouterObjet(objet);
+						else
+							ihm.renvoyerPartie().obtenirEquipe().obtenirInventaire().ajouterObjet(actionCourante[1], objet);
+						break;
+					case RETIREROBJET:
+						ihm.renvoyerPartie().obtenirEquipe().obtenirInventaire().retirerObjet(actionCourante[1]);
 						break;
 					default:
 						break;

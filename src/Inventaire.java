@@ -22,7 +22,8 @@ public class Inventaire {
 	
 	public void retirerObjet(String key)
 	{
-		this.contenu.remove(key);
+		if(this.contenu.containsKey(key))
+			this.contenu.remove(key);
 	}
 	
 	public HashMap<String, Item> obtenirContenu()

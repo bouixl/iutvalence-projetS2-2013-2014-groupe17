@@ -290,7 +290,7 @@ public class IHM implements Runnable, ActionListener, KeyListener {
 						if(Partie.DEBUG)
 						{
 							Partie.GHOST = !Partie.GHOST;
-							System.out.println("Mode ghost: "+Boolean.toString(Partie.MAPPING));
+							System.out.println("Mode ghost: "+Boolean.toString(Partie.GHOST));
 						}
 						break;
 					case Application.TOUCHE_MAPPING:
@@ -300,7 +300,7 @@ public class IHM implements Runnable, ActionListener, KeyListener {
 							Partie.GHOST = Partie.MAPPING;
 							this.tileEnMain = 0;
 							System.out.println("Mode mapping: "+Boolean.toString(Partie.MAPPING));
-							System.out.println("Mode ghost: "+Boolean.toString(Partie.MAPPING));
+							System.out.println("Mode ghost: "+Boolean.toString(Partie.GHOST));
 						}
 						break;
 					case Application.TOUCHE_POSERTILE:
@@ -397,7 +397,7 @@ public class IHM implements Runnable, ActionListener, KeyListener {
 				default:
 					break;
 			}
-			if(!this.toucheHautEnfoncee&&!toucheDroiteEnfoncee&&!toucheBasEnfoncee&&!toucheGaucheEnfoncee)
+			if(!this.toucheHautEnfoncee&&!this.toucheDroiteEnfoncee&&!this.toucheBasEnfoncee&&!this.toucheGaucheEnfoncee)
 			{
 				this.directionMouvement = null;
 			}
@@ -480,16 +480,19 @@ public class IHM implements Runnable, ActionListener, KeyListener {
 		if(Partie.MAPPING)
 		{
 			indexCase = equipe.obtenirPosition().ajouterOffset(Direction.DROITE).obtenirColonne()+(carte.obtenirLargeur()*(equipe.obtenirPosition().obtenirLigne()));
-			this.panneauCarte.remove(indexCase);
-			img_finale = new BufferedImage(Application.LARGEUR_TILE, Application.HAUTEUR_TILE, BufferedImage.TYPE_INT_ARGB);
-			g2 = img_finale.createGraphics();
-			g2.drawImage(carte.obtenirCase(equipe.obtenirPosition().ajouterOffset(Direction.DROITE)), 0, 0, null);
-			if(carte.evenementPresent(equipe.obtenirPosition().ajouterOffset(Direction.DROITE)))
+			if(indexCase<this.partie.obtenirCarte().obtenirHauteur()*this.partie.obtenirCarte().obtenirLargeur())
 			{
-				g2.drawImage(carte.obtenirEvenement(equipe.obtenirPosition().ajouterOffset(Direction.DROITE)).obtenirApparence(), 0, 0, null);
+				this.panneauCarte.remove(indexCase);
+				img_finale = new BufferedImage(Application.LARGEUR_TILE, Application.HAUTEUR_TILE, BufferedImage.TYPE_INT_ARGB);
+				g2 = img_finale.createGraphics();
+				g2.drawImage(carte.obtenirCase(equipe.obtenirPosition().ajouterOffset(Direction.DROITE)), 0, 0, null);
+				if(carte.evenementPresent(equipe.obtenirPosition().ajouterOffset(Direction.DROITE)))
+				{
+					g2.drawImage(carte.obtenirEvenement(equipe.obtenirPosition().ajouterOffset(Direction.DROITE)).obtenirApparence(), 0, 0, null);
+				}
+				g2.dispose();
+				this.panneauCarte.add((new JLabel(new ImageIcon(img_finale))),indexCase);
 			}
-			g2.dispose();
-			this.panneauCarte.add((new JLabel(new ImageIcon(img_finale))),indexCase);
 		}
 		
 		indexCase = equipe.obtenirAnciennePosition().obtenirColonne()+(carte.obtenirLargeur()*(equipe.obtenirAnciennePosition().obtenirLigne()));
