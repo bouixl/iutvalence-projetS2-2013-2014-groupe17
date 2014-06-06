@@ -1,9 +1,4 @@
 import java.awt.event.KeyEvent;
-import java.io.BufferedReader;
-import java.io.File;
-import java.io.FileNotFoundException;
-import java.io.FileReader;
-import java.io.IOException;
 import java.util.Random;
 import java.util.concurrent.TimeUnit;
 
@@ -29,6 +24,7 @@ public class Application
 	public static final int TOUCHE_EXPORTER = KeyEvent.VK_8;
 	public static final int TOUCHE_CREERMAP = KeyEvent.VK_INSERT;
 	public static final int TOUCHE_POSERTILE = KeyEvent.VK_SHIFT; // Maintenue
+	public static final int TOUCHE_MENU = KeyEvent.VK_ESCAPE;
 	
 	
 	/**

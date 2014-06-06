@@ -26,6 +26,7 @@ public class Partie
 	 */
 	private String etat;
 	private IHM ihm;
+	private boolean etatVientDeChanger;
 	public static HashMap<String, Integer> variables = new HashMap<String, Integer> ();
 	public static boolean MAPPING = false;
 	
@@ -50,7 +51,8 @@ public class Partie
 	{
 		creerCartes();
 		this.carte = this.ensemble_cartes.get("TestZone");
-		this.etat = "Carte";
+		this.etat = "carte";
+		this.etatVientDeChanger = true;
 		boucleJeu();
 	}
 	
@@ -92,17 +94,17 @@ public class Partie
 		this.ihm.afficherCarte();
 		while (this.etat != "Fin")
 		{
-			if (this.etat == "Carte")
+			if (this.etat == "carte")
 			{
 				this.ihm.actualiserCarte(false);
 			}
-			else if (this.etat == "Combat")
+			else if (this.etat == "combat")
 			{
 				
 			}
-			else if (this.etat == "Menu")
+			else if (this.etat == "menu")
 			{
-				
+				this.ihm.afficherMenu();
 			}
 			else
 			{
@@ -132,7 +134,8 @@ public class Partie
 	public void changerEtat(String etat)
 	{
 		this.etat = etat;
-		if(this.etat == "Carte")
+		this.etatVientDeChanger = true;
+		if(this.etat == "carte")
 			this.ihm.afficherCarte();
 	}
 	

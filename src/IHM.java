@@ -34,7 +34,7 @@ public class IHM implements Runnable, ActionListener, KeyListener {
 	
 	private Partie partie;
 	private JPanel panneauActuel;
-	private JPanel panneauCombat;
+	private JPanel panneauMenu;
 	private Direction directionMouvement;
 	private boolean toucheHautEnfoncee;
 	private boolean toucheBasEnfoncee;
@@ -64,15 +64,13 @@ public class IHM implements Runnable, ActionListener, KeyListener {
 	
 	public void afficherCombat()
 	{
-		System.out.println("COMBAT");
-		this.panneauActuel = this.panneauCombat;
-		this.panneauActuel.updateUI();
-		this.partie.changerEtat("Carte");
+
 	}
 	
 	public void afficherMenu()
 	{
-		
+		this.panneauActuel = this.panneauMenu;
+		this.panneauActuel.updateUI();
 	}
 	
 	public void afficherEcranDemarrage()
@@ -179,8 +177,8 @@ public class IHM implements Runnable, ActionListener, KeyListener {
 		this.fenetre.setJMenuBar(barreDeMenu);
 
 		this.panneau = new JScrollPane(ScrollPaneConstants.VERTICAL_SCROLLBAR_NEVER,ScrollPaneConstants.HORIZONTAL_SCROLLBAR_NEVER);
-		this.panneauCombat = new JPanel();
-		this.panneauCombat.setBackground(Color.RED);
+		this.panneauMenu = new JPanel();
+		this.panneauMenu.setBackground(Color.RED);
 		this.panneauCarte = new JPanel();
 		this.panneauCarte.setBackground(Color.BLACK);
 		this.panneauActuel = this.panneauCarte;
@@ -203,41 +201,41 @@ public class IHM implements Runnable, ActionListener, KeyListener {
 			    TimeUnit.MILLISECONDS.sleep(1);
 			} catch (InterruptedException e) {
 			}
-			if(this.toucheShiftEnfoncee&&Partie.MAPPING)
-			{
-				Tile tile;
-				if(this.tileEnMain!=13)
-					tile = Tile.values()[this.tileEnMain];
-				else
-					tile = null;
-				if(this.partie.obtenirCarte().obtenirTileCase(this.partie.obtenirEquipe().obtenirPosition(),this.layerEnEdition)!=tile)
+				if(this.toucheShiftEnfoncee&&Partie.MAPPING)
 				{
-					this.partie.obtenirCarte().setCase(this.partie.obtenirEquipe().obtenirPosition(), tile, this.layerEnEdition);
-					actualiserCarte(false);
+					Tile tile;
+					if(this.tileEnMain!=13)
+						tile = Tile.values()[this.tileEnMain];
+					else
+						tile = null;
+					if(this.partie.obtenirCarte().obtenirTileCase(this.partie.obtenirEquipe().obtenirPosition(),this.layerEnEdition)!=tile)
+					{
+						this.partie.obtenirCarte().setCase(this.partie.obtenirEquipe().obtenirPosition(), tile, this.layerEnEdition);
+						actualiserCarte(false);
+					}
 				}
-			}
-			if(this.directionMouvement!=null && ((System.nanoTime()-this.lastMoveTime)>150000000 || this.lastMoveDirection!=this.directionMouvement))
-			{
-				this.lastMoveTime = System.nanoTime();
-				this.lastMoveDirection = this.directionMouvement;
-				if(this.partie.obtenirCarte().peutAller(this.directionMouvement, this.partie.obtenirEquipe().obtenirPosition()))
+				if(this.directionMouvement!=null && ((System.nanoTime()-this.lastMoveTime)>150000000 || this.lastMoveDirection!=this.directionMouvement))
 				{
-					this.partie.obtenirEquipe().deplacer(this.directionMouvement);
-					if(this.partie.obtenirCarte().evenementPresent(this.partie.obtenirEquipe().obtenirPosition()))
-						if(this.partie.obtenirCarte().obtenirEvenement(this.partie.obtenirEquipe().obtenirPosition()).auContact())
-							this.partie.obtenirCarte().obtenirEvenement(this.partie.obtenirEquipe().obtenirPosition()).effectuerActions(this);
-					this.partie.essaiCombat();
+					this.lastMoveTime = System.nanoTime();
+					this.lastMoveDirection = this.directionMouvement;
+					if(this.partie.obtenirCarte().peutAller(this.directionMouvement, this.partie.obtenirEquipe().obtenirPosition()))
+					{
+						this.partie.obtenirEquipe().deplacer(this.directionMouvement);
+						if(this.partie.obtenirCarte().evenementPresent(this.partie.obtenirEquipe().obtenirPosition()))
+							if(this.partie.obtenirCarte().obtenirEvenement(this.partie.obtenirEquipe().obtenirPosition()).auContact())
+								this.partie.obtenirCarte().obtenirEvenement(this.partie.obtenirEquipe().obtenirPosition()).effectuerActions(this);
+						this.partie.essaiCombat();
+					}
+					else
+					{
+						this.partie.obtenirEquipe().changerDirection(this.directionMouvement);
+					}
+					try {
+					    TimeUnit.MILLISECONDS.sleep(9);
+					} catch (InterruptedException e) {
+					}
+					this.attendreReaction = false;
 				}
-				else
-				{
-					this.partie.obtenirEquipe().changerDirection(this.directionMouvement);
-				}
-				try {
-				    TimeUnit.MILLISECONDS.sleep(9);
-				} catch (InterruptedException e) {
-				}
-				this.attendreReaction = false;
-			}
 		}
 	}
 
@@ -250,7 +248,7 @@ public class IHM implements Runnable, ActionListener, KeyListener {
 		if(this.attendreReaction)
 		{
 			int touche = arg0.getKeyCode();
-			if(this.partie.obtenirEtat()=="Carte")
+			if(this.partie.obtenirEtat()=="carte")
 			{
 				switch(touche)
 				{
@@ -356,6 +354,21 @@ public class IHM implements Runnable, ActionListener, KeyListener {
 						if(Partie.MAPPING)
 							this.partie.nouvelleCarte(Integer.parseInt(JOptionPane.showInputDialog(this.fenetre, "Largeur de la map ?", "Creation nouvelle map", JOptionPane.QUESTION_MESSAGE)), Integer.parseInt(JOptionPane.showInputDialog(this.fenetre, "Hauteur de la map ?", "Creation nouvelle map", JOptionPane.QUESTION_MESSAGE)), JOptionPane.showInputDialog(this.fenetre, "Nom de la map ?", "Creation nouvelle map", JOptionPane.QUESTION_MESSAGE));
 						break;
+					case Application.TOUCHE_MENU:
+						this.partie.changerEtat("menu");
+						break;
+					default:
+						break;
+				}
+				this.attendreReaction = false;
+			}
+			else if(this.partie.obtenirEtat()=="menu")
+			{
+				switch(touche)
+				{	
+					case Application.TOUCHE_MENU:
+						this.partie.changerEtat("carte");
+						break;
 					default:
 						break;
 				}
@@ -367,7 +380,7 @@ public class IHM implements Runnable, ActionListener, KeyListener {
 	@Override
 	public void keyReleased(KeyEvent arg0) {
 		int touche = arg0.getKeyCode();
-		if(this.partie.obtenirEtat()=="Carte")
+		if(this.partie.obtenirEtat()=="carte")
 		{
 			switch(touche)
 			{
